@@ -144,6 +144,7 @@ export default function Attractions({ favoriteIds, onToggleFavorite }: Attractio
             Organize uma caravana de qualquer cidade-satélite ou município de Goiás e ganhe isenção de taxas exclusivas, posters autografados pela Otaku Orchestra e recepção credenciada prioritária!
           </p>
           <div className="pt-2">
+            {/* TODO: Substituir o botão abaixo pelo link real quando disponível:
             <a 
               href={EVENT_INFO.cadastroFormUrl}
               target="_blank"
@@ -153,6 +154,14 @@ export default function Attractions({ favoriteIds, onToggleFavorite }: Attractio
               <span>Cadastrar Minha Caravana</span>
               <Heart className="w-4 h-4 fill-white animate-pulse" />
             </a>
+            */}
+            <button 
+              disabled
+              className="inline-flex items-center gap-2 bg-slate-700 text-slate-400 border-2 border-slate-600 px-6 py-3 rounded-xl font-display text-base uppercase tracking-wider cursor-not-allowed opacity-60 shadow-sm"
+            >
+              <span>Cadastrar Minha Caravana</span>
+              <Heart className="w-4 h-4 fill-slate-400" />
+            </button>
           </div>
         </div>
 
