@@ -1,0 +1,6 @@
+{
+  "name": "Brasil Mostra Japão 2026",
+  "description": "Portal oficial do maior evento de integração cultural nipo-brasileira em Brasília. Cinema Ghibli, Tokusatsu, Gastronomia, Cosplay e muito mais.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

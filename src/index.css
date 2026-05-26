@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Sans:wght@300;400;500;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Bangers', cursive;
+  --font-heading: 'Noto Sans JP', sans-serif;
+  --font-sans: 'Noto Sans', sans-serif;
+  
+  --color-brasil-green: #009B3A;
+  --color-brasil-green-dark: #007A2E;
+  --color-brasil-yellow: #FFDF00;
+  --color-brasil-yellow-light: #FFE94F;
+  --color-brasil-blue: #002776;
+  --color-brasil-blue-dark: #001A52;
+  --color-japan-red: #BC002D;
+  --color-japan-red-dark: #8B0020;
+  --color-pop-orange: #FF6B35;
+  --color-pop-pink: #FF1493;
+  --color-pop-purple: #9B30FF;
+}
+
+/* Custom styles for comic books */
+.comic-border {
+  border: 4px solid #000000;
+}
+
+.comic-shadow {
+  box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+}
+
+.comic-shadow-sm {
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+}
+
+.comic-shadow-lg {
+  box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+}
+
+.comic-shadow-press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
+}
+
+.comic-border-double {
+  border: 5px double #000000;
+}
+
+.comic-shadow-hover {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.comic-shadow-hover:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0px 0px rgba(0,0,0,1);
+}
+
+/* Immersive Sunburst */
+.sun-burst {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  z-index: 1;
+}
+
+/* Floating Retro Stamp */
+.floating-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #009B3A; /* Brasil green */
+  color: white;
+  padding: 10px 15px;
+  border: 4px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  transform: rotate(10deg);
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  z-index: 20;
+}
+
+.text-stroke-black {
+  -webkit-text-stroke: 1.5px #111111;
+  text-shadow: 2px 2px 0px #111111;
+}
+
+.text-stroke-black-lg {
+  -webkit-text-stroke: 2.5px #111111;
+  text-shadow: 4px 4px 0px #111111;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a; /* Slate 900 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BC002D; /* Japanese Red */
+  border: 3px solid #0f172a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B35;
+}
+
+/* Keyframes for Falling Sakura */
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(105vh) translateX(120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.sakura-petal {
+  position: absolute;
+  top: -20px;
+  background: linear-gradient(135deg, #ffb7c5 0%, #ff8da1 100%);
+  border-radius: 50% 0 50% 50%;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 2px 3px rgba(255, 141, 161, 0.3));
+  animation-name: sakura-fall;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* Custom speedlines or halftone effects */
+.bg-halftone {
+  background-image: radial-gradient(#111111 20%, transparent 20%);
+  background-size: 8px 8px;
+  opacity: 0.05;
+}
+
+.bg-comic-strip {
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(17, 17, 17, 0.04) 10px, rgba(17, 17, 17, 0.04) 20px);
+}
