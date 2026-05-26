@@ -153,7 +153,15 @@ export default function Footer() {
       {/* Under copyright bar */}
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-center">
         <p className="text-xs text-slate-500 font-mono">
-          © 2026 Brasil Mostra Japão • Todos os direitos reservados para o produtor {EVENT_INFO.organizer}.
+          © 2026 Brasil Mostra Japão • Todos os direitos reservados - Desenvolvido por{' '}
+          <a
+            href="https://www.instagram.com/draftcreativestudio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-brasil-yellow underline transition-colors"
+          >
+            Draft Creative Studio Ltda
+          </a>
         </p>
         
         <p className="text-xs text-slate-400 font-sans flex items-center gap-1.5 justify-center">
