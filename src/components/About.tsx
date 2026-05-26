@@ -2,13 +2,15 @@ import { Globe, Lightbulb, Pizza, Heart } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="sobre" className="relative py-20 px-4 md:px-8 bg-white overflow-hidden">
+    <section id="sobre" className="relative py-20 px-4 md:px-8 overflow-hidden">
+      {/* Background layer */}
+      <div className="absolute inset-0 bg-white z-0 pointer-events-none" />
+      
       {/* Decorative Sakura/Comic Background Details */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-japan-red/5 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-48 h-48 bg-brasil-green/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 w-32 h-32 bg-japan-red/5 rounded-full blur-2xl pointer-events-none z-0" />
+      <div className="absolute bottom-0 right-0 w-48 h-48 bg-brasil-green/5 rounded-full blur-3xl pointer-events-none z-0" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="bg-brasil-yellow text-brasil-blue font-heading font-extrabold px-4 py-1.5 rounded-full border-2 border-slate-900 shadow-sm text-sm uppercase tracking-wider inline-block">

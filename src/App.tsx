@@ -13,6 +13,7 @@ import FAQ from './components/FAQ';
 import Newsletter from './components/Newsletter';
 import MySchedule from './components/MySchedule';
 import Footer from './components/Footer';
+import BubbleEffect from './components/BubbleEffect';
 
 import { Sparkles, X, MessageSquare, Flame, Ticket, ShieldCheck } from 'lucide-react';
 import { EVENT_INFO } from './data';
@@ -116,6 +117,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 scroll-smooth antialiased">
+      
+      {/* SOAP BUBBLE CANVAS EFFECT */}
+      <BubbleEffect />
       
       {/* 1. STICKY ACTION HEADER LAYER */}
       <Header 

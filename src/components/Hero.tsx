@@ -42,53 +42,24 @@ export default function Hero({ onOpenTickets, onNavigateToSchedule }: HeroProps)
     return () => clearInterval(interval);
   }, []);
 
-  // Spawn simple realistic falling sakura petals in the Hero layer
-  const [petals, setPetals] = useState<Array<{ id: number; left: string; delay: string; duration: string; size: string }>>([]);
-  
-  useEffect(() => {
-    // Generate 32 randomized background petals
-    const newPetals = Array.from({ length: 32 }).map((_, idx) => ({
-      id: idx,
-      left: `${Math.random() * 95}%`,
-      delay: `${Math.random() * 12}s`,
-      duration: `${10 + Math.random() * 15}s`,
-      size: `${8 + Math.random() * 12}px`
-    }));
-    setPetals(newPetals);
-  }, []);
-
   return (
-    <section id="inicio" className="relative min-h-[95vh] pt-32 pb-20 px-4 md:px-8 bg-gradient-to-b from-[#87CEEB] to-[#4A90E2] overflow-hidden flex items-center justify-center border-b-6 border-slate-900">
+    <section id="inicio" className="relative min-h-[95vh] pt-32 pb-20 px-4 md:px-8 overflow-hidden flex items-center justify-center border-b-6 border-slate-900">
       
+      {/* Background Gradient Layer */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#87CEEB] to-[#4A90E2] z-0" />
+
       {/* Sun-burst back drop */}
-      <div className="sun-burst" />
+      <div className="sun-burst z-0" />
 
       {/* Floating Retro Stamp */}
-      <div className="floating-badge hidden md:block">130 ANOS DE AMIZADE! 🎌</div>
-
-      {/* Absolute Falling Sakura Layer */}
-      <div className="absolute inset-0 pointer-events-none z-10">
-        {petals.map((p) => (
-          <div
-            key={p.id}
-            className="sakura-petal absolute opacity-0"
-            style={{
-              left: p.left,
-              animationDelay: p.delay,
-              animationDuration: p.duration,
-              width: p.size,
-              height: p.size,
-            }}
-          />
-        ))}
-      </div>
+      <div className="floating-badge hidden md:block z-20">130 ANOS DE AMIZADE! 🎌</div>
 
       {/* Retro halftone comic dot overlay */}
-      <div className="absolute inset-0 bg-halftone pointer-events-none" />
+      <div className="absolute inset-0 bg-halftone pointer-events-none z-0" />
 
       {/* Styled Japanese traditional clouds (Left + Right vectors modeled in CSS) */}
-      <div className="absolute left-[-50px] bottom-10 w-96 h-16 bg-white/20 rounded-full blur-sm pointer-events-none transform -skew-x-12 hidden lg:block" />
-      <div className="absolute right-[-80px] top-40 w-[500px] h-20 bg-white/10 rounded-full blur-md pointer-events-none transform skew-x-12 hidden lg:block" />
+      <div className="absolute left-[-50px] bottom-10 w-96 h-16 bg-white/20 rounded-full blur-sm pointer-events-none transform -skew-x-12 hidden lg:block z-0" />
+      <div className="absolute right-[-80px] top-40 w-[500px] h-20 bg-white/10 rounded-full blur-md pointer-events-none transform skew-x-12 hidden lg:block z-0" />
 
       {/* Decorative Traditional Japanese Sun Emblem */}
       <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[550px] h-[550px] bg-[#BC002D]/15 rounded-full -z-0 blur-[80px] pointer-events-none" />

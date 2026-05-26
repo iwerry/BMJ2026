@@ -110,36 +110,7 @@
   background: #FF6B35;
 }
 
-/* Keyframes for Falling Sakura */
-@keyframes sakura-fall {
-  0% {
-    transform: translateY(-20px) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.9;
-  }
-  90% {
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateY(105vh) translateX(120px) rotate(360deg);
-    opacity: 0;
-  }
-}
 
-.sakura-petal {
-  position: absolute;
-  top: -20px;
-  background: linear-gradient(135deg, #ffb7c5 0%, #ff8da1 100%);
-  border-radius: 50% 0 50% 50%;
-  pointer-events: none;
-  z-index: 2;
-  filter: drop-shadow(0 2px 3px rgba(255, 141, 161, 0.3));
-  animation-name: sakura-fall;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
 
 /* Custom speedlines or halftone effects */
 .bg-halftone {
