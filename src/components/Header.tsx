@@ -24,30 +24,79 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Início', href: '#inicio' },
-    { label: 'Sobre', href: '#sobre' },
-    { label: 'Programação', href: '#programacao' },
-    { label: 'Cinema', href: '#cinema' },
-    { label: 'Atrações', href: '#atracoes' },
-    { label: 'Expositores', href: '#expositores' },
-    { label: 'Local', href: '#local' },
-    { label: 'Passaporte', href: '#meu-cronograma' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Cosplay', href: '#cosplay' },
+  interface SubmenuItem {
+    label: string;
+    href: string;
+    disabled?: boolean;
+  }
+
+  interface MenuLink {
+    label: string;
+    href?: string;
+    type: 'link' | 'dropdown';
+    submenu?: SubmenuItem[];
+  }
+
+  const menuItems: MenuLink[] = [
+    {
+      label: 'Programação',
+      type: 'dropdown',
+      submenu: [
+        { label: 'Cinema', href: '#cinema' },
+        { label: 'LineUp', href: '#lineup' },
+      ],
+    },
+    {
+      label: 'Expositores',
+      type: 'link',
+      href: '#expositores',
+    },
+    {
+      label: 'Cosplay',
+      type: 'dropdown',
+      submenu: [
+        { label: 'Desfile (Sexta)', href: '#desfile' },
+        { label: 'Concurso (Sáb/Dom)', href: '#concurso' },
+        { label: 'Inscrições / Edital', href: '#inscricoes', disabled: true },
+      ],
+    },
+    {
+      label: 'Imprensa',
+      type: 'link',
+      href: '#imprensa',
+    },
+    {
+      label: 'Passaporte',
+      type: 'link',
+      href: '#meu-cronograma',
+    },
+    {
+      label: 'FAQ',
+      type: 'link',
+      href: '#faq',
+    },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
+    const id = href.replace('#', '');
+    const element = document.getElementById(id);
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
       });
+      // Update browser URL history for SPA permalinks
+      const path = id === 'inicio' ? '/' : `/${id}`;
+      window.history.pushState(null, '', path);
     }
+  };
+
+  const handleSubLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    handleLinkClick(e, href);
+    e.currentTarget.closest('details')?.removeAttribute('open');
   };
 
   return (
@@ -85,33 +134,47 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
           {/* Desktop Navigation Link List */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-                link.label === 'Cosplay' ? (
-                  <details key={link.label} className="relative group">
-                    <summary className="cursor-pointer text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60">
-                      {link.label}
-                    </summary>
-                    <div className="absolute left-0 mt-2 w-48 bg-slate-900 rounded-lg shadow-lg z-20 hidden group-open:block">
-                      <a href="#desfile" onClick={(e) => handleLinkClick(e, '#desfile')} className="block px-4 py-2 text-sm text-white hover:bg-slate-800">Desfile (Sexta)</a>
-                      <a href="#concurso" onClick={(e) => handleLinkClick(e, '#concurso')} className="block px-4 py-2 text-sm text-white hover:bg-slate-800">Concurso (Sáb./Dom.)</a>
-                      <a href="#inscricoes" onClick={(e) => handleLinkClick(e, '#inscricoes')} className="block px-4 py-2 text-sm text-gray-400 cursor-not-allowed">Inscrições / Edital (em breve)</a>
-                    </div>
-                  </details>
-                ) : (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60 relative"
-                  >
-                    {link.label}
-                    {link.href === '#meu-cronograma' && favoriteCount > 0 && (
-                      <span className="absolute -top-1.5 -right-1 bg-brasil-yellow text-slate-950 font-mono text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-slate-950 animate-bounce">
-                        {favoriteCount}
-                      </span>
-                    )}
-                  </a>
-                )
+            {menuItems.map((item) => (
+              item.type === 'dropdown' ? (
+                <details key={item.label} className="relative group">
+                  <summary className="cursor-pointer text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60 list-none flex items-center gap-1">
+                    {item.label}
+                    <span className="text-[10px] opacity-60">▼</span>
+                  </summary>
+                  <div className="absolute left-0 mt-2 w-48 bg-slate-900 rounded-lg shadow-lg z-20 hidden group-open:block border border-slate-800">
+                    {item.submenu?.map((sub) => (
+                      sub.disabled ? (
+                        <span key={sub.label} className="block px-4 py-2 text-xs text-gray-500 cursor-not-allowed select-none font-heading font-black uppercase tracking-wider">
+                          {sub.label} (em breve)
+                        </span>
+                      ) : (
+                        <a
+                          key={sub.label}
+                          href={sub.href}
+                          onClick={(e) => handleSubLinkClick(e, sub.href)}
+                          className="block px-4 py-2 text-xs text-white hover:text-brasil-yellow hover:bg-slate-800 font-heading font-black uppercase tracking-wider transition-colors duration-150"
+                        >
+                          {sub.label}
+                        </a>
+                      )
+                    ))}
+                  </div>
+                </details>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href!)}
+                  className="text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60 relative"
+                >
+                  {item.label}
+                  {item.href === '#meu-cronograma' && favoriteCount > 0 && (
+                    <span className="absolute -top-1.5 -right-1 bg-brasil-yellow text-slate-950 font-mono text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-slate-950 animate-bounce">
+                      {favoriteCount}
+                    </span>
+                  )}
+                </a>
+              )
             ))}
           </nav>
 
@@ -167,25 +230,49 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
       {/* Drawer Menu for Mobile Devices */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[72px] z-40 bg-slate-900/95 backdrop-blur-lg flex flex-col justify-between p-6 lg:hidden border-t border-slate-800">
+        <div className="fixed inset-0 top-[72px] z-40 bg-slate-900/95 backdrop-blur-lg flex flex-col justify-between p-6 lg:hidden border-t border-slate-800 overflow-y-auto">
           
           <div className="space-y-3">
             <p className="text-xs font-mono text-slate-500 uppercase tracking-widest pl-2 mb-2">BMJ Navegação</p>
-            <nav className="grid grid-cols-2 gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-white hover:text-brasil-yellow hover:bg-slate-800 py-3 px-4 rounded-xl text-sm font-heading font-black uppercase tracking-wider transition-colors border border-slate-800 flex items-center justify-between"
-                >
-                  <span>{link.label}</span>
-                  {link.href === '#meu-cronograma' && favoriteCount > 0 && (
-                    <span className="bg-brasil-yellow text-slate-950 font-mono text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center">
-                      {favoriteCount}
-                    </span>
-                  )}
-                </a>
+            <nav className="flex flex-col gap-2">
+              {menuItems.map((item) => (
+                item.type === 'dropdown' ? (
+                  <div key={item.label} className="border border-slate-800 rounded-xl p-3 bg-slate-950/40">
+                    <p className="text-xs font-mono text-slate-400 uppercase tracking-widest pl-1 mb-1.5 font-black">{item.label}</p>
+                    <div className="flex flex-col gap-1 pl-2 border-l border-slate-800">
+                      {item.submenu?.map((sub) => (
+                        sub.disabled ? (
+                          <span key={sub.label} className="text-slate-600 text-xs py-1.5 px-3 rounded-lg font-heading font-black uppercase tracking-wider italic select-none">
+                            {sub.label} (em breve)
+                          </span>
+                        ) : (
+                          <a
+                            key={sub.label}
+                            href={sub.href}
+                            onClick={(e) => handleLinkClick(e, sub.href)}
+                            className="text-white hover:text-brasil-yellow hover:bg-slate-800 py-2 px-3 rounded-lg text-xs font-heading font-black uppercase tracking-wider transition-colors block"
+                          >
+                            {sub.label}
+                          </a>
+                        )
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleLinkClick(e, item.href!)}
+                    className="text-white hover:text-brasil-yellow hover:bg-slate-800 py-3 px-4 rounded-xl text-sm font-heading font-black uppercase tracking-wider transition-colors border border-slate-800 flex items-center justify-between"
+                  >
+                    <span>{item.label}</span>
+                    {item.href === '#meu-cronograma' && favoriteCount > 0 && (
+                      <span className="bg-brasil-yellow text-slate-950 font-mono text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center shrink-0">
+                        {favoriteCount}
+                      </span>
+                    )}
+                  </a>
+                )
               ))}
             </nav>
           </div>

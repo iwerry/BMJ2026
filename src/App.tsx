@@ -15,6 +15,7 @@ import MySchedule from './components/MySchedule';
 import Footer from './components/Footer';
 import BubbleEffect from './components/BubbleEffect';
 import Cosplay from './components/Cosplay';
+import Press from './components/Press';
 
 import { Sparkles, X, MessageSquare, Flame, Ticket, ShieldCheck } from 'lucide-react';
 import { EVENT_INFO } from './data';
@@ -50,8 +51,31 @@ export default function App() {
         top: offsetTop,
         behavior: 'smooth'
       });
+      const path = id === '#inicio' ? '/' : id.replace('#', '/');
+      window.history.pushState(null, '', path);
     }
   };
+
+  // Handle permalink routing on load
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path && path !== '/') {
+      const sectionId = path.substring(1); // e.g. "cosplay"
+      const scrollToSection = () => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      };
+      scrollToSection();
+      const timer = setTimeout(scrollToSection, 600); // slight delay to allow layout to settle
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   // Capture pop-up modal setup (shown after 6 seconds or 45% scroll)
   const [showPromoPopup, setShowPromoPopup] = useState(false);
@@ -174,6 +198,9 @@ export default function App() {
 
       {/* 11. STRATIFIED SPONSOR SHIELD TIERS */}
       <Sponsors />
+
+      {/* Imprensa Section */}
+      <Press />
 
       {/* 12. INTERACTIVE ACCORDIONS FAQ */}
       <FAQ />

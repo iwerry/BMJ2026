@@ -25,7 +25,7 @@ export default function Attractions({ favoriteIds, onToggleFavorite }: Attractio
   });
 
   return (
-    <section id="atracoes" className="relative py-20 px-4 md:px-8 bg-white border-b-4 border-slate-900 overflow-hidden">
+    <section id="lineup" className="relative py-20 px-4 md:px-8 bg-white border-b-4 border-slate-900 overflow-hidden">
       
       {/* Decorative Vectors */}
       <div className="absolute top-0 right-[-100px] w-80 h-80 bg-brasil-yellow/10 rounded-full blur-[100px] pointer-events-none" />
@@ -39,7 +39,7 @@ export default function Attractions({ favoriteIds, onToggleFavorite }: Attractio
             Experiências Incríveis
           </span>
           <h2 className="text-5xl md:text-6xl font-display text-slate-900 mt-4 tracking-tight uppercase text-stroke-black">
-            ATRAÇÕES COMPACTAS BMJ
+            LINEUP COMPACTO BMJ
           </h2>
           <p className="text-slate-600 mt-2 font-heading font-semibold text-lg max-w-2xl mx-auto">
             Explore as principais atividades que preparamos para você e sua família. Sinta o clima épico da CCXP com temática nipo-brasileira!

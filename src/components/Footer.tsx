@@ -4,26 +4,29 @@ import { Mail, Phone, ExternalLink, ShieldAlert, Sparkles, Landmark, Heart } fro
 
 export default function Footer() {
   const links = [
-    { label: 'Início', href: '#inicio' },
     { label: 'Sobre', href: '#sobre' },
     { label: 'Programação', href: '#programacao' },
     { label: 'Cinema', href: '#cinema' },
-    { label: 'Atrações', href: '#atracoes' },
+    { label: 'LineUp', href: '#lineup' },
     { label: 'Expositores', href: '#expositores' },
-    { label: 'Local', href: '#local' },
+    { label: 'Cosplay', href: '#cosplay' },
+    { label: 'Imprensa', href: '#imprensa' },
     { label: 'Passaporte', href: '#meu-cronograma' },
     { label: 'FAQ', href: '#faq' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const element = document.querySelector(href);
+    const id = href.replace('#', '');
+    const element = document.getElementById(id);
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
       });
+      // Update browser URL history for SPA permalinks
+      window.history.pushState(null, '', `/${id}`);
     }
   };
 
