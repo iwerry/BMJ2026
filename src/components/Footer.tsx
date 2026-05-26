@@ -31,7 +31,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-950 text-white py-16 px-4 md:px-8 border-t-4 border-slate-900 relative overflow-hidden">
+    <footer className="bg-slate-950 text-white pt-16 pb-32 px-4 md:px-8 border-t-4 border-slate-900 relative overflow-hidden">
       
       {/* Decorative Traditional Japanese Sun Emblem at Background */}
       <div className="absolute bottom-[-150px] right-[-150px] w-96 h-96 bg-[#BC002D]/5 rounded-full pointer-events-none blur-3xl" />
