@@ -11,8 +11,9 @@ export const EVENT_INFO = {
   instagramUrl: "https://www.instagram.com/brasilmostrajapao/",
   beaconsUrl: "https://beacons.ai/brasilmostrajapao",
   symplaUrl: "https://www.sympla.com.br/evento/brasil-mostra-japao/3374417",
-  cadastroFormUrl: "https://forms.gle/wLCpMqEWwZ9vEPdW6",
-  exhibitorFormUrl: "https://forms.gle/9T6Morft6r96z1SX6",
+  cadastroFormUrl: "", // Não definido ainda (Caravana)
+  exhibitorFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdV8rxorjX2ncDa2DM1yhXKLrLCraU82qcFJIaONdp2YiYi0w/viewform",
+  artesFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLScsuhvMwLqyrtwh8C2yfx2gPOAugx0wdBxAYyQx1D7NEQFbRw/viewform",
   targetDate: "2026-07-17T11:00:00Z" // Start date of the event in ISO representation
 };
 

@@ -100,14 +100,20 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a 
-                href={EVENT_INFO.cadastroFormUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-white flex items-center gap-1.5"
-              >
-                Grupo / Caravana Google Forms <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
-              </a>
+              {EVENT_INFO.cadastroFormUrl ? (
+                <a 
+                  href={EVENT_INFO.cadastroFormUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white flex items-center gap-1.5"
+                >
+                  Grupo / Caravana Google Forms <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
+                </a>
+              ) : (
+                <span className="text-slate-650 flex items-center gap-1.5 cursor-not-allowed select-none font-medium italic" title="Formulário indisponível no momento">
+                  Grupo / Caravana (Em Breve)
+                </span>
+              )}
             </li>
             <li>
               <a 
@@ -116,7 +122,17 @@ export default function Footer() {
                 rel="noreferrer"
                 className="hover:text-white flex items-center gap-1.5"
               >
-                Estandes Google Forms <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
+                Forms Expositores & Alimentação <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
+              </a>
+            </li>
+            <li>
+              <a 
+                href={EVENT_INFO.artesFormUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white flex items-center gap-1.5"
+              >
+                Forms Artes Gallery <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
               </a>
             </li>
           </ul>
