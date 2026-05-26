@@ -112,7 +112,7 @@ export default function Hero({ onOpenTickets, onNavigateToSchedule }: HeroProps)
               <span className="text-sm md:text-base font-heading font-black text-slate-800">11h às 22h</span>
             </div>
             <div className="text-center border-l border-slate-200 col-span-2 md:col-span-2">
-              <span className="text-xs font-mono text-slate-400 block uppercase font-bold">Entradas</span>
+              <span className="text-xs font-mono text-slate-400 block uppercase font-bold">Entrada Social</span>
               <span className="text-sm md:text-base font-heading font-black text-brasil-green-dark">A partir de R$ 20,00</span>
             </div>
           </div>
