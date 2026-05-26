@@ -46,10 +46,18 @@ export default function Press() {
               <p className="text-slate-300 text-sm leading-relaxed">
                 Acesse releases oficiais, fotos em alta resolução do Museu Nacional da República, logomarcas oficiais do festival (em vetor e PNG) e o edital comemorativo dos 130 anos de amizade Brasil-Japão.
               </p>
-              <ul className="space-y-2 text-xs font-mono text-slate-400">
+              <ul className="space-y-2.5 text-xs font-mono text-slate-400">
                 <li className="flex items-center gap-2">✔ Release Oficial de Abertura (.pdf)</li>
                 <li className="flex items-center gap-2">✔ Fotos Autorizadas para Divulgação (.zip)</li>
-                <li className="flex items-center gap-2">✔ Logos Oficiais BMJ 2026 (.ai, .svg, .png)</li>
+                <li className="flex items-center gap-2 flex-wrap">
+                  <span>✔ Logos Oficiais:</span>
+                  <a href="/logos/logo-bmj2026.svg" download="logo-bmj2026.svg" className="text-brasil-yellow hover:underline inline-flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded border border-white/15">
+                    BMJ2026 (.svg) <Download className="w-3 h-3" />
+                  </a>
+                  <a href="/logos/logo-emblem.svg" download="logo-emblem.svg" className="text-brasil-yellow hover:underline inline-flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded border border-white/15">
+                    Emblema (.svg) <Download className="w-3 h-3" />
+                  </a>
+                </li>
               </ul>
             </div>
             

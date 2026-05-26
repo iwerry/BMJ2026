@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bangers&amp;display=swap');
+      .text-bmj {
+        font-family: 'Bangers', cursive, sans-serif;
+        font-size: 80px;
+        fill: #FFFFFF;
+        stroke: #111111;
+        stroke-width: 3px;
+        filter: drop-shadow(4px 4px 0px #111111);
+      }
+      .text-year {
+        font-family: 'Bangers', cursive, sans-serif;
+        font-size: 80px;
+        fill: #BC002D;
+        stroke: #111111;
+        stroke-width: 3px;
+        filter: drop-shadow(4px 4px 0px #111111);
+      }
+    </style>
+  </defs>
+  <text x="20" y="90">
+    <tspan class="text-bmj">BMJ</tspan>
+    <tspan class="text-year">2026</tspan>
+  </text>
+</svg>

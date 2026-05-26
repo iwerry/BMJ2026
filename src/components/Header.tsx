@@ -10,6 +10,20 @@ interface HeaderProps {
 export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logoTextIndex, setLogoTextIndex] = useState(0);
+
+  const logoSubtitles = [
+    '130 ANOS • BRASIL JAPÃO 🎌',
+    '130 ANOS • BRASÍLIA 2026 🎌'
+  ];
+
+  // Rotate logo subtitles
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLogoTextIndex((prev) => (prev + 1) % logoSubtitles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Monitor screen scroll to add beautiful sticky header aesthetics
   useEffect(() => {
@@ -122,13 +136,16 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
               <div className="w-6 h-6 rounded-full bg-japan-red relative z-10 border border-slate-900" />
             </div>
             
-            <div className="flex flex-col">
-              <span className="font-display text-2xl md:text-3xl text-white tracking-wider leading-none text-stroke-black">
-                BRASIL MOSTRA JAPÃO
+            <div className="flex flex-col items-start select-none">
+              <span className="font-display text-2xl md:text-3xl tracking-wider leading-none text-stroke-black">
+                <span className="text-white">BMJ</span>
+                <span className="text-japan-red">2026</span>
               </span>
-              <span className="text-[10px] uppercase font-mono tracking-widest text-[#FFE94F] font-extrabold flex items-center gap-1">
-                <span>130 ANOS • BRASÍLIA 2026</span> <span className="animate-pulse">🎌</span>
-              </span>
+              <div className="h-4 overflow-hidden relative">
+                <span key={logoTextIndex} className="text-[10px] uppercase font-mono tracking-widest text-[#FFE94F] font-extrabold flex items-center gap-1 animate-logo-text-fade-in">
+                  {logoSubtitles[logoTextIndex]}
+                </span>
+              </div>
             </div>
           </a>
 
