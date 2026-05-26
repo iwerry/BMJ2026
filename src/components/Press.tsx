@@ -75,41 +75,27 @@ export default function Press() {
               </p>
             </div>
 
-            {success ? (
-              <div className="bg-brasil-green/10 border-2 border-brasil-green p-5 rounded-2xl text-center space-y-2">
-                <CheckCircle className="w-8 h-8 text-brasil-green mx-auto" />
-                <h4 className="font-heading font-black text-sm uppercase text-brasil-green">Solicitação Pré-Registrada!</h4>
-                <p className="text-xs text-slate-300 font-sans">
-                  Você receberá as instruções para o envio de portfólio no e-mail cadastrado.
-                </p>
+            <div className="space-y-3">
+              <div>
+                <input
+                  type="email"
+                  disabled
+                  placeholder="E-mail profissional / do canal..."
+                  className="w-full p-3 bg-slate-950/40 border border-slate-800 rounded-xl font-heading text-sm text-center text-gray-500 cursor-not-allowed select-none opacity-50"
+                />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <div>
-                  <input
-                    type="email"
-                    required
-                    placeholder="E-mail profissional / do canal..."
-                    value={emailInput}
-                    onChange={(e) => setEmailInput(e.target.value)}
-                    className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl font-heading text-sm text-center text-white focus:outline-none focus:border-brasil-yellow"
-                  />
-                </div>
-                
-                {error && (
-                  <p className="text-xs text-center text-japan-red font-mono font-bold">
-                    ⚠️ {error}
-                  </p>
-                )}
 
-                <button
-                  type="submit"
-                  className="w-full bg-japan-red hover:bg-[#8B0020] text-white font-display text-base py-3 rounded-xl border border-black uppercase cursor-pointer text-center font-extrabold shadow-sm transition-transform active:scale-[0.98]"
-                >
-                  Registrar Interesse
-                </button>
-              </form>
-            )}
+              <button
+                disabled
+                className="w-full bg-gray-750 text-gray-450 font-display text-base py-3 rounded-xl border border-gray-800 uppercase cursor-not-allowed text-center font-extrabold opacity-50"
+              >
+                Registrar Interesse
+              </button>
+              
+              <p className="text-xs text-center text-gray-400 font-sans italic mt-2 animate-pulse">
+                ⚠️ Formulário disponível em breve!
+              </p>
+            </div>
           </div>
 
         </div>
