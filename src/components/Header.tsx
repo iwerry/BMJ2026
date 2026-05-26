@@ -34,6 +34,7 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
     { label: 'Local', href: '#local' },
     { label: 'Passaporte', href: '#meu-cronograma' },
     { label: 'FAQ', href: '#faq' },
+    { label: 'Cosplay', href: '#cosplay' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -85,19 +86,32 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
           {/* Desktop Navigation Link List */}
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className="text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60 relative"
-              >
-                {link.label}
-                {link.href === '#meu-cronograma' && favoriteCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1 bg-brasil-yellow text-slate-950 font-mono text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-slate-950 animate-bounce">
-                    {favoriteCount}
-                  </span>
-                )}
-              </a>
+                link.label === 'Cosplay' ? (
+                  <details key={link.label} className="relative group">
+                    <summary className="cursor-pointer text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60">
+                      {link.label}
+                    </summary>
+                    <div className="absolute left-0 mt-2 w-48 bg-slate-900 rounded-lg shadow-lg z-20 hidden group-open:block">
+                      <a href="#desfile" onClick={(e) => handleLinkClick(e, '#desfile')} className="block px-4 py-2 text-sm text-white hover:bg-slate-800">Desfile (Sexta)</a>
+                      <a href="#concurso" onClick={(e) => handleLinkClick(e, '#concurso')} className="block px-4 py-2 text-sm text-white hover:bg-slate-800">Concurso (Sáb./Dom.)</a>
+                      <a href="#inscricoes" onClick={(e) => handleLinkClick(e, '#inscricoes')} className="block px-4 py-2 text-sm text-gray-400 cursor-not-allowed">Inscrições / Edital (em breve)</a>
+                    </div>
+                  </details>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className="text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60 relative"
+                  >
+                    {link.label}
+                    {link.href === '#meu-cronograma' && favoriteCount > 0 && (
+                      <span className="absolute -top-1.5 -right-1 bg-brasil-yellow text-slate-950 font-mono text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-slate-950 animate-bounce">
+                        {favoriteCount}
+                      </span>
+                    )}
+                  </a>
+                )
             ))}
           </nav>
 

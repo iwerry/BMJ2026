@@ -14,6 +14,7 @@ import Newsletter from './components/Newsletter';
 import MySchedule from './components/MySchedule';
 import Footer from './components/Footer';
 import BubbleEffect from './components/BubbleEffect';
+import Cosplay from './components/Cosplay';
 
 import { Sparkles, X, MessageSquare, Flame, Ticket, ShieldCheck } from 'lucide-react';
 import { EVENT_INFO } from './data';
@@ -165,6 +166,8 @@ export default function App() {
 
       {/* 9. SEARCHABLE EXHIBITORS STANDS */}
       <Exhibitors />
+      {/* Cosplay Section */}
+      <Cosplay />
 
       {/* 10. VENUE LOCATION MAP EMBED DIRECTIONS */}
       <Venue />
