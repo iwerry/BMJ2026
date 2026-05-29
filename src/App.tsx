@@ -83,6 +83,8 @@ export default function App() {
   const [popupSuccess, setPopupSuccess] = useState(false);
   const [popupError, setPopupError] = useState<string | null>(null);
 
+  // Promo popup disabled by user request
+  /*
   useEffect(() => {
     // Show pop-up after a brief warm-up delay of 6 seconds to optimize UX
     const timer = setTimeout(() => {
@@ -111,6 +113,7 @@ export default function App() {
       window.removeEventListener('scroll', handleScrollForPopup);
     };
   }, []);
+  */
 
   const handleDismissPopup = () => {
     setShowPromoPopup(false);
