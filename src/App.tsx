@@ -46,7 +46,7 @@ export default function App() {
   const handleScrollToSection = (id: string) => {
     const element = document.querySelector(id);
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 140;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -64,7 +64,7 @@ export default function App() {
       const scrollToSection = () => {
         const element = document.getElementById(sectionId);
         if (element) {
-          const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+          const offsetTop = element.getBoundingClientRect().top + window.scrollY - 140;
           window.scrollTo({
             top: offsetTop,
             behavior: 'smooth'

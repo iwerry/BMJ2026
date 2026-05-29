@@ -20,7 +20,7 @@ export default function Footer() {
     const id = href.replace('#', '');
     const element = document.getElementById(id);
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 140;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'

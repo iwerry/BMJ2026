@@ -43,7 +43,7 @@ export default function Hero({ onOpenTickets, onNavigateToSchedule }: HeroProps)
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-[95vh] pt-32 pb-20 px-4 md:px-8 overflow-hidden flex items-center justify-center border-b-6 border-slate-900">
+    <section id="inicio" className="relative min-h-[95vh] pt-40 md:pt-48 pb-20 px-4 md:px-8 overflow-hidden flex items-center justify-center border-b-6 border-slate-900">
       
       {/* Background Gradient Layer */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#87CEEB] to-[#4A90E2] z-0" />
