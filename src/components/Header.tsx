@@ -131,10 +131,10 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
             <img 
               src="/logos/logo-emblem.svg" 
               alt="BMJ Emblem" 
-              className="w-24 h-24 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
+              className="w-32 h-32 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
             />
             
-            <div className="h-4 overflow-hidden relative w-full flex justify-center mt-1">
+            <div className="h-4 overflow-hidden relative w-full flex justify-center -mt-4">
               <span key={logoTextIndex} className="text-[10px] uppercase font-mono tracking-widest text-[#FFE94F] font-extrabold flex items-center justify-center gap-1 animate-logo-text-fade-in whitespace-nowrap">
                 {logoSubtitles[logoTextIndex]}
               </span>
