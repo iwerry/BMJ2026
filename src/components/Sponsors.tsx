@@ -13,7 +13,7 @@ export default function Sponsors() {
           <span className="bg-brasil-yellow text-brasil-blue font-heading font-extrabold px-4 py-1.5 rounded-full border-2 border-slate-900 shadow-sm text-sm uppercase tracking-wider inline-block">
             Parceiros de Confiança
           </span>
-          <h2 className="text-4xl md:text-5xl font-display text-slate-900 mt-4 tracking-tight uppercase text-stroke-black">
+          <h2 className="text-4xl md:text-5xl font-display text-slate-400 mt-4 tracking-tight uppercase text-stroke-black">
             APOIO E REALIZAÇÃO
           </h2>
           <div className="w-24 h-2 bg-brasil-green mx-auto mt-4 rounded-full border border-slate-950" />

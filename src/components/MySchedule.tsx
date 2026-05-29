@@ -35,7 +35,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
           <span className="bg-japan-red text-white font-heading font-extrabold px-4 py-1.5 rounded-full border-2 border-slate-900 shadow-sm text-sm uppercase tracking-wider inline-block animate-pulse">
             Sua Experiência Customizada
           </span>
-          <h2 className="text-5xl md:text-6xl font-display text-slate-900 mt-4 tracking-tight uppercase text-stroke-black">
+          <h2 className="text-5xl md:text-6xl font-display text-slate-400 mt-4 tracking-tight uppercase text-stroke-black">
             MEU PASSAPORTE BMJ
           </h2>
           <p className="text-slate-600 mt-2 font-heading font-semibold text-lg">

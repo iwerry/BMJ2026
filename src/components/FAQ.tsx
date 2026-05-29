@@ -26,7 +26,7 @@ export default function FAQ() {
           <span className="bg-[#FFE94F] text-slate-950 font-heading font-extrabold px-4 py-1.5 rounded-full border-2 border-slate-900 shadow-sm text-sm uppercase tracking-wider inline-block">
             Central de Dúvidas
           </span>
-          <h2 className="text-5xl md:text-6xl font-display text-slate-900 mt-4 tracking-tight uppercase text-stroke-black">
+          <h2 className="text-5xl md:text-6xl font-display text-slate-400 mt-4 tracking-tight uppercase text-stroke-black">
             DÚVIDAS FREQUENTES
           </h2>
           <p className="text-slate-650 mt-2 font-heading font-semibold text-base md:text-lg max-w-xl mx-auto">

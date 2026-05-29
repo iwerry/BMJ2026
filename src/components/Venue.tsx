@@ -15,7 +15,7 @@ export default function Venue() {
           <span className="bg-brasil-yellow text-brasil-blue font-heading font-extrabold px-4 py-1.5 rounded-full border-2 border-slate-900 shadow-sm text-sm uppercase tracking-wider inline-block">
             Coração de Brasília
           </span>
-          <h2 className="text-5xl md:text-6xl font-display text-slate-900 mt-4 tracking-tight uppercase text-stroke-black">
+          <h2 className="text-5xl md:text-6xl font-display text-slate-400 mt-4 tracking-tight uppercase text-stroke-black">
             ONDE VAI ACONTECER?
           </h2>
           <p className="text-slate-600 mt-2 font-heading font-semibold text-lg max-w-xl mx-auto">

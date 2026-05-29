@@ -45,7 +45,7 @@ export default function Tickets() {
           <span className="bg-japan-red text-white font-heading font-extrabold px-4 py-1.5 rounded-full border-2 border-slate-900 shadow-sm text-sm uppercase tracking-wider inline-block">
             Vendas Abertas Oficiais • Sympla
           </span>
-          <h2 className="text-5xl md:text-6xl font-display text-slate-900 mt-4 tracking-tight uppercase text-stroke-black">
+          <h2 className="text-5xl md:text-6xl font-display text-slate-400 mt-4 tracking-tight uppercase text-stroke-black">
             ESCOLHA SEU INGRESSO
           </h2>
           <p className="text-slate-600 mt-2 font-heading font-semibold text-lg max-w-2xl mx-auto">

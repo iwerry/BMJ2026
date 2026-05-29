@@ -217,7 +217,7 @@ export default function Cinema({ onOpenTickets }: CinemaProps) {
 
                 <div className="space-y-1">
                   <label className="block text-xs font-mono text-slate-500 uppercase">FILME SELECIONADO</label>
-                  <p className="font-display text-3xl text-slate-950 tracking-tight text-stroke-black uppercase leading-tight">
+                  <p className="font-display text-3xl text-slate-400 tracking-tight text-stroke-black uppercase leading-tight">
                     {selectedSession.title}
                   </p>
                   <p className="text-xs font-heading font-bold text-japan-red">

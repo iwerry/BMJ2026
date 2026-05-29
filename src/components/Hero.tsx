@@ -84,7 +84,7 @@ export default function Hero({ onOpenTickets, onNavigateToSchedule }: HeroProps)
             <span>JAPÃO 🇯🇵</span>
           </div>
 
-          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl text-slate-900 tracking-wider leading-none text-stroke-black-lg transform -rotate-1">
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl text-slate-400 tracking-wider leading-none text-stroke-black-lg transform -rotate-1">
             BRASIL MOSTRA JAPÃO
           </h1>
           <p className="font-display text-3xl sm:text-4xl text-japan-red tracking-wide uppercase mt-3">
