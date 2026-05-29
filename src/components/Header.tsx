@@ -124,17 +124,15 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
           
           {/* Fusion Brand Logo Logo */}
           <a 
-            href="#inicio" 
-            onClick={(e) => handleLinkClick(e, '#inicio')}
+            href="/" 
             className="flex items-center gap-3 group focus:outline-none"
           >
             {/* Japan-Brasil Fusion Circle Emblem */}
-            <div className="relative w-12 h-12 rounded-full border-2 border-black overflow-hidden bg-white flex items-center justify-center shrink-0 shadow-md transform group-hover:rotate-12 transition-transform duration-300">
-              {/* Brazil background slices on half */}
-              <div className="absolute inset-0 bg-gradient-to-r from-brasil-green to-brasil-yellow scale-x-75 -translate-x-[40%]" />
-              {/* Japan core Hinomaru Red circle */}
-              <div className="w-6 h-6 rounded-full bg-japan-red relative z-10 border border-slate-900" />
-            </div>
+            <img 
+              src="/logos/logo-emblem.svg" 
+              alt="BMJ Emblem" 
+              className="w-12 h-12 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
+            />
             
             <div className="flex flex-col items-start select-none">
               <span className="font-display text-2xl md:text-3xl tracking-wider leading-none text-stroke-black">

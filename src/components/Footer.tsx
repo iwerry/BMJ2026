@@ -40,14 +40,16 @@ export default function Footer() {
         
         {/* Brand Column (md:col-span-5) */}
         <div className="md:col-span-5 space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border border-slate-700 bg-white flex items-center justify-center shrink-0">
-              <div className="w-5 h-5 rounded-full bg-japan-red" />
-            </div>
+          <a href="/" className="flex items-center gap-3 group focus:outline-none">
+            <img 
+              src="/logos/logo-emblem.svg" 
+              alt="BMJ Emblem" 
+              className="w-10 h-10 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
+            />
             <span className="font-display text-2xl md:text-3xl text-white tracking-wider leading-none text-stroke-black">
               BRASIL MOSTRA JAPÃO
             </span>
-          </div>
+          </a>
 
           <p className="text-slate-450 text-sm leading-relaxed max-w-sm text-justify">
             O <strong>Brasil Mostra Japão (BMJ) 2026</strong> celebra os 130 anos de amizade diplomática entre dois países admiráveis, trazendo cinema, nostalgia retro anos 80/90, Studio Ghibli e delícias gastronômicas para o Museu Nacional da República de Brasília.
