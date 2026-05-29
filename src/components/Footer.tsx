@@ -44,7 +44,7 @@ export default function Footer() {
             <img 
               src="/logos/logo-emblem.svg" 
               alt="BMJ Emblem" 
-              className="w-10 h-10 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
+              className="w-20 h-20 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
             />
             <span className="font-display text-2xl md:text-3xl text-white tracking-wider leading-none text-stroke-black">
               BRASIL MOSTRA JAPÃO

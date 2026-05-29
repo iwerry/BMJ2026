@@ -131,7 +131,7 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
             <img 
               src="/logos/logo-emblem.svg" 
               alt="BMJ Emblem" 
-              className="w-12 h-12 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
+              className="w-20 h-20 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
             />
             
             <div className="flex flex-col items-start select-none">
