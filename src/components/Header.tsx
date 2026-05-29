@@ -125,25 +125,19 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
           {/* Fusion Brand Logo Logo */}
           <a 
             href="/" 
-            className="flex items-center gap-3 group focus:outline-none"
+            className="flex flex-col items-center justify-center group focus:outline-none select-none"
           >
             {/* Japan-Brasil Fusion Circle Emblem */}
             <img 
               src="/logos/logo-emblem.svg" 
               alt="BMJ Emblem" 
-              className="w-20 h-20 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
+              className="w-24 h-24 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
             />
             
-            <div className="flex flex-col items-start select-none">
-              <span className="font-display text-2xl md:text-3xl tracking-wider leading-none text-stroke-black">
-                <span className="text-white">BMJ</span>
-                <span className="text-japan-red">2026</span>
+            <div className="h-4 overflow-hidden relative w-full flex justify-center mt-1">
+              <span key={logoTextIndex} className="text-[10px] uppercase font-mono tracking-widest text-[#FFE94F] font-extrabold flex items-center justify-center gap-1 animate-logo-text-fade-in whitespace-nowrap">
+                {logoSubtitles[logoTextIndex]}
               </span>
-              <div className="h-4 overflow-hidden relative">
-                <span key={logoTextIndex} className="text-[10px] uppercase font-mono tracking-widest text-[#FFE94F] font-extrabold flex items-center gap-1 animate-logo-text-fade-in">
-                  {logoSubtitles[logoTextIndex]}
-                </span>
-              </div>
             </div>
           </a>
 
