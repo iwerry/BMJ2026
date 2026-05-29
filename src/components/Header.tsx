@@ -120,21 +120,24 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
           scrolled ? 'py-2 shadow-xl' : 'py-3'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-3 items-center lg:flex lg:justify-between">
+          
+          {/* Left spacer for mobile centering */}
+          <div className="lg:hidden" />
           
           {/* Fusion Brand Logo Logo */}
           <a 
             href="/" 
-            className="flex flex-col items-center justify-center group focus:outline-none select-none"
+            className="flex flex-col items-center justify-center group focus:outline-none select-none justify-self-center"
           >
             {/* Japan-Brasil Fusion Circle Emblem */}
             <img 
               src="/logos/logo-emblem.svg" 
               alt="BMJ Emblem" 
-              className="w-32 h-32 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
+              className="w-24 h-24 md:w-32 md:h-32 shrink-0 transform group-hover:rotate-12 transition-transform duration-300"
             />
             
-            <div className="h-4 overflow-hidden relative w-full flex justify-center -mt-4">
+            <div className="h-4 overflow-hidden relative w-full flex justify-center -mt-2 md:-mt-4">
               <span key={logoTextIndex} className="text-[10px] uppercase font-mono tracking-widest text-[#FFE94F] font-extrabold flex items-center justify-center gap-1 animate-logo-text-fade-in whitespace-nowrap">
                 {logoSubtitles[logoTextIndex]}
               </span>
@@ -211,7 +214,7 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
           </div>
 
           {/* Hamburger Menu Trigger */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 lg:hidden justify-self-end">
             {favoriteCount > 0 && (
               <a 
                 href="#meu-cronograma"
@@ -239,7 +242,7 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
       {/* Drawer Menu for Mobile Devices */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[72px] z-40 bg-slate-900/95 backdrop-blur-lg flex flex-col justify-between p-6 lg:hidden border-t border-slate-800 overflow-y-auto">
+        <div className="fixed inset-0 top-[120px] z-40 bg-slate-900/95 backdrop-blur-lg flex flex-col justify-between p-6 lg:hidden border-t border-slate-800 overflow-y-auto">
           
           <div className="space-y-3">
             <p className="text-xs font-mono text-slate-500 uppercase tracking-widest pl-2 mb-2">BMJ Navegação</p>
