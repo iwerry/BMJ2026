@@ -117,7 +117,7 @@ export default function About() {
         {/* Historical highlight sticker */}
         <div className="mt-16 text-center">
           <p className="text-slate-500 font-mono text-sm uppercase tracking-wider">
-            Idealização Oficial: <span className="font-bold text-slate-800">{`Edgilson Ferreira dos Santos`}</span> | Brasília - 2026 🇧🇷🎌🇯🇵
+            Realização Oficial: <span className="font-bold text-slate-800">{`Gs Produções`}</span> | Brasília 2026 🇧🇷🎌🇯🇵
           </p>
         </div>
 
