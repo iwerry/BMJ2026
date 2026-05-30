@@ -12,7 +12,7 @@ O festival condecora a união entre a rica herança nipônica (tradições ances
 *   **Horário:** Das 11:00 às 22:00
 *   **Local:** Museu Nacional da República
 *   **Endereço:** Setor Cultural Sul, Lote 2, próximo à Rodoviária do Plano Piloto, Brasília - DF
-*   **Organização Oficial:** Edgilson Ferreira dos Santos
+*   **Realização Oficial:** Gs Produções | Brasília 2026 🇧🇷🎌🇯🇵
 *   **Links Úteis:**
     *   [Instagram Oficial](https://www.instagram.com/brasilmostrajapao/)
     *   [Linktree / Beacons](https://beacons.ai/brasilmostrajapao)

@@ -52,7 +52,7 @@ export default function Newsletter() {
               </div>
               <h3 className="font-display text-2xl text-slate-900 uppercase">E-MAIL CADASTRADO!</h3>
               <p className="text-xs text-slate-500 font-heading">
-                Verifique sua caixa de entrada para receber o cronograma resumido oficial do produtor <strong>Edgilson Ferreira dos Santos</strong>.
+                Verifique sua caixa de entrada para receber o cronograma resumido oficial do produtor <strong>Gs Produções</strong>.
               </p>
             </div>
           ) : (

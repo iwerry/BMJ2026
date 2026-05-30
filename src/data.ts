@@ -7,7 +7,7 @@ export const EVENT_INFO = {
   hours: "11:00 às 22:00",
   venue: "Museu Nacional da República",
   address: "Setor Cultural Sul, Lote 2, próximo à Rodoviária do Plano Piloto, Brasília-DF, 70070-150",
-  organizer: "Edgilson Ferreira dos Santos",
+  organizer: "Gs Produções | Brasília 2026 🇧🇷🎌🇯🇵",
   instagramUrl: "https://www.instagram.com/brasilmostrajapao/",
   beaconsUrl: "https://beacons.ai/brasilmostrajapao",
   symplaUrl: "https://www.sympla.com.br/evento/brasil-mostra-japao/3374417",
@@ -379,7 +379,7 @@ export const SCHEDULE_ITEMS: ScheduleItem[] = [
     day: "domingo",
     time: "21:30",
     title: "Cerimônia de Despedida e Lançamento BMJ 2027",
-    description: "Discursos de Edgilson Santos, sorteios de brindes e fogos luminosos comemorativos no Museu Nacional.",
+    description: "Discursos da Gs Produções, sorteios de brindes e fogos luminosos comemorativos no Museu Nacional.",
     category: "Geral",
     icon: "🎌",
     isHighlight: true

@@ -76,10 +76,10 @@ export default function Sponsors() {
           </div>
 
           {/* Institutional / GDF seal decoration */}
-          <div className="pt-6 border-t border-slate-100 max-w-sm mx-auto">
+          <div className="pt-6 border-t border-slate-100 max-w-lg mx-auto">
             <p className="text-[11px] font-mono text-slate-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-brasil-green shrink-0" />
-              Realização: {`Edgilson Ferreira dos Santos`}
+              Realização Oficial: Gs Produções | Brasília 2026 🇧🇷🎌🇯🇵
             </p>
           </div>
 
