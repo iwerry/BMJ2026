@@ -69,8 +69,8 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     time: "14:00",
     title: "Jiban e Kamen Rider Zext",
     category: "Tokusatsu",
-    description: "Prepare-se para reviver a era de ouro dos heróis de metal e os cavaleiros mascarados em alta definição. Uma descarga eletrizante de nostalgia dos anos 80 e 90!",
-    image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=600&auto=format&fit=crop",
+    description: "Prepare-se para reviver a era de ouro dos heróis de metal e os cavaleiros mascarados in alta definição. Uma descarga eletrizante de nostalgia dos anos 80 e 90!",
+    image: "/cinema/cine-fri-1.jpg",
     priceFull: 60,
     priceHalf: 30
   },
@@ -83,7 +83,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "Princesa Mononoke",
     category: "Studio Ghibli",
     description: "Um divisor de águas da obra épica de Hayao Miyazaki. Explore os conflitos existenciais entre a tecnologia humana engrenante e os deuses místicos das florestas.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-fri-2.jpg",
     priceFull: 60,
     priceHalf: 30
   },
@@ -96,7 +96,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "O Castelo Animado",
     category: "Studio Ghibli",
     description: "Conheça Howl, Sophie e o hilário demônio de fogo Calcifer nesta fantástica aventura flutuante sobre autoaceitação, beleza e a destruição da guerra.",
-    image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-fri-3.jpg",
     priceFull: 60,
     priceHalf: 30
   },
@@ -110,7 +110,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "Jiraiya e Kamen Rider Bui",
     category: "Tokusatsu",
     description: "O lendário Ninja Olimpíada defende o mundo contra a família de feiticeiros e unifica heróis clássicos num espetáculo de saltos, faíscas e espada olímpica.",
-    image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-sat-1.jpg",
     priceFull: 60,
     priceHalf: 30
   },
@@ -123,7 +123,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "Vidas ao Vento",
     category: "Studio Ghibli",
     description: "A bela e emocionante homenagem histórica de Miyazaki a Jiro Horikoshi, o lendário engenheiro e apaixonado desenhista de aviões de corrida.",
-    image: "https://images.unsplash.com/photo-1473116763269-255f74e8e6e5?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-sat-2.png",
     priceFull: 60,
     priceHalf: 30
   },
@@ -136,7 +136,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "A Viagem de Chihiro",
     category: "Studio Ghibli",
     description: "Vencedor do Oscar e um dos maiores filmes de todos os tempos. Veja a jornada imersiva da garota perdida na misteriosa casa de banho dos deuses de Yubaba.",
-    image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-sat-3.jpg",
     priceFull: 60,
     priceHalf: 30
   },
@@ -150,7 +150,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "Jaspion e Gaan",
     category: "Tokusatsu",
     description: "O eterno campeão da justiça do espaço estrela uma mega sessão cinematográfica. Assista o gigante Daileon enfrentando Satan Goss e o monstro gigante MacGaren!",
-    image: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-sun-1.jpg",
     priceFull: 60,
     priceHalf: 30
   },
@@ -163,7 +163,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "Ponyo: Uma Amizade que Veio do Mar",
     category: "Studio Ghibli",
     description: "Uma peixinha dourada mágica deseja ardentemente tornar-se humana ao criar uma forte amizade pura e inspiradora com o doce garotinho Sosuke.",
-    image: "https://images.unsplash.com/photo-1500627869374-13cd993b1115?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-sun-2.png",
     priceFull: 60,
     priceHalf: 30
   },
@@ -176,7 +176,7 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
     title: "Meu Amigo Totoro",
     category: "Studio Ghibli",
     description: "Duas garotinhas se mudam para o interior japonês e são adotadas pela amizade protetora dos espíritos lendários e acolhedores da grande árvore florestal.",
-    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600&auto=format&fit=crop",
+    image: "/cinema/cine-sun-3.jpg",
     priceFull: 60,
     priceHalf: 30
   }
@@ -402,7 +402,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "shows",
     description: "Dubladores, cantores clássicos, workshops de caligrafia Shodo e painéis exclusivos de debate sobre mangás e literatura japonesa.",
     icon: "🔥",
-    image: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=800&auto=format&fit=crop",
+    image: "/lineup/att-shows.jpg",
     isHighlight: true
   },
   {
@@ -411,7 +411,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "shows",
     description: "A aclamada Filarmônica interpretará ao vivo as divinas trilhas sonoras autorais do Studio Ghibli e grandes clássicos de animes como Saint Seiya e Evangelion.",
     icon: "🎵",
-    image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800&auto=format&fit=crop",
+    image: "/lineup/att-orchestra.jpg",
     isHighlight: true
   },
   {
@@ -420,7 +420,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "cinema",
     description: "Réplicas oficiais de monstros, espadas sagradas, painel com speed lines e pôsteres retrô cobrindo os eternos Jaspion, Jiraiya, Jiban e os Kamen Riders.",
     icon: "🎬",
-    image: "https://images.unsplash.com/photo-1608889174639-509f7a7eb443?q=80&w=800&auto=format&fit=crop",
+    image: "/lineup/att-tokusatsu.png",
     isHighlight: true
   },
   {
@@ -429,7 +429,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "cinema",
     description: "Um espaço de projeção especial sob a tenda bolha imersiva para curtir as aventuras mais sensíveis e poéticas de Hayao Miyazaki.",
     icon: "🎨",
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800&auto=format&fit=crop"
+    image: "/lineup/att-ghibli.jpg"
   },
   {
     id: "att-cosplay",
@@ -437,7 +437,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "cosplay",
     description: "Premiações nacionais de melhor fabricação, performance e desfiles. Inclui o 'Cosplay Help' com ferramentas, cola quente e costura rápida.",
     icon: "🎭",
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop",
+    image: "/lineup/att-cosplay.jpg",
     isHighlight: true
   },
   {
@@ -446,7 +446,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "manga-anime",
     description: "Estações de jogos retrô de Tokusatsu e Lançamentos de desenvolvedores nacionais. Desafie seus amigos em campeonatos emocionantes de luta.",
     icon: "🎮",
-    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop"
+    image: "/lineup/att-games.jpg"
   },
   {
     id: "att-gastronomia",
@@ -454,7 +454,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "food",
     description: "Sashimi fatiado na hora, Yakisoba perfumado, Takoyaki quentinho e doces Wagashi. Opções deliciosas criadas pelos melhores chefs locais.",
     icon: "🍱",
-    image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=800&auto=format&fit=crop",
+    image: "/lineup/att-gastronomia.jpg",
     isHighlight: true
   },
   {
@@ -463,7 +463,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "shops",
     description: "Adquira mangás importados, action figures colecionáveis, luminárias orientais de sakura e roupas temáticas em estandes certificados.",
     icon: "🛍️",
-    image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=800&auto=format&fit=crop"
+    image: "/lineup/att-feirinha.jpg"
   },
   {
     id: "att-cenarios",
@@ -471,7 +471,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "cosplay",
     description: "Caminhe sob um Torii de 4 metros, fique ao lado do Totoro na floresta cenográfica e tire fotos simulando speed lines de quadrinhos com sombras duras.",
     icon: "📸",
-    image: "https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=800&auto=format&fit=crop"
+    image: "/lineup/att-cenarios.jpg"
   },
   {
     id: "att-bolha",
@@ -479,7 +479,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     category: "manga-anime",
     description: "Uma imponente redoma de aclimação para workshops e exibições estéticas tradicionais como Cerimônia do Chá e arranjos florais Ikebana.",
     icon: "🎪",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop"
+    image: "/lineup/att-bolha.jpg"
   }
 ];
 

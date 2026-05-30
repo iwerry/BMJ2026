@@ -51,11 +51,8 @@ export default function Press() {
                 <li className="flex items-center gap-2">✔ Fotos Autorizadas para Divulgação (.zip)</li>
                 <li className="flex items-center gap-2 flex-wrap">
                   <span>✔ Logos Oficiais:</span>
-                  <a href="/logos/logo-bmj2026.svg" download="logo-bmj2026.svg" className="text-brasil-yellow hover:underline inline-flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded border border-white/15">
-                    BMJ2026 (.svg) <Download className="w-3 h-3" />
-                  </a>
-                  <a href="/logos/logo-emblem.svg" download="logo-emblem.svg" className="text-brasil-yellow hover:underline inline-flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded border border-white/15">
-                    Emblema (.svg) <Download className="w-3 h-3" />
+                  <a href="/logos/logoBMJ.png" download="logoBMJ.png" className="text-brasil-yellow hover:underline inline-flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded border border-white/15">
+                    BMJ2026 (.png) <Download className="w-3 h-3" />
                   </a>
                 </li>
               </ul>

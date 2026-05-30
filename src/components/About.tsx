@@ -48,7 +48,7 @@ export default function About() {
             <div className="relative z-10 bg-gradient-to-tr from-brasil-blue to-japan-red p-3 rounded-3xl border-3 border-slate-900 shadow-xl overflow-hidden group">
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300 pointer-events-none" />
               <img 
-                src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=800&auto=format&fit=crop" 
+                src="/about/about.jpg" 
                 alt="Liberdade São Paulo & Japan Aesthetics" 
                 className="rounded-2xl w-full h-80 object-cover cursor-pointer hover:scale-105 transition-transform duration-500"
               />
