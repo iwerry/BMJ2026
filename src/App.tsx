@@ -18,7 +18,7 @@ import Cosplay from './components/Cosplay';
 import Press from './components/Press';
 
 import { Sparkles, X, MessageSquare, Flame, Ticket, ShieldCheck, Instagram } from 'lucide-react';
-import { EVENT_INFO } from './data';
+import { EVENT_INFO, FAQ_ITEMS } from './data';
 
 export default function App() {
   // Bookmark/Favorites synchronization list with localStorage
@@ -136,12 +136,6 @@ export default function App() {
   // WhatsApp Floating FAQs Widget states
   const [showChatBubble, setShowChatBubble] = useState(false);
   const [selectedChatFaqAnswer, setSelectedChatFaqAnswer] = useState<string | null>(null);
-
-  const whatsappFaqs = [
-    { q: "Qual a data e onde será?", a: "Será nos dias 17, 18 e 19 de Julho de 2026 no Museu Nacional da República de Brasília, DF das 11:00 às 22:00." },
-    { q: "Onde compro ingressos reais?", a: "Os ingressos oficiais são adquiridos pelo Sympla oficial do evento. Caso prefira, pode simular aqui no site e clicar nos links oficiais de compra." },
-    { q: "Cosplayer paga meia-entrada?", a: "Sim, os cosplayers possuem direito à meia-entrada solidária levando 1kg de alimento e usufruem do vestiário e do Cosplay Help!" }
-  ];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 scroll-smooth antialiased">
@@ -288,15 +282,15 @@ export default function App() {
                 Olá! Como posso te ajudar hoje sobre os 130 anos do Brasil Mostra Japão? Escolha uma dúvida frequente:
               </p>
 
-              <div className="space-y-1.5 pt-1">
-                {whatsappFaqs.map((faq, i) => (
+              <div className="space-y-1.5 pt-1 max-h-52 overflow-y-auto pr-1">
+                {FAQ_ITEMS.map((faq) => (
                   <button
-                    key={i}
+                    key={faq.id}
                     type="button"
-                    onClick={() => setSelectedChatFaqAnswer(faq.a)}
+                    onClick={() => setSelectedChatFaqAnswer(faq.answer)}
                     className="w-full text-left p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-[11px] font-heading font-extrabold text-slate-700 transition"
                   >
-                    ❓ {faq.q}
+                    ❓ {faq.question}
                   </button>
                 ))}
               </div>
