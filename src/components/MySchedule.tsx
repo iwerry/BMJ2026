@@ -1,4 +1,4 @@
-import { Calendar, Trash2, ShieldCheck, Download, Sparkles, User, Mail, Phone, Lock, LogIn, UserPlus, LogOut, Save } from 'lucide-react';
+﻿import { Calendar, Trash2, ShieldCheck, Download, Sparkles, User, Mail, Phone, Lock, LogIn, UserPlus, LogOut, Save } from 'lucide-react';
 import { SCHEDULE_ITEMS, ATRACOES_ESPECIAIS, EVENT_INFO } from '../data';
 import { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
