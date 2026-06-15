@@ -1,7 +1,6 @@
 import { Calendar, Trash2, ShieldCheck, Download, Sparkles, User, Mail, Phone, Lock, LogIn, UserPlus, LogOut, Save } from 'lucide-react';
 import { SCHEDULE_ITEMS, ATRACOES_ESPECIAIS, EVENT_INFO } from '../data';
-import { useState, useEffect, useRef } from 'react';
-import html2canvas from 'html2canvas';
+import { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
 
 // =============================================
@@ -77,8 +76,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
   const [formSuccess, setFormSuccess] = useState('');
   const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const printRef = useRef<HTMLDivElement>(null);
-  const pdfTemplateRef = useRef<HTMLDivElement>(null);
+  // PDF refs removed – generation is now done purely with jsPDF text/shapes
 
   // Derived data
   const bookmarkedSchedules = SCHEDULE_ITEMS.filter((item) => favoriteIds.includes(item.id));
@@ -361,27 +359,143 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
     downloadAnchor.remove();
   };
 
-  const handleDownloadPDF = async () => {
+  const handleDownloadPDF = () => {
     handleSave();
     setDownloadSuccess(true);
 
-    if (pdfTemplateRef.current) {
-      try {
-        const canvas = await html2canvas(pdfTemplateRef.current, { 
-          scale: 2, 
-          useCORS: true,
-          allowTaint: true,
-          backgroundColor: '#ffffff'
+    try {
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const W = 210; // A4 width mm
+      let y = 0;
+
+      // ── HEADER BAND ──────────────────────────────────────────────
+      pdf.setFillColor(188, 0, 45); // japan-red
+      pdf.rect(0, 0, W, 32, 'F');
+      pdf.setTextColor(255, 229, 0); // brasil-yellow
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(22);
+      pdf.text('MEU CRONOGRAMA BMJ 2026', 14, 14);
+      pdf.setFontSize(9);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text('1º Festival Brasil Mostra Japão  •  17-19 Julho 2026  •  Museu Nacional da República, Brasília-DF', 14, 22);
+      pdf.setTextColor(255, 229, 0);
+      pdf.text('brasilmostrajapao.com.br', 14, 29);
+      y = 42;
+
+      // ── USER CARD ────────────────────────────────────────────────
+      pdf.setFillColor(248, 250, 252);
+      pdf.setDrawColor(0, 0, 0);
+      pdf.setLineWidth(0.6);
+      pdf.roundedRect(14, y, W - 28, 28, 4, 4, 'FD');
+      pdf.setTextColor(15, 23, 42);
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(13);
+      pdf.text(nome || 'Visitante Oficial', 22, y + 9);
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(9);
+      pdf.setTextColor(51, 65, 85);
+      pdf.text(`Telefone: ${telefone || 'Não informado'}`, 22, y + 16);
+      pdf.text(`E-mail: ${email}`, 22, y + 22);
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(9);
+      pdf.setTextColor(0, 155, 58);
+      pdf.text(`${totalFavorites} atrações selecionadas`, W - 14 - pdf.getTextWidth(`${totalFavorites} atrações selecionadas`), y + 9);
+      y += 36;
+
+      // ── SECTION: ATRAÇÕES ESPECIAIS ─────────────────────────────
+      if (bookmarkedAttractions.length > 0) {
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(11);
+        pdf.setTextColor(15, 23, 42);
+        pdf.text('EXPOSIÇÕES & ATRAÇÕES ESPECIAIS', 14, y);
+        pdf.setDrawColor(0, 0, 0);
+        pdf.setLineWidth(0.4);
+        pdf.line(14, y + 2, W - 14, y + 2);
+        y += 8;
+
+        bookmarkedAttractions.forEach((item) => {
+          if (y > 260) { pdf.addPage(); y = 20; }
+          pdf.setFillColor(248, 250, 252);
+          pdf.setDrawColor(0, 0, 0);
+          pdf.setLineWidth(0.4);
+          pdf.roundedRect(14, y, W - 28, 14, 2, 2, 'FD');
+          pdf.setFont('helvetica', 'bold');
+          pdf.setFontSize(10);
+          pdf.setTextColor(15, 23, 42);
+          pdf.text(item.icon + ' ' + item.title, 20, y + 6);
+          pdf.setFont('helvetica', 'normal');
+          pdf.setFontSize(8);
+          pdf.setTextColor(100, 116, 139);
+          pdf.text(`Atração Especial • ${item.category.toUpperCase()}`, 20, y + 11);
+          y += 17;
         });
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(`cronograma-${nome.replace(/\s+/g, '-').toLowerCase()}.pdf`);
-      } catch (error) {
-        console.error('Erro ao gerar PDF:', error);
+        y += 4;
       }
+
+      // ── SECTION: CRONOGRAMA DE SHOWS & CINEMA ────────────────────
+      if (bookmarkedSchedules.length > 0) {
+        if (y > 240) { pdf.addPage(); y = 20; }
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(11);
+        pdf.setTextColor(15, 23, 42);
+        pdf.text('CRONOGRAMA DE SHOWS, CINEMA & EVENTOS', 14, y);
+        pdf.setLineWidth(0.4);
+        pdf.setDrawColor(0, 0, 0);
+        pdf.line(14, y + 2, W - 14, y + 2);
+        y += 8;
+
+        bookmarkedSchedules.forEach((item) => {
+          if (y > 260) { pdf.addPage(); y = 20; }
+          pdf.setFillColor(248, 250, 252);
+          pdf.setDrawColor(0, 0, 0);
+          pdf.setLineWidth(0.4);
+          pdf.roundedRect(14, y, W - 28, 14, 2, 2, 'FD');
+          // Day+time badge
+          pdf.setFillColor(188, 0, 45);
+          pdf.roundedRect(18, y + 2, 28, 10, 1, 1, 'F');
+          pdf.setFont('helvetica', 'bold');
+          pdf.setFontSize(7);
+          pdf.setTextColor(255, 255, 255);
+          pdf.text(`${item.day.toUpperCase()} ${item.time}`, 20, y + 8.5);
+          // Title
+          pdf.setFont('helvetica', 'bold');
+          pdf.setFontSize(10);
+          pdf.setTextColor(15, 23, 42);
+          pdf.text(item.title, 50, y + 6);
+          pdf.setFont('helvetica', 'normal');
+          pdf.setFontSize(8);
+          pdf.setTextColor(100, 116, 139);
+          pdf.text(`${item.time} • ${item.category}`, 50, y + 11);
+          y += 17;
+        });
+      }
+
+      // ── FOOTER WARNING ───────────────────────────────────────────
+      if (y > 250) { pdf.addPage(); y = 20; }
+      y = Math.max(y + 8, 255);
+      pdf.setFillColor(254, 226, 226);
+      pdf.setDrawColor(188, 0, 45);
+      pdf.setLineWidth(0.8);
+      pdf.roundedRect(14, y, W - 28, 24, 3, 3, 'FD');
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(9);
+      pdf.setTextColor(188, 0, 45);
+      pdf.text('⚠️ ATENÇÃO: ESTE CRONOGRAMA NÃO GARANTE ENTRADA NO EVENTO!', 20, y + 7);
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(8);
+      pdf.setTextColor(15, 23, 42);
+      const warningLines = pdf.splitTextToSize(
+        'Adquira seu ingresso diário ou combo de atrações diretamente no Sympla (brasilmostrajapao.com.br) e apresente-o na portaria do Museu Nacional da República.',
+        W - 40
+      );
+      pdf.text(warningLines, 20, y + 14);
+
+      // ── SAVE ─────────────────────────────────────────────────────
+      const filename = `cronograma-bmj2026-${(nome || 'visitante').replace(/\s+/g, '-').toLowerCase()}.pdf`;
+      pdf.save(filename);
+    } catch (error) {
+      console.error('Erro ao gerar PDF:', error);
+      alert('Não foi possível gerar o PDF. Tente novamente.');
     }
 
     setTimeout(() => setDownloadSuccess(false), 4000);
@@ -772,7 +886,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
             <div className="lg:col-span-8 flex flex-col justify-between space-y-6">
               <div className="bg-white p-6 md:p-8 rounded-3xl border-3 border-slate-900 comic-shadow flex-1">
                 <h3 className="text-3xl font-display text-slate-900 border-b-2 border-slate-200 pb-3 mb-6 flex items-center gap-3">
-                  💡 SUAS ATRAÇÕES MUGEN PERFEITAS
+                  💡 ATRAÇÕES DO 1º FESTIVAL BRASIL MOSTRA JAPÃO
                 </h3>
 
                 <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
@@ -845,10 +959,10 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
                   )}
                 </div>
 
-                <div className="mt-8 p-4 bg-brasil-green/10 rounded-2xl border-2 border-brasil-green/40 flex items-center gap-3">
-                  <div className="text-xl">🦊</div>
-                  <p className="text-xs text-brasil-green-dark font-heading font-bold">
-                    Ao chegar no Museu Nacional da República, apresente seu voucher do Sympla. Este cronograma personalizado serve para orientar seu acesso às ativações preferidas!
+                <div className="mt-8 p-4 bg-japan-red/10 rounded-2xl border-2 border-japan-red/50 flex items-center gap-3">
+                  <span className="text-2xl shrink-0">⚠️</span>
+                  <p className="text-xs text-japan-red font-heading font-black uppercase leading-relaxed">
+                    Atenção: este cronograma <strong>NÃO garante entrada</strong> no evento. Adquira seu ingresso diário ou combo diretamente no Sympla!
                   </p>
                 </div>
             </div>
@@ -857,8 +971,8 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
       )}
       </div>
 
-      {/* Hidden Print-Optimized Layout (Only used for PDF generation) */}
-      <div style={{ position: 'absolute', left: '-9999px', top: 0, pointerEvents: 'none' }}>
+      {/* PDF is now generated purely via jsPDF – hidden DOM template removed */}
+      <div style={{ display: 'none' }}>
         <div 
           ref={pdfTemplateRef} 
           style={{
