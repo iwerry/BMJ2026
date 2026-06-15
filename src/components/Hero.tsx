@@ -176,14 +176,16 @@ export default function Hero({ onOpenTickets, onNavigateToSchedule }: HeroProps)
         {/* CTA Buttons - Premium CCXP Layout Custom Shadows */}
         <div className="flex flex-col sm:flex-row gap-5 items-center w-full max-w-xl">
           
-          <button 
-            onClick={onOpenTickets}
+          <a 
+            href={EVENT_INFO.symplaUrl}
+            target="_blank"
+            rel="noreferrer"
             className="w-full flex items-center justify-center gap-3 bg-japan-red hover:bg-[#8B0020] text-white font-display text-xl px-8 py-5 rounded-3xl border-3 border-slate-950 comic-shadow comic-shadow-hover transition-all cursor-pointer active:translate-y-1 active:shadow-sm"
           >
             <Ticket className="w-5 h-5 text-brasil-yellow shrink-0 fill-brasil-yellow" />
-            <span>COMPRAR INGRESSO AGORA</span>
+            <span>Compra pelo Sympla Ofic</span>
             <ArrowRight className="w-5 h-5 ml-1 animate-ping" />
-          </button>
+          </a>
 
           <button 
             onClick={onNavigateToSchedule}

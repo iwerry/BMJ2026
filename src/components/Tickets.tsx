@@ -140,7 +140,7 @@ export default function Tickets() {
                 rel="noreferrer"
                 className="w-full bg-[#111111] hover:bg-slate-800 shadow-sm text-[#FFE94F] font-display text-lg py-4 rounded-xl cursor-pointer block text-center uppercase tracking-wider"
               >
-                Comprar Geral no Sympla
+                Compra pelo Sympla Ofic
               </a>
               <span className="text-[11px] font-mono text-slate-400 block bg-slate-100 p-2 rounded-lg">
                 ⚠️ Ingresso não dá direito às sessões privadas de Cinema BMJ
@@ -213,7 +213,7 @@ export default function Tickets() {
                 rel="noreferrer"
                 className="w-full bg-japan-red hover:bg-[#8B0020] text-white font-display text-lg py-4 rounded-xl cursor-pointer block text-center uppercase tracking-wider border border-slate-950 shadow-md"
               >
-                Comprar Combo no Sympla
+                Compra pelo Sympla Ofic
               </a>
               <span className="text-[11px] font-mono text-slate-400 block bg-slate-800 p-2 rounded-lg">
                 🎉 Melhor custo-benefício para cinéfilos de Ghibli e Tokusatsu!
@@ -369,7 +369,7 @@ export default function Tickets() {
                   className="px-6 py-3.5 bg-japan-red text-white font-display text-sm tracking-wide rounded-xl border-2 border-slate-950 comic-shadow-sm uppercase text-center flex items-center justify-center gap-2 hover:translate-y-px"
                 >
                   <Ticket className="w-4 h-4 fill-brasil-yellow" />
-                  Ir ao Sympla Oficial
+                  Compra pelo Sympla Ofic
                 </a>
               </div>
             </div>

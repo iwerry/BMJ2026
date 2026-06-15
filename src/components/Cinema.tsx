@@ -159,12 +159,14 @@ export default function Cinema({ onOpenTickets }: CinemaProps) {
                   </div>
 
                   {/* Booking Action */}
-                  <button
-                    onClick={() => handleOpenSimulateModal(session)}
+                  <a
+                    href={EVENT_INFO.symplaUrl}
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-full bg-[#FFE94F] hover:bg-[#FFE000] text-slate-950 font-display text-base py-3 rounded-2xl border-2 border-slate-955 hover:scale-[1.01] transition-transform active:translate-y-px text-center block uppercase"
                   >
-                    🛒 COMPRAR INGRESSO CINEMA
-                  </button>
+                    🛒 Compra pelo Sympla Ofic
+                  </a>
                 </div>
               </div>
 
@@ -182,12 +184,14 @@ export default function Cinema({ onOpenTickets }: CinemaProps) {
               Em vez de pagar R$ 60 por sessão individual, o **Combo Cinema + Evento** dá livre trânsito diário mais entrada garantida para TODAS as 3 sessões do dia por apenas R$ 100 Inteira ou R$ 50 Meia!
             </p>
           </div>
-          <button
-            onClick={onOpenTickets}
-            className="bg-japan-red hover:bg-[#99001D] text-white font-display text-lg py-4.5 px-8 rounded-2xl border-2 border-slate-950 cursor-pointer block uppercase shrink-0 transition-transform hover:scale-105"
+          <a
+            href={EVENT_INFO.symplaUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="bg-japan-red hover:bg-[#99001D] text-white font-display text-lg py-4.5 px-8 rounded-2xl border-2 border-slate-950 cursor-pointer block uppercase shrink-0 transition-transform hover:scale-105 text-center flex items-center justify-center"
           >
-            GARANTIR COMBO SEGURO
-          </button>
+            Compra pelo Sympla Ofic
+          </a>
         </div>
 
       </div>
@@ -332,7 +336,7 @@ export default function Cinema({ onOpenTickets }: CinemaProps) {
                     className="py-3 bg-japan-red text-white font-display text-sm tracking-wide uppercase rounded-xl border-2 border-slate-950 comic-shadow-sm text-center flex items-center justify-center gap-2"
                   >
                     <Ticket className="w-4 h-4 fill-brasil-yellow" />
-                    Comprar no Sympla
+                    Compra pelo Sympla Ofic
                   </a>
                 </div>
 

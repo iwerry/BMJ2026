@@ -204,13 +204,15 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
               </a>
             )}
             
-            <button 
-              onClick={onOpenTickets}
+            <a 
+              href={EVENT_INFO.symplaUrl}
+              target="_blank"
+              rel="noreferrer"
               className="bg-japan-red hover:bg-[#8B0020] text-white font-display text-lg py-1.5 px-5 border-2 border-black cursor-pointer -skew-x-6 hover:skew-x-0 transition-all duration-150 uppercase tracking-widest inline-flex items-center gap-2 shadow-[4px_4px_0px_#000000]"
             >
               <Ticket className="w-4 h-4 text-brasil-yellow fill-brasil-yellow" />
-              <span>COMPRAR INGRESSO</span>
-            </button>
+              <span>Compra pelo Sympla Ofic</span>
+            </a>
           </div>
 
           {/* Hamburger Menu Trigger */}
@@ -295,16 +297,16 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
               <p className="text-[#FFE94F]">17 a 19 de Julho de 2026</p>
             </div>
             
-            <button 
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenTickets();
-              }}
+            <a 
+              href={EVENT_INFO.symplaUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full bg-japan-red hover:bg-[#A30026] text-white font-display text-lg tracking-wide py-4.5 rounded-xl border-2 border-black comic-shadow-sm uppercase transition-transform flex items-center justify-center gap-3"
             >
               <Ticket className="w-5 h-5 text-[#FFE94F]" />
-              COMPRAR INGRESSO SYMPLA
-            </button>
+              Compra pelo Sympla Ofic
+            </a>
           </div>
 
         </div>

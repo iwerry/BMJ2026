@@ -227,7 +227,7 @@ export default function App() {
             rel="noreferrer"
             className="bg-japan-red hover:bg-japan-red-dark text-white font-display text-xs md:text-sm py-2 px-5 rounded-lg border border-black comic-shadow-sm block uppercase tracking-wider font-extrabold select-none hover:scale-105 active:scale-95 transition-all text-center"
           >
-            Comprar pelo Sympla Ofic.
+            Compra pelo Sympla Ofic
           </a>
         </div>
       </div>

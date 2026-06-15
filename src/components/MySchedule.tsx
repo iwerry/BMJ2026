@@ -151,13 +151,15 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
                   </p>
                 )}
 
-                <button 
-                  onClick={onOpenTickets}
+                <a 
+                  href={EVENT_INFO.symplaUrl}
+                  target="_blank"
+                  rel="noreferrer"
                   className="w-full flex items-center justify-center gap-2 bg-japan-red text-white font-display text-lg py-3 rounded-xl border-2 border-slate-900 hover:scale-[1.02] active:scale-[0.98] transition-all comic-shadow-sm hover:shadow-none"
                 >
                   <Sparkles className="w-5 h-5" />
-                  GARANTIR INGRESSO SYMPLA
-                </button>
+                  Compra pelo Sympla Ofic
+                </a>
               </div>
 
             </div>
