@@ -11,7 +11,7 @@ export default function Footer() {
     { label: 'Expositores', href: '#expositores' },
     { label: 'Cosplay', href: '#cosplay' },
     { label: 'Imprensa', href: '#imprensa' },
-    { label: 'Passaporte', href: '#meu-cronograma' },
+    { label: 'Meu Cronograma', href: '#meu-cronograma' },
     { label: 'FAQ', href: '#faq' },
   ];
 

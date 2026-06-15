@@ -80,7 +80,7 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
       href: '#imprensa',
     },
     {
-      label: 'Passaporte',
+      label: 'Meu Cronograma',
       type: 'link',
       href: '#meu-cronograma',
     },
@@ -200,7 +200,9 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
                 className="flex items-center gap-1 text-brasil-yellow bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700 text-xs font-mono scroll-smooth animate-pulse"
               >
                 <Star className="w-3.5 h-3.5 fill-brasil-yellow" />
-                <span>MEU PASSAPORTE ({favoriteCount})</span>
+                <span className="hidden lg:inline group-hover:text-japan-red transition-colors">
+                  MEU CRONOGRAMA ({favoriteCount})
+                </span>
               </a>
             )}
             

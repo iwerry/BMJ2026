@@ -50,8 +50,8 @@ export default function Schedule({ favoriteIds, onToggleFavorite }: ScheduleProp
           <h2 className="text-5xl md:text-6xl font-display text-slate-400 mt-4 tracking-tight uppercase text-stroke-black">
             CRONOGRAMA GERAL BMJ
           </h2>
-          <p className="text-slate-600 mt-2 font-heading font-semibold text-lg">
-            Selecione o dia e explore as atividades. Clique na estrela ⭐ para salvar no seu passaporte!
+          <p className="text-slate-600 font-heading text-lg max-w-2xl mx-auto">
+            Selecione o dia e explore as atividades. Clique na estrela ⭐ para salvar no seu cronograma!
           </p>
           <div className="w-24 h-2.5 bg-japan-red mx-auto mt-4 rounded-full border border-slate-900" />
         </div>

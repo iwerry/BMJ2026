@@ -119,7 +119,7 @@ export default function Attractions({ favoriteIds, onToggleFavorite }: Attractio
                       }`}
                     >
                       <Star className={`w-3.5 h-3.5 ${isFavorited ? 'fill-slate-950 text-slate-950' : 'text-slate-400'}`} />
-                      <span>{isFavorited ? 'ESTRELA ATIVA ⭐' : 'SALVAR NO PASSAPORTE'}</span>
+                      <span>{isFavorited ? 'ESTRELA ATIVA ⭐' : 'SALVAR NO CRONOGRAMA'}</span>
                     </button>
                   </div>
 

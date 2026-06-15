@@ -286,7 +286,7 @@ export default function Cinema({ onOpenTickets }: CinemaProps) {
                     INFORMAÇÃO SOBRE A COMPRA REAL
                   </p>
                   <p>
-                    Esta é uma simulação de passaporte interno para o site. Ao adquirir o ingresso real pelo Sympla, você receberá a credencial oficial do BMJ no seu e-mail.
+                    Este é um cronograma interno para o site. Ao adquirir o ingresso real pelo Sympla, você receberá a credencial oficial do BMJ no seu e-mail.
                   </p>
                 </div>
 

@@ -27,7 +27,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
 
   const handleSimulateDownload = async () => {
     if (!nome || !telefone || !email || !senha) {
-      alert("Por favor, preencha todos os campos do formulário para gerar o passaporte.");
+      alert("Por favor, preencha todos os campos do formulário para gerar o cronograma.");
       return;
     }
 
@@ -83,7 +83,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
             Sua Experiência Customizada
           </span>
           <h2 className="text-5xl md:text-6xl font-display text-slate-400 mt-4 tracking-tight uppercase text-stroke-black">
-            MEU PASSAPORTE BMJ
+            MEU CRONOGRAMA BMJ
           </h2>
           <p className="text-slate-600 mt-2 font-heading font-semibold text-lg">
             Guarde suas atrações preferidas clicando no ícone de estrela ⭐ e crie seu cronograma perfeito para os 3 dias!
@@ -101,7 +101,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
               NENHUMA ATRAÇÃO SALVA
             </h3>
             <p className="text-slate-600 leading-relaxed">
-              Explore a seção de <strong>Programação Completa</strong> e <strong>Atrações Especiais</strong>, e clique na estrela do lado direito de cada cartão para salvá-los aqui neste passaporte!
+              Explore a seção de <strong>Programação Completa</strong> e <strong>Atrações Especiais</strong>, e clique na estrela do lado direito de cada cartão para salvá-los aqui no seu cronograma!
             </p>
             <div className="inline-flex gap-3 text-sm text-japan-red font-mono font-bold uppercase bg-japan-red/10 px-4 py-2 rounded-xl">
               <span>🔥 Shows</span>
@@ -123,7 +123,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
                   VIP CREW
                 </div>
                 <h3 className="font-display text-3xl tracking-wide uppercase text-stroke-black">
-                  PASSAPORTE EVENTO
+                  MEU CRONOGRAMA
                 </h3>
                 <p className="text-xs font-mono tracking-widest text-white/90">
                   ESTRELA GUIA VISITANTE
@@ -146,7 +146,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
 
                 {/* Registration Form / User Details */}
                 <div className="p-4 bg-slate-100 rounded-2xl border-2 border-slate-900 space-y-3 relative overflow-hidden">
-                  <span className="absolute top-1 right-2 font-mono text-[9px] text-slate-400">DADOS DO PASSAPORTE</span>
+                  <span className="absolute top-1 right-2 font-mono text-[9px] text-slate-400">DADOS DO CRONOGRAMA</span>
                   
                   <div className="space-y-2 mt-2">
                     <div className="flex items-center gap-2">
@@ -217,7 +217,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
                   className="w-full flex items-center justify-center gap-2 bg-brasil-yellow text-slate-900 font-display text-lg py-3 rounded-xl border-2 border-slate-900 hover:scale-[1.02] active:scale-[0.98] transition-all comic-shadow-sm hover:shadow-none"
                 >
                   <Download className="w-5 h-5" />
-                  {downloadSuccess ? "DOWNLOAD CONCLUÍDO! 📥" : "GERAR PASSAPORTE (PDF E JSON)"}
+                  {downloadSuccess ? "DOWNLOAD CONCLUÍDO! 📥" : "GERAR CRONOGRAMA (PDF E JSON)"}
                 </button>
                 
                 {downloadSuccess && (
@@ -322,7 +322,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
                 <div className="mt-8 p-4 bg-brasil-green/10 rounded-2xl border-2 border-brasil-green/40 flex items-center gap-3">
                   <div className="text-xl">🦊</div>
                   <p className="text-xs text-brasil-green-dark font-heading font-bold">
-                    Ao chegar no Museu Nacional da República, apresente seu voucher do Sympla. Este passaporte do site serve para orientar seu acesso às ativações preferidas!
+                    Ao chegar no Museu Nacional da República, apresente seu voucher do Sympla. Este cronograma personalizado serve para orientar seu acesso às ativações preferidas!
                   </p>
                 </div>
 
