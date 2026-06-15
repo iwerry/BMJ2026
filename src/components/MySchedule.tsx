@@ -63,6 +63,8 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
   // Auth state
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [adminUsers, setAdminUsers] = useState<UserRecord[]>([]);
 
   // Form fields
   const [nome, setNome] = useState('');
@@ -76,16 +78,40 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
   const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
+  const pdfTemplateRef = useRef<HTMLDivElement>(null);
 
   // Derived data
   const bookmarkedSchedules = SCHEDULE_ITEMS.filter((item) => favoriteIds.includes(item.id));
   const bookmarkedAttractions = ATRACOES_ESPECIAIS.filter((item) => favoriteIds.includes(item.id));
   const totalFavorites = bookmarkedSchedules.length + bookmarkedAttractions.length;
 
+  const loadAdminUsers = async () => {
+    try {
+      const res = await fetch('/api/admin/users?secret=bmj2026');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.users) {
+          setAdminUsers(data.users);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('Erro ao carregar usuários do servidor, usando local:', err);
+    }
+    setAdminUsers(getAllUsers());
+  };
+
   // Auto-login on mount
   useEffect(() => {
     const savedEmail = getLoggedInEmail();
     if (savedEmail) {
+      if (savedEmail === 'admin@brasilmostrajapao.com.br') {
+        setIsLoggedIn(true);
+        setIsAdmin(true);
+        loadAdminUsers();
+        return;
+      }
+
       const users = getAllUsers();
       const user = users.find((u) => u.email === savedEmail);
       if (user) {
@@ -189,6 +215,22 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
       return;
     }
 
+    // Check Admin Login
+    if (email === 'admin@brasilmostrajapao.com.br') {
+      if (senha === 'bmj2026' || senha === 'bmj2026admin') {
+        setIsLoggedIn(true);
+        setIsAdmin(true);
+        setLoggedInEmail(email);
+        loadAdminUsers();
+        setFormSuccess('Bem-vindo, Administrador! 🎌');
+        setTimeout(() => setFormSuccess(''), 4000);
+        return;
+      } else {
+        setFormError('Senha de administrador incorreta.');
+        return;
+      }
+    }
+
     try {
       const res = await fetch('/api/users/login', {
         method: 'POST',
@@ -243,6 +285,8 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
   const handleLogout = () => {
     setLoggedInEmail(null);
     setIsLoggedIn(false);
+    setIsAdmin(false);
+    setAdminUsers([]);
     setNome('');
     setTelefone('');
     setEmail('');
@@ -252,6 +296,8 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
   };
 
   const handleSave = async () => {
+    if (isAdmin) return; // Admins don't need to save their own preferences
+
     try {
       const res = await fetch('/api/users/sync', {
         method: 'POST',
@@ -291,13 +337,42 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
     }
   };
 
+  const handleDownloadJSON = async () => {
+    try {
+      const secret = 'bmj2026';
+      const url = `/api/admin/download-db?secret=${secret}`;
+      const res = await fetch(url);
+      if (res.ok) {
+        window.open(url, '_blank');
+        return;
+      }
+    } catch (err) {
+      console.warn('Erro ao baixar JSON do servidor, exportando local:', err);
+    }
+
+    // Fallback: download client localStorage DB
+    const users = getAllUsers();
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(users, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute('href', dataStr);
+    downloadAnchor.setAttribute('download', 'preferenciasusuarios.json');
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  };
+
   const handleDownloadPDF = async () => {
     handleSave();
     setDownloadSuccess(true);
 
-    if (printRef.current) {
+    if (pdfTemplateRef.current) {
       try {
-        const canvas = await html2canvas(printRef.current, { scale: 2, useCORS: true });
+        const canvas = await html2canvas(pdfTemplateRef.current, { 
+          scale: 2, 
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#ffffff'
+        });
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -448,10 +523,96 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
             )}
           </div>
 
-        /* ============================================= */
-        /* STATE 2: LOGGED IN, NO FAVORITES              */
-        /* ============================================= */
+        ) : isAdmin ? (
+          /* ============================================= */
+          /* STATE 1.5: ADMIN MODE                         */
+          /* ============================================= */
+          <div className="max-w-4xl mx-auto bg-white p-8 md:p-10 rounded-3xl border-3 border-slate-900 comic-shadow space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-3 border-slate-900 pb-4 gap-4">
+              <div>
+                <h3 className="font-display text-3xl uppercase tracking-wider text-slate-800">
+                  PAINEL ADMINISTRATIVO BMJ 🦊
+                </h3>
+                <p className="text-xs font-mono text-slate-500">Controle de preferências e banco de dados local</p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1 bg-japan-red hover:bg-japan-red-dark text-white font-display text-xs py-2 px-4 rounded-lg border-2 border-slate-950 comic-shadow-sm active:scale-95 transition-all cursor-pointer font-bold"
+              >
+                <LogOut className="w-4 h-4" /> SAIR DO PAINEL
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-5 bg-sky-blue/20 rounded-2xl border-2 border-slate-900 flex flex-col justify-between">
+                <span className="text-xs font-mono text-slate-500">TOTAL CADASTRADOS</span>
+                <span className="font-display text-4xl text-slate-950 mt-2">{adminUsers.length}</span>
+                <p className="text-[11px] text-slate-500 mt-2">Visitantes que salvaram sua agenda.</p>
+              </div>
+              
+              <div className="md:col-span-2 p-5 bg-slate-50 rounded-2xl border-2 border-slate-900 flex flex-col justify-between">
+                <span className="text-xs font-mono text-slate-500">EXPORTAÇÃO BANCO DE DADOS (.JSON)</span>
+                <div className="mt-4">
+                  <button
+                    onClick={handleDownloadJSON}
+                    className="w-full flex items-center justify-center gap-2 bg-brasil-yellow text-slate-900 hover:bg-brasil-yellow-light font-display text-sm py-3 rounded-xl border-2 border-slate-900 hover:scale-[1.02] active:scale-[0.98] transition-all comic-shadow-sm hover:shadow-none cursor-pointer"
+                  >
+                    <Download className="w-4 h-4" /> BAIXAR PREFERENCIASUSUARIOS.JSON
+                  </button>
+                </div>
+                <p className="text-[11px] text-slate-500 mt-2">
+                  Baixe o banco de dados local contendo nome, e-mail, telefone, senha e favoritos de cada usuário.
+                </p>
+              </div>
+            </div>
+
+            <div className="border-2 border-slate-900 rounded-2xl overflow-hidden bg-slate-50">
+              <div className="bg-slate-900 text-white p-3 font-display text-xs uppercase tracking-wider">
+                Lista de Visitantes Cadastrados
+              </div>
+              <div className="max-h-96 overflow-y-auto">
+                {adminUsers.length === 0 ? (
+                  <p className="p-6 text-center text-sm font-heading font-medium text-slate-500">
+                    Nenhum visitante cadastrado no momento.
+                  </p>
+                ) : (
+                  <table className="w-full text-left border-collapse text-xs">
+                    <thead>
+                      <tr className="bg-slate-200 border-b-2 border-slate-900 text-slate-700 font-heading font-black">
+                        <th className="p-3">Nome</th>
+                        <th className="p-3">Contato</th>
+                        <th className="p-3">Favoritos (Qtd)</th>
+                        <th className="p-3">Data Cadastro</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {adminUsers.map((u, i) => (
+                        <tr key={i} className="hover:bg-slate-100 font-heading">
+                          <td className="p-3 font-bold text-slate-800">{u.nome}</td>
+                          <td className="p-3">
+                            <p>{u.email}</p>
+                            <p className="text-[10px] text-slate-500">{u.telefone}</p>
+                          </td>
+                          <td className="p-3">
+                            <span className="px-2 py-0.5 bg-brasil-yellow rounded font-mono font-bold">
+                              {u.favoriteIds ? u.favoriteIds.length : 0}
+                            </span>
+                          </td>
+                          <td className="p-3 font-mono text-[10px] text-slate-500">
+                            {u.createdAt ? new Date(u.createdAt).toLocaleDateString('pt-BR') : 'N/A'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            </div>
+          </div>
         ) : totalFavorites === 0 ? (
+          /* ============================================= */
+          /* STATE 2: LOGGED IN, NO FAVORITES              */
+          /* ============================================= */
           <div className="max-w-xl mx-auto bg-white p-10 rounded-3xl border-3 border-slate-900 comic-shadow text-center space-y-6">
             {/* Logged-in header bar */}
             <div className="flex justify-between items-center">
@@ -683,10 +844,120 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
                     Ao chegar no Museu Nacional da República, apresente seu voucher do Sympla. Este cronograma personalizado serve para orientar seu acesso às ativações preferidas!
                   </p>
                 </div>
+            </div>
+          </div>
+        </div>
+      )}
+      </div>
+
+      {/* Hidden Print-Optimized Layout (Only used for PDF generation) */}
+      <div style={{ position: 'absolute', left: '-9999px', top: 0, pointerEvents: 'none' }}>
+        <div 
+          ref={pdfTemplateRef} 
+          style={{
+            width: '700px',
+            padding: '40px',
+            backgroundColor: '#ffffff',
+            color: '#0f172a',
+            fontFamily: '"Outfit", "Inter", sans-serif',
+            border: '8px solid #000000',
+            borderRadius: '24px',
+            boxShadow: '10px 10px 0px #000000',
+            boxSizing: 'border-box',
+          }}
+        >
+          {/* Header banner */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '4px solid #000000', paddingBottom: '20px', marginBottom: '25px' }}>
+            <div>
+              <h1 style={{ fontFamily: 'Impact, sans-serif', fontSize: '36px', textTransform: 'uppercase', margin: 0, letterSpacing: '1px', color: '#BC002D' }}>
+                MEU CRONOGRAMA BMJ 2026
+              </h1>
+              <p style={{ margin: '5px 0 0 0', fontSize: '13px', fontWeight: 'bold', color: '#009B3A', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+                17-19 Julho • Museu Nacional da República
+              </p>
+            </div>
+            <img 
+              src="/logos/logoBMJ.png" 
+              alt="Logo BMJ" 
+              style={{ height: '70px', objectFit: 'contain' }} 
+            />
+          </div>
+
+          {/* User Profile Info Card */}
+          <div style={{ display: 'flex', gap: '20px', backgroundColor: '#f8fafc', padding: '20px', borderRadius: '16px', border: '3px solid #000000', marginBottom: '30px' }}>
+            <div style={{ fontSize: '40px', display: 'flex', alignItems: 'center' }}>🦊</div>
+            <div>
+              <h3 style={{ margin: '0 0 5px 0', fontSize: '18px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                {nome || 'Visitante Oficial'}
+              </h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px 20px', fontSize: '12px', color: '#334155' }}>
+                <p style={{ margin: 0 }}><strong>Telefone:</strong> {telefone || 'Não Informado'}</p>
+                <p style={{ margin: 0 }}><strong>E-mail:</strong> {email}</p>
+                <p style={{ margin: 0 }}><strong>Atrações Selecionadas:</strong> {totalFavorites}</p>
+                <p style={{ margin: 0 }}><strong>Status:</strong> VIP Visitante</p>
               </div>
             </div>
           </div>
-        )}
+
+          {/* Schedule List */}
+          <div style={{ marginBottom: '20px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '900', textTransform: 'uppercase', borderBottom: '2px solid #000000', paddingBottom: '5px', marginBottom: '15px' }}>
+              📅 Minha Agenda Personalizada
+            </h3>
+            
+            {/* Exhibitions */}
+            {bookmarkedAttractions.length > 0 && (
+              <div style={{ marginBottom: '20px' }}>
+                <h4 style={{ fontSize: '11px', textTransform: 'uppercase', color: '#64748b', letterSpacing: '1px', marginBottom: '10px', fontWeight: 'bold' }}>
+                  Exposições e Tendas ({bookmarkedAttractions.length})
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {bookmarkedAttractions.map(item => (
+                    <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px', backgroundColor: '#f8fafc', border: '2px solid #000000', borderRadius: '10px' }}>
+                      <span style={{ fontSize: '20px' }}>{item.icon}</span>
+                      <div>
+                        <h5 style={{ margin: 0, fontSize: '13px', fontWeight: '800' }}>{item.title}</h5>
+                        <p style={{ margin: 0, fontSize: '11px', color: '#64748b' }}>Atração Especial • {item.category.toUpperCase()}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Shows & Cinema */}
+            {bookmarkedSchedules.length > 0 && (
+              <div>
+                <h4 style={{ fontSize: '11px', textTransform: 'uppercase', color: '#64748b', letterSpacing: '1px', marginBottom: '10px', fontWeight: 'bold' }}>
+                  Cronograma de Shows, Cinema e Eventos ({bookmarkedSchedules.length})
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {bookmarkedSchedules.map(item => (
+                    <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '10px', backgroundColor: '#f8fafc', border: '2px solid #000000', borderRadius: '10px' }}>
+                      <div style={{ backgroundColor: '#BC002D', color: '#ffffff', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold', minWidth: '85px', textAlign: 'center' }}>
+                        {item.day.toUpperCase()} {item.time}
+                      </div>
+                      <div>
+                        <h5 style={{ margin: 0, fontSize: '13px', fontWeight: '800' }}>{item.title}</h5>
+                        <p style={{ margin: 0, fontSize: '11px', color: '#64748b' }}>🕒 {item.time} • Categoria: {item.category}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Footer Notes */}
+          <div style={{ borderTop: '2px solid #e2e8f0', paddingTop: '15px', marginTop: '30px', textAlign: 'center', fontSize: '11px', color: '#64748b', lineHeight: '1.5' }}>
+            <p style={{ margin: '0 0 5px 0', fontWeight: 'bold', color: '#0f172a' }}>
+              🎌 Apresente seu voucher do Sympla na entrada do Museu Nacional da República! 🎌
+            </p>
+            <p style={{ margin: 0 }}>
+              Este cronograma foi gerado especialmente para guiar sua visita nos 130 anos de amizade Brasil-Japão.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

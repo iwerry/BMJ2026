@@ -94,6 +94,33 @@ app.post('/api/users/login', (req, res) => {
   res.json({ success: true, user });
 });
 
+app.get('/api/admin/download-db', (req, res) => {
+  const { secret } = req.query;
+  const adminSecret = process.env.ADMIN_SECRET || 'bmj2026';
+
+  if (secret !== adminSecret) {
+    return res.status(403).json({ error: 'Acesso negado. Token inválido.' });
+  }
+
+  if (fs.existsSync(PREFERENCES_FILE)) {
+    res.download(PREFERENCES_FILE, 'preferenciasusuarios.json');
+  } else {
+    res.status(404).json({ error: 'Arquivo não encontrado.' });
+  }
+});
+
+app.get('/api/admin/users', (req, res) => {
+  const { secret } = req.query;
+  const adminSecret = process.env.ADMIN_SECRET || 'bmj2026';
+
+  if (secret !== adminSecret) {
+    return res.status(403).json({ error: 'Acesso negado. Token inválido.' });
+  }
+
+  const users = readUsers();
+  res.json({ success: true, users });
+});
+
 // Fallback to React SPA (index.html) for routing
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
