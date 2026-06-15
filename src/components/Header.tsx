@@ -53,31 +53,62 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
   const menuItems: MenuLink[] = [
     {
+      label: 'Programação',
+      type: 'dropdown',
+      submenu: [
+        { label: 'LineUp', href: '#lineup' },
+        { label: 'Cinema', href: '#cinema' },
+      ],
+    },
+    {
+      label: 'Expositores',
+      type: 'link',
+      href: '#expositores',
+    },
+    {
+      label: 'Cosplay',
+      type: 'link',
+      href: '#cosplay',
+    },
+    {
+      label: 'Imprensa',
+      type: 'link',
+      href: '#imprensa',
+    },
+    {
       label: 'Meu Cronograma',
       type: 'link',
       href: '#meu-cronograma',
     },
     {
-      label: 'Programação',
+      label: 'FAQ',
       type: 'link',
-      href: '#programacao',
-    },
-    {
-      label: 'Atrações Especiais',
-      type: 'link',
-      href: '#lineup',
-    },
-    {
-      label: 'Localização',
-      type: 'link',
-      href: '#local',
+      href: '#faq',
     },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    
     const id = href.replace('#', '');
+    const currentPath = window.location.pathname;
+
+    const isCronogramaPage = currentPath === '/meu-cronograma';
+    const homePageTargets = ['inicio', 'cinema', 'expositores', 'cosplay', 'imprensa', 'faq'];
+
+    if (id === 'meu-cronograma') {
+      if (!isCronogramaPage) {
+        window.location.href = '/meu-cronograma';
+        return;
+      }
+    } else if (homePageTargets.includes(id)) {
+      if (isCronogramaPage) {
+        window.location.href = `/#${id}`;
+        return;
+      }
+    }
+
     const element = document.getElementById(id);
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.scrollY - 140;
@@ -93,7 +124,10 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
   const handleSubLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     handleLinkClick(e, href);
-    e.currentTarget.closest('details')?.removeAttribute('open');
+    const detailsElement = e.currentTarget.closest('details');
+    if (detailsElement) {
+      detailsElement.removeAttribute('open');
+    }
   };
 
   return (

@@ -36,6 +36,16 @@ export default function App() {
     localStorage.setItem('bmj_favorites_2026', JSON.stringify(favoriteIds));
   }, [favoriteIds]);
 
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleToggleFavorite = (id: string) => {
     setFavoriteIds((prev) => 
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
@@ -58,16 +68,19 @@ export default function App() {
       });
       const path = id === '#inicio' ? '/' : id.replace('#', '/');
       window.history.pushState(null, '', path);
+      setCurrentPath(path);
     }
   };
 
   // Handle permalink routing on load
   useEffect(() => {
     const path = window.location.pathname;
-    if (path && path !== '/') {
-      const sectionId = path.substring(1); // e.g. "cosplay"
+    const hash = window.location.hash;
+    const target = hash ? hash.replace('#', '') : (path && path !== '/' ? path.substring(1) : null);
+    
+    if (target) {
       const scrollToSection = () => {
-        const element = document.getElementById(sectionId);
+        const element = document.getElementById(target);
         if (element) {
           const offsetTop = element.getBoundingClientRect().top + window.scrollY - 140;
           window.scrollTo({
@@ -154,25 +167,69 @@ export default function App() {
         onOpenTickets={() => handleScrollToSection('#ingressos')} 
       />
 
-      {/* 4. VISITOR PERSONALIZED SCHEDULER & PASSPORT PASSPORT */}
-      <MySchedule 
-        favoriteIds={favoriteIds}
-        onToggleFavorite={handleToggleFavorite}
-        onRestoreFavorites={handleRestoreFavorites}
-        onOpenTickets={() => handleScrollToSection('#ingressos')}
-      />
+      {currentPath === '/meu-cronograma' ? (
+        <>
+          {/* 4. VISITOR PERSONALIZED SCHEDULER & PASSPORT PASSPORT */}
+          <MySchedule 
+            favoriteIds={favoriteIds}
+            onToggleFavorite={handleToggleFavorite}
+            onRestoreFavorites={handleRestoreFavorites}
+            onOpenTickets={() => handleScrollToSection('#ingressos')}
+          />
 
-      {/* 5. INTERACTIVE EVENT SCHEDULER GENERAL TIMELINE */}
-      <Schedule 
-        favoriteIds={favoriteIds}
-        onToggleFavorite={handleToggleFavorite}
-      />
+          {/* 5. INTERACTIVE EVENT SCHEDULER GENERAL TIMELINE */}
+          <Schedule 
+            favoriteIds={favoriteIds}
+            onToggleFavorite={handleToggleFavorite}
+          />
 
-      {/* 7. DYNAMIC CATEGORIZED ATTRACTIONS GRID */}
-      <Attractions 
-        favoriteIds={favoriteIds}
-        onToggleFavorite={handleToggleFavorite}
-      />
+          {/* 7. DYNAMIC CATEGORIZED ATTRACTIONS GRID */}
+          <Attractions 
+            favoriteIds={favoriteIds}
+            onToggleFavorite={handleToggleFavorite}
+          />
+        </>
+      ) : (
+        <>
+          {/* 2. DYNAMIC HERO BRAND LAYER WITH COUNTDOWN */}
+          <Hero 
+            onOpenTickets={() => handleScrollToSection('#ingressos')} 
+            onNavigateToSchedule={() => handleScrollToSection('#programacao')}
+          />
+
+          {/* 3. HISTORIC CONTEXT ABOUT DIPLOMACY */}
+          <About />
+
+          {/* 6. IMMERSIVE CINE BMJ CAROUSEL & PANEL */}
+          <Cinema 
+            onOpenTickets={() => handleScrollToSection('#ingressos')}
+          />
+
+          {/* 5. INTERACTIVE EVENT SCHEDULER GENERAL TIMELINE */}
+          <Schedule 
+            favoriteIds={favoriteIds}
+            onToggleFavorite={handleToggleFavorite}
+          />
+
+          {/* 7. DYNAMIC CATEGORIZED ATTRACTIONS GRID */}
+          <Attractions 
+            favoriteIds={favoriteIds}
+            onToggleFavorite={handleToggleFavorite}
+          />
+
+          {/* 9. SEARCHABLE EXHIBITORS STANDS */}
+          <Exhibitors />
+
+          {/* Cosplay Section */}
+          <Cosplay />
+
+          {/* Imprensa Section */}
+          <Press />
+
+          {/* 12. INTERACTIVE ACCORDIONS FAQ */}
+          <FAQ />
+        </>
+      )}
 
       {/* 10. VENUE LOCATION MAP EMBED DIRECTIONS */}
       <Venue />
