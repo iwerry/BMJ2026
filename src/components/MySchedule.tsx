@@ -1,7 +1,9 @@
-import { Calendar, Trash2, ShieldCheck, Download, Sparkles, Smile } from 'lucide-react';
+import { Calendar, Trash2, ShieldCheck, Download, Sparkles, Smile, User, Mail, Phone, Lock } from 'lucide-react';
 import { ScheduleItem, Attraction } from '../types';
-import { SCHEDULE_ITEMS, ATRACOES_ESPECIAIS } from '../data';
-import { useState } from 'react';
+import { SCHEDULE_ITEMS, ATRACOES_ESPECIAIS, EVENT_INFO } from '../data';
+import { useState, useRef } from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 interface MyScheduleProps {
   favoriteIds: string[];
@@ -11,6 +13,11 @@ interface MyScheduleProps {
 
 export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTickets }: MyScheduleProps) {
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+  const [nome, setNome] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const printRef = useRef<HTMLDivElement>(null);
 
   // We look through SCHEDULE_ITEMS and ATRACOES_ESPECIAIS
   const bookmarkedSchedules = SCHEDULE_ITEMS.filter((item) => favoriteIds.includes(item.id));
@@ -18,8 +25,48 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
 
   const totalFavorites = bookmarkedSchedules.length + bookmarkedAttractions.length;
 
-  const handleSimulateDownload = () => {
+  const handleSimulateDownload = async () => {
+    if (!nome || !telefone || !email || !senha) {
+      alert("Por favor, preencha todos os campos do formulário para gerar o passaporte.");
+      return;
+    }
+
     setDownloadSuccess(true);
+    
+    // Gerar JSON local (Preferências do usuário)
+    const preferencesData = {
+      nome,
+      telefone,
+      email,
+      senha,
+      timestamp: new Date().toISOString(),
+      atracoesSelecionadas: bookmarkedAttractions.map(a => a.title),
+      programacaoSelecionada: bookmarkedSchedules.map(s => `${s.day} ${s.time} - ${s.title}`)
+    };
+    const blob = new Blob([JSON.stringify(preferencesData, null, 2)], { type: "application/json" });
+    const jsonUrl = URL.createObjectURL(blob);
+    const jsonLink = document.createElement('a');
+    jsonLink.href = jsonUrl;
+    jsonLink.download = 'preferenciausuario.json';
+    jsonLink.click();
+    URL.revokeObjectURL(jsonUrl);
+
+    // Gerar PDF do Cronograma com html2canvas e jsPDF
+    if (printRef.current) {
+      try {
+        const canvas = await html2canvas(printRef.current, { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`cronograma-${nome.replace(/\\s+/g, '-').toLowerCase()}.pdf`);
+      } catch (error) {
+        console.error("Erro ao gerar PDF:", error);
+      }
+    }
+
     setTimeout(() => {
       setDownloadSuccess(false);
     }, 4000);
@@ -66,7 +113,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
           </div>
         ) : (
           /* Populated State with Pass & Scheduler Card */
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          <div ref={printRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch bg-sky-blue/10 p-2 md:p-6 rounded-3xl">
             
             {/* Passenger Pass Credential Card */}
             <div className="lg:col-span-4 bg-white rounded-3xl border-3 border-slate-900 comic-shadow overflow-hidden flex flex-col justify-between">
@@ -89,35 +136,63 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
                   <div className="w-24 h-24 bg-gradient-to-tr from-brasil-green to-brasil-yellow rounded-full mx-auto border-2 border-slate-900 flex items-center justify-center text-4xl select-none shadow-md">
                     🦊
                   </div>
-                  <h4 className="font-heading font-black text-slate-800 text-lg uppercase mt-2">
-                    Visitante Oficial
+                  <h4 className="font-heading font-black text-slate-800 text-lg uppercase mt-2 break-words">
+                    {nome || 'Visitante Oficial'}
                   </h4>
                   <div className="inline-block px-3 py-1 bg-black text-brasil-yellow font-mono text-xs rounded-md">
                     RESERVADO: {totalFavorites} ATRAÇÕES
                   </div>
                 </div>
 
-                {/* Simulated QR Code Area */}
-                <div className="p-4 bg-slate-100 rounded-2xl border-2 border-slate-900 text-center space-y-2 relative">
-                  <span className="absolute top-1 left-2 font-mono text-[9px] text-slate-400">BMJ CODE #3374417</span>
+                {/* Registration Form / User Details */}
+                <div className="p-4 bg-slate-100 rounded-2xl border-2 border-slate-900 space-y-3 relative overflow-hidden">
+                  <span className="absolute top-1 right-2 font-mono text-[9px] text-slate-400">DADOS DO PASSAPORTE</span>
                   
-                  {/* QR Core Graphic */}
-                  <div className="w-32 h-32 bg-white border border-slate-200 mx-auto flex flex-col justify-between p-2 rounded-lg relative group">
-                    <div className="grid grid-cols-5 gap-1.5 h-full w-full opacity-90">
-                      {Array.from({ length: 25 }).map((_, i) => {
-                        const isFilled = (i % 3 === 0 || i % 7 === 0 || i === 0 || i === 4 || i === 20 || i === 24);
-                        return (
-                          <div 
-                            key={i} 
-                            className={`rounded-sm ${(isFilled) ? 'bg-slate-900' : 'bg-transparent'}`} 
-                          />
-                        );
-                      })}
+                  <div className="space-y-2 mt-2">
+                    <div className="flex items-center gap-2">
+                      <User className="w-4 h-4 text-slate-500" />
+                      <input 
+                        type="text" 
+                        placeholder="Nome Completo" 
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded p-1.5 text-xs font-heading text-slate-800 focus:outline-none focus:border-japan-red"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-slate-500" />
+                      <input 
+                        type="tel" 
+                        placeholder="Telefone" 
+                        value={telefone}
+                        onChange={(e) => setTelefone(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded p-1.5 text-xs font-heading text-slate-800 focus:outline-none focus:border-japan-red"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-4 h-4 text-slate-500" />
+                      <input 
+                        type="email" 
+                        placeholder="E-mail" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded p-1.5 text-xs font-heading text-slate-800 focus:outline-none focus:border-japan-red"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Lock className="w-4 h-4 text-slate-500" />
+                      <input 
+                        type="password" 
+                        placeholder="Sua Senha" 
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
+                        className="w-full bg-white border border-slate-300 rounded p-1.5 text-xs font-heading text-slate-800 focus:outline-none focus:border-japan-red"
+                      />
                     </div>
                   </div>
 
-                  <p className="text-xs font-mono text-slate-500">
-                    Apresente no credenciamento
+                  <p className="text-[10px] text-center font-mono text-slate-500 mt-2">
+                    Preencha os dados para baixar seu PDF e salvar as preferências locais.
                   </p>
                 </div>
 
@@ -142,7 +217,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onOpenTicket
                   className="w-full flex items-center justify-center gap-2 bg-brasil-yellow text-slate-900 font-display text-lg py-3 rounded-xl border-2 border-slate-900 hover:scale-[1.02] active:scale-[0.98] transition-all comic-shadow-sm hover:shadow-none"
                 >
                   <Download className="w-5 h-5" />
-                  {downloadSuccess ? "DOWNLOAD CONCLUÍDO! 📥" : "BAIXAR MEU CRONOGRAMA"}
+                  {downloadSuccess ? "DOWNLOAD CONCLUÍDO! 📥" : "GERAR PASSAPORTE (PDF E JSON)"}
                 </button>
                 
                 {downloadSuccess && (
