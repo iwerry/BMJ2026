@@ -6,3 +6,11 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# User database folder
+cronograma/
+
+# Compiled server script
+server.js
+
+

@@ -42,6 +42,11 @@ export default function App() {
     );
   };
 
+  // Restore a full set of favorite IDs (used by login system)
+  const handleRestoreFavorites = (ids: string[]) => {
+    setFavoriteIds(ids);
+  };
+
   // Trigger scroll helper safely to point to dynamic elements
   const handleScrollToSection = (id: string) => {
     const element = document.querySelector(id);
@@ -162,6 +167,7 @@ export default function App() {
       <MySchedule 
         favoriteIds={favoriteIds}
         onToggleFavorite={handleToggleFavorite}
+        onRestoreFavorites={handleRestoreFavorites}
         onOpenTickets={() => handleScrollToSection('#ingressos')}
       />
 
