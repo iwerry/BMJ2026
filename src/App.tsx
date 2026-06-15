@@ -11,7 +11,6 @@ import Venue from './components/Venue';
 import Sponsors from './components/Sponsors';
 import FAQ from './components/FAQ';
 import Newsletter from './components/Newsletter';
-import MySchedule from './components/MySchedule';
 import Footer from './components/Footer';
 import BubbleEffect from './components/BubbleEffect';
 import Cosplay from './components/Cosplay';
@@ -21,21 +20,6 @@ import { Sparkles, X, MessageSquare, Flame, Ticket, ShieldCheck, Instagram } fro
 import { EVENT_INFO, FAQ_ITEMS } from './data';
 
 export default function App() {
-  // Bookmark/Favorites synchronization list with localStorage
-  const [favoriteIds, setFavoriteIds] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem('bmj_favorites_2026');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
-
-  // Persist bookmarks
-  useEffect(() => {
-    localStorage.setItem('bmj_favorites_2026', JSON.stringify(favoriteIds));
-  }, [favoriteIds]);
-
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -45,17 +29,6 @@ export default function App() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
-
-  const handleToggleFavorite = (id: string) => {
-    setFavoriteIds((prev) => 
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
-  // Restore a full set of favorite IDs (used by login system)
-  const handleRestoreFavorites = (ids: string[]) => {
-    setFavoriteIds(ids);
-  };
 
   // Trigger scroll helper safely to point to dynamic elements
   const handleScrollToSection = (id: string) => {
@@ -163,35 +136,10 @@ export default function App() {
       
       {/* 1. STICKY ACTION HEADER LAYER */}
       <Header 
-        favoriteCount={favoriteIds.length} 
         onOpenTickets={() => handleScrollToSection('#ingressos')} 
       />
 
-      {currentPath === '/meu-cronograma' ? (
-        <>
-          {/* 4. VISITOR PERSONALIZED SCHEDULER & PASSPORT PASSPORT */}
-          <MySchedule 
-            favoriteIds={favoriteIds}
-            onToggleFavorite={handleToggleFavorite}
-            onRestoreFavorites={handleRestoreFavorites}
-            onOpenTickets={() => {
-              window.location.href = '/#ingressos';
-            }}
-          />
-
-          {/* 5. INTERACTIVE EVENT SCHEDULER GENERAL TIMELINE */}
-          <Schedule 
-            favoriteIds={favoriteIds}
-            onToggleFavorite={handleToggleFavorite}
-          />
-
-          {/* 7. DYNAMIC CATEGORIZED ATTRACTIONS GRID */}
-          <Attractions 
-            favoriteIds={favoriteIds}
-            onToggleFavorite={handleToggleFavorite}
-          />
-        </>
-      ) : (currentPath === '/cosplay' || currentPath === '/desfile') ? (
+      {(currentPath === '/cosplay' || currentPath === '/desfile') ? (
         <>
           {/* Cosplay Section (Concurso Cosplay) */}
           <Cosplay />
@@ -216,16 +164,10 @@ export default function App() {
           />
 
           {/* 5. INTERACTIVE EVENT SCHEDULER GENERAL TIMELINE */}
-          <Schedule 
-            favoriteIds={favoriteIds}
-            onToggleFavorite={handleToggleFavorite}
-          />
+          <Schedule />
 
           {/* 7. DYNAMIC CATEGORIZED ATTRACTIONS GRID */}
-          <Attractions 
-            favoriteIds={favoriteIds}
-            onToggleFavorite={handleToggleFavorite}
-          />
+          <Attractions />
 
           {/* 9. SEARCHABLE EXHIBITORS STANDS */}
           <Exhibitors />

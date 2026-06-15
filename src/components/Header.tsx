@@ -3,11 +3,10 @@ import { Menu, X, Ticket, CalendarRange, Star } from 'lucide-react';
 import { EVENT_INFO } from '../data';
 
 interface HeaderProps {
-  favoriteCount: number;
   onOpenTickets: () => void;
 }
 
-export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
+export default function Header({ onOpenTickets }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [logoTextIndex, setLogoTextIndex] = useState(0);
@@ -76,11 +75,6 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
       href: '#imprensa',
     },
     {
-      label: 'Meu Cronograma',
-      type: 'link',
-      href: '#meu-cronograma',
-    },
-    {
       label: 'FAQ',
       type: 'link',
       href: '#faq',
@@ -94,17 +88,11 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
     const id = href.replace('#', '');
     const currentPath = window.location.pathname;
 
-    const isCronogramaPage = currentPath === '/meu-cronograma';
     const isCosplayPage = currentPath === '/cosplay' || currentPath === '/desfile';
     
     const homePageTargets = ['inicio', 'cinema', 'expositores', 'imprensa', 'faq'];
 
-    if (id === 'meu-cronograma') {
-      if (!isCronogramaPage) {
-        window.location.href = '/meu-cronograma';
-        return;
-      }
-    } else if (id === 'cosplay' || id === 'desfile') {
+    if (id === 'cosplay' || id === 'desfile') {
       if (!isCosplayPage) {
         window.location.href = '/cosplay';
         return;
@@ -115,7 +103,7 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
         return;
       }
     } else if (homePageTargets.includes(id)) {
-      if (isCronogramaPage || isCosplayPage) {
+      if (isCosplayPage) {
         window.location.href = `/#${id}`;
         return;
       }
@@ -209,11 +197,6 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
                   className="text-white hover:text-brasil-yellow text-xs xl:text-sm font-heading font-black uppercase tracking-wider px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-slate-800/60 relative"
                 >
                   {item.label}
-                  {item.href === '#meu-cronograma' && favoriteCount > 0 && (
-                    <span className="absolute -top-1.5 -right-1 bg-brasil-yellow text-slate-950 font-mono text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-slate-950 animate-bounce">
-                      {favoriteCount}
-                    </span>
-                  )}
                 </a>
               )
             ))}
@@ -221,20 +204,6 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
           {/* Dynamic Action Box */}
           <div className="hidden lg:flex items-center gap-3">
-            {/* Bookmark fast view indicator */}
-            {favoriteCount > 0 && (
-              <a 
-                href="#meu-cronograma"
-                onClick={(e) => handleLinkClick(e, '#meu-cronograma')}
-                className="flex items-center gap-1 text-brasil-yellow bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700 text-xs font-mono scroll-smooth animate-pulse"
-              >
-                <Star className="w-3.5 h-3.5 fill-brasil-yellow" />
-                <span className="hidden lg:inline group-hover:text-japan-red transition-colors">
-                  MEU CRONOGRAMA ({favoriteCount})
-                </span>
-              </a>
-            )}
-            
             <a 
               href={EVENT_INFO.symplaUrl}
               target="_blank"
@@ -248,19 +217,6 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
           {/* Hamburger Menu Trigger */}
           <div className="flex items-center gap-2 lg:hidden justify-self-end">
-            {favoriteCount > 0 && (
-              <a 
-                href="#meu-cronograma"
-                onClick={(e) => handleLinkClick(e, '#meu-cronograma')}
-                className="text-brasil-yellow bg-slate-800 p-2 rounded-lg border border-slate-700 text-xs font-mono relative shrink-0"
-              >
-                <Star className="w-4 h-4 fill-brasil-yellow" />
-                <span className="absolute -top-1 -right-1 bg-japan-red text-white text-[8px] font-bold h-3.5 w-3.5 rounded-full flex items-center justify-center">
-                  {favoriteCount}
-                </span>
-              </a>
-            )}
-
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-white bg-slate-800 p-2.5 rounded-xl border border-slate-700 hover:bg-slate-700 transition"

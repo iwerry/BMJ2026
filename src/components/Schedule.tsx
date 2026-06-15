@@ -3,12 +3,7 @@ import { Sparkles, Calendar, Clock, Star, Search, Flame, Filter } from 'lucide-r
 import { ScheduleItem } from '../types';
 import { SCHEDULE_ITEMS } from '../data';
 
-interface ScheduleProps {
-  favoriteIds: string[];
-  onToggleFavorite: (id: string) => void;
-}
-
-export default function Schedule({ favoriteIds, onToggleFavorite }: ScheduleProps) {
+export default function Schedule() {
   const [activeDay, setActiveDay] = useState<'sexta' | 'sabado' | 'domingo'>('sexta');
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('todos');
@@ -144,7 +139,6 @@ export default function Schedule({ favoriteIds, onToggleFavorite }: ScheduleProp
           <div className="relative border-l-4 border-slate-900 ml-4 md:ml-32 space-y-8 py-4">
             
             {filteredItems.map((item, index) => {
-              const isFavorited = favoriteIds.includes(item.id);
               return (
                 <div 
                   key={item.id} 
@@ -209,20 +203,6 @@ export default function Schedule({ favoriteIds, onToggleFavorite }: ScheduleProp
                         </p>
 
                       </div>
-
-                      {/* Favorite Bookmark Button */}
-                      <button
-                        onClick={() => onToggleFavorite(item.id)}
-                        className={`py-2 px-3 border-2 rounded-xl text-xs font-mono font-bold flex items-center gap-1.5 transition-all w-full md:w-auto justify-center select-none cursor-pointer ${
-                          isFavorited
-                            ? 'bg-brasil-yellow border-slate-900 text-slate-950 shadow-sm scale-105'
-                            : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-500'
-                        }`}
-                      >
-                        <Star className={`w-4 h-4 ${isFavorited ? 'fill-slate-950 text-slate-950' : 'text-slate-400'}`} />
-                        <span>{isFavorited ? 'RESERVADO ⭐' : 'SALVAR'}</span>
-                      </button>
-
                     </div>
 
                   </div>

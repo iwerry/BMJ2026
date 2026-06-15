@@ -3,12 +3,7 @@ import { Star, Eye, Calendar, MapPin, Grid, Layers, Heart } from 'lucide-react';
 import { Attraction } from '../types';
 import { ATRACOES_ESPECIAIS, EVENT_INFO } from '../data';
 
-interface AttractionsProps {
-  favoriteIds: string[];
-  onToggleFavorite: (id: string) => void;
-}
-
-export default function Attractions({ favoriteIds, onToggleFavorite }: AttractionsProps) {
+export default function Attractions() {
   const [filter, setFilter] = useState<string>('todos');
 
   const categories = [
@@ -68,7 +63,6 @@ export default function Attractions({ favoriteIds, onToggleFavorite }: Attractio
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           {filteredAttractions.map((att) => {
-            const isFavorited = favoriteIds.includes(att.id);
             return (
               <div 
                 key={att.id}
@@ -106,21 +100,8 @@ export default function Attractions({ favoriteIds, onToggleFavorite }: Attractio
                     </p>
                   </div>
 
-                  {/* Bookmark Toggle Action */}
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                     <span className="text-2xl select-none">{att.icon}</span>
-                    
-                    <button
-                      onClick={() => onToggleFavorite(att.id)}
-                      className={`py-2 px-4 rounded-xl text-xs font-mono font-bold flex items-center gap-1.5 transition-all w-full justify-center border-2 cursor-pointer ${
-                        isFavorited
-                          ? 'bg-brasil-yellow border-slate-900 text-slate-950 shadow-sm font-black'
-                          : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-500'
-                      }`}
-                    >
-                      <Star className={`w-3.5 h-3.5 ${isFavorited ? 'fill-slate-950 text-slate-950' : 'text-slate-400'}`} />
-                      <span>{isFavorited ? 'ESTRELA ATIVA ⭐' : 'SALVAR NO CRONOGRAMA'}</span>
-                    </button>
                   </div>
 
                 </div>
