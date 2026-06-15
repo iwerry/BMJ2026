@@ -31,8 +31,13 @@ function CosplayCard({ title, image }: { title: string; image: string }) {
 }
 
 export default function Cosplay() {
+  const isDedicatedPage = typeof window !== 'undefined' && (window.location.pathname === '/cosplay' || window.location.pathname === '/desfile');
+
   return (
-    <section id="cosplay" className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white overflow-hidden border-b-4 border-slate-950">
+    <section 
+      id="cosplay" 
+      className={`relative ${isDedicatedPage ? 'pt-40 md:pt-48 pb-20' : 'py-20'} px-4 md:px-8 bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white overflow-hidden border-b-4 border-slate-950`}
+    >
       <div className="max-w-6xl mx-auto text-center">
         <span className="bg-japan-red text-white font-mono text-[10px] font-bold py-1.5 px-4 rounded-full border border-white/20 uppercase tracking-widest inline-block mb-4">
           Concurso Oficial

@@ -391,7 +391,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
   // RENDER
   // =============================================
   return (
-    <section id="meu-cronograma" className="relative py-20 px-4 md:px-8 bg-sky-blue/10 overflow-hidden">
+    <section id="meu-cronograma" className="relative pt-40 md:pt-48 pb-20 px-4 md:px-8 bg-sky-blue/10 overflow-hidden">
       <div className="absolute inset-0 bg-halftone opacity-5 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
