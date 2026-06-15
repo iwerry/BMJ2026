@@ -95,15 +95,27 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
     const currentPath = window.location.pathname;
 
     const isCronogramaPage = currentPath === '/meu-cronograma';
-    const homePageTargets = ['inicio', 'cinema', 'expositores', 'cosplay', 'imprensa', 'faq'];
+    const isCosplayPage = currentPath === '/cosplay' || currentPath === '/desfile';
+    
+    const homePageTargets = ['inicio', 'cinema', 'expositores', 'imprensa', 'faq'];
 
     if (id === 'meu-cronograma') {
       if (!isCronogramaPage) {
         window.location.href = '/meu-cronograma';
         return;
       }
+    } else if (id === 'cosplay' || id === 'desfile') {
+      if (!isCosplayPage) {
+        window.location.href = '/cosplay';
+        return;
+      }
+    } else if (id === 'lineup') {
+      if (isCosplayPage) {
+        window.location.href = '/#lineup';
+        return;
+      }
     } else if (homePageTargets.includes(id)) {
-      if (isCronogramaPage) {
+      if (isCronogramaPage || isCosplayPage) {
         window.location.href = `/#${id}`;
         return;
       }

@@ -174,7 +174,9 @@ export default function App() {
             favoriteIds={favoriteIds}
             onToggleFavorite={handleToggleFavorite}
             onRestoreFavorites={handleRestoreFavorites}
-            onOpenTickets={() => handleScrollToSection('#ingressos')}
+            onOpenTickets={() => {
+              window.location.href = '/#ingressos';
+            }}
           />
 
           {/* 5. INTERACTIVE EVENT SCHEDULER GENERAL TIMELINE */}
@@ -188,6 +190,14 @@ export default function App() {
             favoriteIds={favoriteIds}
             onToggleFavorite={handleToggleFavorite}
           />
+        </>
+      ) : (currentPath === '/cosplay' || currentPath === '/desfile') ? (
+        <>
+          {/* Cosplay Section (Concurso Cosplay) */}
+          <Cosplay />
+
+          {/* Tickets Section (Compra de Ingresso) */}
+          <Tickets />
         </>
       ) : (
         <>
@@ -225,6 +235,9 @@ export default function App() {
 
           {/* Imprensa Section */}
           <Press />
+
+          {/* Tickets Section */}
+          <Tickets />
 
           {/* 12. INTERACTIVE ACCORDIONS FAQ */}
           <FAQ />
