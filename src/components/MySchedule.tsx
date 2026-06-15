@@ -771,7 +771,7 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
         /* STATE 3: LOGGED IN + HAS FAVORITES            */
         /* ============================================= */
         ) : (
-          <div ref={printRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch bg-sky-blue/10 p-2 md:p-6 rounded-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch bg-sky-blue/10 p-2 md:p-6 rounded-3xl">
 
             {/* ---- LEFT: User Profile + Actions Card ---- */}
             <div className="lg:col-span-4 bg-white rounded-3xl border-3 border-slate-900 comic-shadow overflow-hidden flex flex-col justify-between">
@@ -971,118 +971,6 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
       )}
       </div>
 
-      {/* PDF is now generated purely via jsPDF – hidden DOM template removed */}
-      <div style={{ display: 'none' }}>
-        <div 
-          ref={pdfTemplateRef} 
-          style={{
-            width: '700px',
-            padding: '40px',
-            backgroundColor: '#ffffff',
-            color: '#0f172a',
-            fontFamily: '"Outfit", "Inter", sans-serif',
-            border: '8px solid #000000',
-            borderRadius: '24px',
-            boxShadow: '10px 10px 0px #000000',
-            boxSizing: 'border-box',
-          }}
-        >
-          {/* Header banner */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '4px solid #000000', paddingBottom: '20px', marginBottom: '25px' }}>
-            <div>
-              <h1 style={{ fontFamily: 'Impact, sans-serif', fontSize: '36px', textTransform: 'uppercase', margin: 0, letterSpacing: '1px', color: '#BC002D' }}>
-                MEU CRONOGRAMA BMJ 2026
-              </h1>
-              <p style={{ margin: '5px 0 0 0', fontSize: '13px', fontWeight: 'bold', color: '#009B3A', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
-                17-19 Julho • Museu Nacional da República
-              </p>
-            </div>
-            <img 
-              src="/logos/logoBMJ.png" 
-              alt="Logo BMJ" 
-              style={{ height: '70px', objectFit: 'contain' }} 
-            />
-          </div>
-
-          {/* User Profile Info Card */}
-          <div style={{ display: 'flex', gap: '20px', backgroundColor: '#f8fafc', padding: '20px', borderRadius: '16px', border: '3px solid #000000', marginBottom: '30px' }}>
-            <div style={{ fontSize: '40px', display: 'flex', alignItems: 'center' }}>🦊</div>
-            <div>
-              <h3 style={{ margin: '0 0 5px 0', fontSize: '18px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                {nome || 'Visitante Oficial'}
-              </h3>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px 20px', fontSize: '12px', color: '#334155' }}>
-                <p style={{ margin: 0 }}><strong>Telefone:</strong> {telefone || 'Não Informado'}</p>
-                <p style={{ margin: 0 }}><strong>E-mail:</strong> {email}</p>
-                <p style={{ margin: 0 }}><strong>Atrações Selecionadas:</strong> {totalFavorites}</p>
-                <p style={{ margin: 0 }}><strong>Status:</strong> VIP Visitante</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Schedule List */}
-          <div style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '900', textTransform: 'uppercase', borderBottom: '2px solid #000000', paddingBottom: '5px', marginBottom: '15px' }}>
-              📅 Minha Agenda Personalizada
-            </h3>
-            
-            {/* Exhibitions */}
-            {bookmarkedAttractions.length > 0 && (
-              <div style={{ marginBottom: '20px' }}>
-                <h4 style={{ fontSize: '11px', textTransform: 'uppercase', color: '#64748b', letterSpacing: '1px', marginBottom: '10px', fontWeight: 'bold' }}>
-                  Exposições e Tendas ({bookmarkedAttractions.length})
-                </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {bookmarkedAttractions.map(item => (
-                    <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px', backgroundColor: '#f8fafc', border: '2px solid #000000', borderRadius: '10px' }}>
-                      <span style={{ fontSize: '20px' }}>{item.icon}</span>
-                      <div>
-                        <h5 style={{ margin: 0, fontSize: '13px', fontWeight: '800' }}>{item.title}</h5>
-                        <p style={{ margin: 0, fontSize: '11px', color: '#64748b' }}>Atração Especial • {item.category.toUpperCase()}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Shows & Cinema */}
-            {bookmarkedSchedules.length > 0 && (
-              <div>
-                <h4 style={{ fontSize: '11px', textTransform: 'uppercase', color: '#64748b', letterSpacing: '1px', marginBottom: '10px', fontWeight: 'bold' }}>
-                  Cronograma de Shows, Cinema e Eventos ({bookmarkedSchedules.length})
-                </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {bookmarkedSchedules.map(item => (
-                    <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '10px', backgroundColor: '#f8fafc', border: '2px solid #000000', borderRadius: '10px' }}>
-                      <div style={{ backgroundColor: '#BC002D', color: '#ffffff', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold', minWidth: '85px', textAlign: 'center' }}>
-                        {item.day.toUpperCase()} {item.time}
-                      </div>
-                      <div>
-                        <h5 style={{ margin: 0, fontSize: '13px', fontWeight: '800' }}>{item.title}</h5>
-                        <p style={{ margin: 0, fontSize: '11px', color: '#64748b' }}>🕒 {item.time} • Categoria: {item.category}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Footer Notes */}
-          <div style={{ borderTop: '2px solid #e2e8f0', paddingTop: '15px', marginTop: '20px', textAlign: 'center', fontSize: '10px', color: '#64748b', lineHeight: '1.4' }}>
-            <p style={{ margin: '0 0 5px 0', fontWeight: 'bold', color: '#BC002D', textTransform: 'uppercase' }}>
-              ⚠️ ATENÇÃO: ESTE CRONOGRAMA NÃO GARANTE ENTRADA NO EVENTO! ⚠️
-            </p>
-            <p style={{ margin: '0 0 10px 0', color: '#0f172a', fontWeight: 'bold' }}>
-              Você deve comprar o seu ingresso por dia ou combo diretamente no site oficial do Sympla e apresentá-lo na portaria do Museu Nacional da República.
-            </p>
-            <p style={{ margin: 0, fontSize: '9px', color: '#94a3b8' }}>
-              Este roteiro personalizado serve apenas como auxílio para guiar sua visita durante as comemorações dos 130 anos de amizade Brasil-Japão.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
