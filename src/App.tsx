@@ -154,15 +154,6 @@ export default function App() {
         onOpenTickets={() => handleScrollToSection('#ingressos')} 
       />
 
-      {/* 2. DYNAMIC HERO BRAND LAYER WITH COUNTDOWN */}
-      <Hero 
-        onOpenTickets={() => handleScrollToSection('#ingressos')} 
-        onNavigateToSchedule={() => handleScrollToSection('#programacao')}
-      />
-
-      {/* 3. HISTORIC CONTEXT ABOUT DIPLOMACY */}
-      <About />
-
       {/* 4. VISITOR PERSONALIZED SCHEDULER & PASSPORT PASSPORT */}
       <MySchedule 
         favoriteIds={favoriteIds}
@@ -177,39 +168,14 @@ export default function App() {
         onToggleFavorite={handleToggleFavorite}
       />
 
-      {/* 6. IMMERSIVE CINE BMJ CAROUSEL & PANEL */}
-      <Cinema 
-        onOpenTickets={() => handleScrollToSection('#ingressos')}
-      />
-
       {/* 7. DYNAMIC CATEGORIZED ATTRACTIONS GRID */}
       <Attractions 
         favoriteIds={favoriteIds}
         onToggleFavorite={handleToggleFavorite}
       />
 
-      {/* 8. COMPARATIVE INGRESSOS COMPARATIVE CARDS & TOTAL SUM CALCULATOR */}
-      <Tickets />
-
-      {/* 9. SEARCHABLE EXHIBITORS STANDS */}
-      <Exhibitors />
-      {/* Cosplay Section */}
-      <Cosplay />
-
       {/* 10. VENUE LOCATION MAP EMBED DIRECTIONS */}
       <Venue />
-
-      {/* 11. STRATIFIED SPONSOR SHIELD TIERS */}
-      <Sponsors />
-
-      {/* Imprensa Section */}
-      <Press />
-
-      {/* 12. INTERACTIVE ACCORDIONS FAQ */}
-      <FAQ />
-
-      {/* 13. RICH GRADIENT NEWSLETTER EMAIL CAPTURE */}
-      <Newsletter />
 
       {/* 14. COMPREHENSIVE FOOTER & ORGANIZER NOTIFICATION CREDITS */}
       <Footer />
@@ -251,77 +217,6 @@ export default function App() {
         >
           <Instagram className="w-6 h-6 text-white" />
         </a>
-
-        {/* Support bubble widget */}
-        <div className="relative">
-          <button
-            onClick={() => {
-              setShowChatBubble(!showChatBubble);
-              setSelectedChatFaqAnswer(null);
-            }}
-            className="w-14 h-14 bg-brasil-yellow text-slate-950 hover:bg-brasil-yellow-light rounded-full flex items-center justify-center border-2 border-slate-950 shadow-lg cursor-pointer transform hover:rotate-12 transition-all relative group"
-            aria-label="Ajuda e Dúvidas"
-            id="chat-help-trigger"
-          >
-            <MessageSquare className="w-6 h-6 animate-pulse" />
-            {/* Unread dot notification */}
-            <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-japan-red rounded-full border border-white" />
-          </button>
-
-          {showChatBubble && (
-            <div className="absolute bottom-16 right-0 w-80 bg-white rounded-2xl border-3 border-slate-950 p-5 shadow-2xl flex flex-col gap-3 text-slate-900 animate-slide-in font-sans">
-              
-              <div className="flex justify-between items-center border-b border-slate-200 pb-2">
-                <div className="flex items-center gap-1">
-                  <span className="text-base">🦊</span>
-                  <p className="font-heading font-black text-xs text-slate-800 uppercase">Suporte Rápido BMJ</p>
-                </div>
-                <button 
-                  onClick={() => setShowChatBubble(false)} 
-                  className="text-slate-400 hover:text-slate-700 font-bold text-xs"
-                >
-                  X
-                </button>
-              </div>
-
-              <p className="text-xs text-slate-600 font-medium">
-                Olá! Como posso te ajudar hoje sobre os 130 anos do Brasil Mostra Japão? Escolha uma dúvida frequente:
-              </p>
-
-              <div className="space-y-1.5 pt-1 max-h-52 overflow-y-auto pr-1">
-                {FAQ_ITEMS.map((faq) => (
-                  <button
-                    key={faq.id}
-                    type="button"
-                    onClick={() => setSelectedChatFaqAnswer(faq.answer)}
-                    className="w-full text-left p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-[11px] font-heading font-extrabold text-slate-700 transition"
-                  >
-                    ❓ {faq.question}
-                  </button>
-                ))}
-              </div>
-
-              {selectedChatFaqAnswer && (
-                <div className="p-3 bg-[#FFE94F]/20 rounded-xl border border-brasil-yellow text-[11px] text-slate-800 animate-fade-in leading-relaxed">
-                  <strong>Resposta:</strong> {selectedChatFaqAnswer}
-                </div>
-              )}
-
-              <div className="pt-2 border-t border-slate-100 flex justify-between items-center">
-                <span className="text-[9px] text-slate-400 font-mono">Brasília • Edição 2026</span>
-                <a 
-                  href={EVENT_INFO.instagramUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[10px] text-japan-red font-mono font-bold hover:underline"
-                >
-                  Ir ao Instagram 📸
-                </a>
-              </div>
-
-            </div>
-          )}
-        </div>
 
       </div>
 

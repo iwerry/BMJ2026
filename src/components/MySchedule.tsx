@@ -406,7 +406,14 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
           <p className="text-slate-600 mt-2 font-heading font-semibold text-lg">
             Guarde suas atrações preferidas clicando no ícone de estrela ⭐ e crie seu cronograma perfeito para os 3 dias!
           </p>
-          <div className="w-24 h-2.5 bg-brasil-green mx-auto mt-4 rounded-full border border-slate-900" />
+        </div>
+
+        {/* Warning Banner */}
+        <div className="max-w-4xl mx-auto mb-10 p-5 bg-japan-red/10 border-3 border-japan-red text-japan-red rounded-3xl comic-shadow-sm flex items-center gap-4">
+          <span className="text-4xl shrink-0">⚠️</span>
+          <p className="font-heading font-black text-sm md:text-base leading-relaxed uppercase">
+            ATENÇÃO: O sistema "Meu Cronograma" é uma ferramenta gratuita de planejamento e NÃO DÁ DIREITO À ENTRADA NO EVENTO. Você precisa adquirir seu ingresso diário ou combo de atrações diretamente no Sympla!
+          </p>
         </div>
 
         {/* ============================================= */}
@@ -949,12 +956,15 @@ export default function MySchedule({ favoriteIds, onToggleFavorite, onRestoreFav
           </div>
 
           {/* Footer Notes */}
-          <div style={{ borderTop: '2px solid #e2e8f0', paddingTop: '15px', marginTop: '30px', textAlign: 'center', fontSize: '11px', color: '#64748b', lineHeight: '1.5' }}>
-            <p style={{ margin: '0 0 5px 0', fontWeight: 'bold', color: '#0f172a' }}>
-              🎌 Apresente seu voucher do Sympla na entrada do Museu Nacional da República! 🎌
+          <div style={{ borderTop: '2px solid #e2e8f0', paddingTop: '15px', marginTop: '20px', textAlign: 'center', fontSize: '10px', color: '#64748b', lineHeight: '1.4' }}>
+            <p style={{ margin: '0 0 5px 0', fontWeight: 'bold', color: '#BC002D', textTransform: 'uppercase' }}>
+              ⚠️ ATENÇÃO: ESTE CRONOGRAMA NÃO GARANTE ENTRADA NO EVENTO! ⚠️
             </p>
-            <p style={{ margin: 0 }}>
-              Este cronograma foi gerado especialmente para guiar sua visita nos 130 anos de amizade Brasil-Japão.
+            <p style={{ margin: '0 0 10px 0', color: '#0f172a', fontWeight: 'bold' }}>
+              Você deve comprar o seu ingresso por dia ou combo diretamente no site oficial do Sympla e apresentá-lo na portaria do Museu Nacional da República.
+            </p>
+            <p style={{ margin: 0, fontSize: '9px', color: '#94a3b8' }}>
+              Este roteiro personalizado serve apenas como auxílio para guiar sua visita durante as comemorações dos 130 anos de amizade Brasil-Japão.
             </p>
           </div>
         </div>

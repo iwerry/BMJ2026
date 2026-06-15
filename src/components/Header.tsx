@@ -53,41 +53,24 @@ export default function Header({ favoriteCount, onOpenTickets }: HeaderProps) {
 
   const menuItems: MenuLink[] = [
     {
-      label: 'Programação',
-      type: 'dropdown',
-      submenu: [
-        { label: 'Cinema', href: '#cinema' },
-        { label: 'LineUp', href: '#lineup' },
-      ],
-    },
-    {
-      label: 'Expositores',
-      type: 'link',
-      href: '#expositores',
-    },
-    {
-      label: 'Cosplay',
-      type: 'dropdown',
-      submenu: [
-        { label: 'Desfile (Sexta)', href: '#desfile' },
-        { label: 'Concurso (Sáb/Dom)', href: '#concurso' },
-        { label: 'Inscrições / Edital', href: '#inscricoes', disabled: true },
-      ],
-    },
-    {
-      label: 'Imprensa',
-      type: 'link',
-      href: '#imprensa',
-    },
-    {
       label: 'Meu Cronograma',
       type: 'link',
       href: '#meu-cronograma',
     },
     {
-      label: 'FAQ',
+      label: 'Programação',
       type: 'link',
-      href: '#faq',
+      href: '#programacao',
+    },
+    {
+      label: 'Atrações Especiais',
+      type: 'link',
+      href: '#lineup',
+    },
+    {
+      label: 'Localização',
+      type: 'link',
+      href: '#local',
     },
   ];
 
