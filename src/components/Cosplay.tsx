@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { EVENT_INFO } from '../data';
-import { Ticket, FileText, ExternalLink } from 'lucide-react';
+import { Ticket, FileText, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 
 type CosplayCategory = {
   id: string;
@@ -138,6 +138,17 @@ const CosplayCard: React.FC<{ category: CosplayCategory }> = ({ category }) => {
 
 export default function Cosplay() {
   const isDedicatedPage = typeof window !== 'undefined' && (window.location.pathname === '/cosplay' || window.location.pathname === '/desfile');
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 344; // width (320) + gap (24)
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <section 
@@ -155,11 +166,33 @@ export default function Cosplay() {
           Prepare-se para o maior desfile e concurso cosplay do Planalto Central! As finais acontecerão no palco principal durante o fim de semana, com premiações e jurados especiais. As inscrições serão apenas online e gratuitas.
         </p>
 
-        {/* Categories Infinite Slider */}
-        <div className="relative w-full overflow-hidden mb-12 py-4 text-left">
-          <div className="flex w-max gap-6 animate-marquee items-stretch">
-            {[...COSPLAY_CATEGORIES, ...COSPLAY_CATEGORIES].map((category, index) => (
-              <div key={`${category.id}-${index}`} className="w-[280px] sm:w-[320px] shrink-0 flex flex-col">
+        {/* Categories Slider with Manual Controls */}
+        <div className="relative w-full max-w-7xl mx-auto mb-12 group">
+          {/* Left Arrow */}
+          <button 
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-6 z-10 bg-slate-900/80 hover:bg-brasil-yellow text-white hover:text-slate-900 p-2 md:p-3 rounded-full backdrop-blur-md border border-white/10 transition-colors shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100"
+            aria-label="Anterior"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          
+          {/* Right Arrow */}
+          <button 
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-6 z-10 bg-slate-900/80 hover:bg-brasil-yellow text-white hover:text-slate-900 p-2 md:p-3 rounded-full backdrop-blur-md border border-white/10 transition-colors shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100"
+            aria-label="Próximo"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Scroll Container */}
+          <div 
+            ref={scrollRef}
+            className="flex w-full gap-6 overflow-x-auto snap-x snap-mandatory py-4 px-2 md:px-8 text-left scroll-smooth items-stretch [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          >
+            {COSPLAY_CATEGORIES.map((category) => (
+              <div key={category.id} className="w-[85vw] max-w-[320px] shrink-0 snap-center sm:snap-start flex flex-col">
                 <CosplayCard category={category} />
               </div>
             ))}
