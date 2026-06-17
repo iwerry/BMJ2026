@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { EVENT_INFO } from '../data';
 import { Ticket, FileText, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -38,7 +38,7 @@ const COSPLAY_CATEGORIES: CosplayCategory[] = [
   },
   {
     id: "Up",
-    title: "Cosplay Up",
+    title: "Cosplay UP",
     subtitle: "Sábado (18 de Julho)",
     summary: "Categoria de nível avançado voltada para cosplayers a partir de 12 anos que já possuem qualquer tipo de premiação anterior. Prepare-se para ver armaduras imponentes, costuras impecáveis e apresentações de altíssimo nível no palco principal!",
     prizes: [
@@ -74,7 +74,7 @@ const COSPLAY_CATEGORIES: CosplayCategory[] = [
 
 const CosplayCard: React.FC<{ category: CosplayCategory }> = ({ category }) => {
   return (
-    <article className="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-xl hover:scale-[1.01] hover:border-brasil-yellow/50 transition-all duration-300 flex flex-col h-full">
+    <article className="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-xl hover:scale-[1.01] hover:border-brasil-yellow/50 transition-all duration-300 flex flex-col h-full w-full">
       {/* Cover Image */}
       <div className="relative h-40 overflow-hidden border-b border-white/15 shrink-0">
         <img 
@@ -94,38 +94,42 @@ const CosplayCard: React.FC<{ category: CosplayCategory }> = ({ category }) => {
             <h3 className="text-xl font-bold text-white leading-tight uppercase">{category.title}</h3>
             <p className="text-xs text-brasil-yellow font-mono mt-1">{category.subtitle}</p>
           </div>
-          <p className="text-xs text-white/80 leading-relaxed text-justify">
+          <p className="text-sm text-white/70 leading-relaxed">
             {category.summary}
           </p>
-          <div className="pt-3 border-t border-white/10">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Premiação:</h4>
-            <ul className="space-y-1.5">
-              {category.prizes.map((prize, idx) => (
-                <li key={idx} className="text-xs text-white/70 flex items-start gap-1">
-                  <span className="text-brasil-yellow shrink-0 mt-0.5">•</span>
-                  <span>{prize}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="space-y-2 pt-4">
-          <a
-            href="/edital_BRASIL_MOSTRA_JAPAO_1.pdf"
+        <div className="bg-slate-950/40 rounded-xl p-4 border border-white/5">
+          <h4 className="font-bold text-brasil-yellow mb-2 text-sm uppercase tracking-wider">Premiação:</h4>
+          <ul className="space-y-2">
+            {category.prizes.map((prize, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-xs text-white/90">
+                <span className="text-brasil-yellow mt-0.5">•</span>
+                <span className="flex-1 leading-snug">{prize}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Footer Actions */}
+      <div className="px-5 pb-5 pt-0 mt-auto space-y-2">
+        <a 
+          href="/edital_BRASIL_MOSTRA_JAPAO_1.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-white/10 hover:bg-white/20 text-white rounded-xl text-sm font-bold transition-colors border border-white/10"
+        >
+          <FileText className="w-4 h-4" />
+          Baixar Edital
+        </a>
+        <div className="relative group/btn">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-brasil-blue via-japan-red to-brasil-yellow rounded-xl blur opacity-30 group-hover/btn:opacity-60 transition duration-300"></div>
+          <a 
+            href="https://forms.gle/4B9x5fH8h3h6h3H8"
             target="_blank"
-            rel="noreferrer"
-            className="w-full bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors border border-white/10 uppercase tracking-wider"
-          >
-            <FileText className="w-4 h-4" />
-            Baixar Edital
-          </a>
-          <a
-            href="https://forms.gle/pjdUZ3mpq7bebe6K7"
-            target="_blank"
-            rel="noreferrer"
-            className="w-full bg-brasil-blue hover:bg-[#1E3A8A] text-white text-[11px] font-bold py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors border border-slate-900 shadow-md uppercase tracking-wider"
+            rel="noopener noreferrer"
+            className="relative flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-[#001A52] hover:bg-brasil-blue text-white rounded-xl text-sm font-bold transition-colors border border-white/10 shadow-lg"
           >
             <ExternalLink className="w-4 h-4" />
             Formulário de Inscrição
@@ -134,11 +138,41 @@ const CosplayCard: React.FC<{ category: CosplayCategory }> = ({ category }) => {
       </div>
     </article>
   );
+};
+
+interface CosplayProps {
+  isDedicatedPage?: boolean;
 }
 
-export default function Cosplay() {
-  const isDedicatedPage = typeof window !== 'undefined' && (window.location.pathname === '/cosplay' || window.location.pathname === '/desfile');
+export default function Cosplay({ isDedicatedPage = false }: CosplayProps) {
+  const isActuallyDedicatedPage = typeof window !== 'undefined' && (window.location.pathname === '/cosplay' || window.location.pathname === '/desfile');
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer || isPaused) return;
+
+    let animationId: number;
+    const step = () => {
+      if (scrollContainer) {
+        scrollContainer.scrollLeft += 1; // Animation speed
+        
+        // Loop back when reaching the end
+        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 5) {
+          scrollContainer.classList.remove('scroll-smooth');
+          scrollContainer.scrollLeft = 0;
+          void scrollContainer.offsetWidth; // Force reflow
+          scrollContainer.classList.add('scroll-smooth');
+        }
+      }
+      animationId = requestAnimationFrame(step);
+    };
+
+    animationId = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -153,7 +187,11 @@ export default function Cosplay() {
   return (
     <section 
       id="cosplay" 
-      className={`relative ${isDedicatedPage ? 'pt-40 md:pt-48 pb-20' : 'py-20'} px-4 md:px-8 bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white overflow-hidden border-b-4 border-slate-950`}
+      className={`relative ${isDedicatedPage || isActuallyDedicatedPage ? 'pt-40 md:pt-48 pb-20' : 'py-20'} px-4 md:px-8 bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white overflow-hidden border-b-4 border-slate-950`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
     >
       <div className="max-w-7xl mx-auto text-center">
         <span className="bg-japan-red text-white font-mono text-[10px] font-bold py-1.5 px-4 rounded-full border border-white/20 uppercase tracking-widest inline-block mb-4">
@@ -189,10 +227,10 @@ export default function Cosplay() {
           {/* Scroll Container */}
           <div 
             ref={scrollRef}
-            className="flex w-full gap-6 overflow-x-auto snap-x snap-mandatory py-4 px-2 md:px-8 text-left scroll-smooth items-stretch [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="flex w-full gap-6 overflow-x-auto py-4 px-2 md:px-8 text-left scroll-smooth items-stretch [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
-            {COSPLAY_CATEGORIES.map((category) => (
-              <div key={category.id} className="w-[85vw] max-w-[320px] shrink-0 snap-center sm:snap-start flex flex-col">
+            {[...COSPLAY_CATEGORIES, ...COSPLAY_CATEGORIES, ...COSPLAY_CATEGORIES, ...COSPLAY_CATEGORIES].map((category, index) => (
+              <div key={`${category.id}-${index}`} className="w-[85vw] max-w-[320px] shrink-0 flex flex-col">
                 <CosplayCard category={category} />
               </div>
             ))}
