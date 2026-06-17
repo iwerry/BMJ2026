@@ -59,35 +59,45 @@ export default function Exhibitors() {
         </div>
 
         {/* Real Exhibitors Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-          {filteredExhibitors.map((exp) => (
-            <div 
-              key={exp.id}
-              className={`bg-white p-6 rounded-2xl border-2 border-slate-900 transition-all duration-200 comic-shadow-sm flex flex-col justify-between items-center text-center group ${
-                exp.isFeatured ? 'bg-gradient-to-b from-[#FFE94F]/10 to-white hover:border-japan-red' : 'hover:border-brasil-green'
-              }`}
-            >
-              <div className="w-16 h-16 bg-slate-100 rounded-full border-2 border-slate-900 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform select-none">
-                {exp.isFeatured ? '👑' : '🛍️'}
-              </div>
+        {filteredExhibitors.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+            {filteredExhibitors.map((exp) => (
+              <div 
+                key={exp.id}
+                className={`bg-white p-6 rounded-2xl border-2 border-slate-900 transition-all duration-200 comic-shadow-sm flex flex-col justify-between items-center text-center group ${
+                  exp.isFeatured ? 'bg-gradient-to-b from-[#FFE94F]/10 to-white hover:border-japan-red' : 'hover:border-brasil-green'
+                }`}
+              >
+                <div className="w-16 h-16 bg-slate-100 rounded-full border-2 border-slate-900 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform select-none">
+                  {exp.isFeatured ? '👑' : '🛍️'}
+                </div>
 
-              <div>
-                <h4 className="font-heading font-black text-slate-900 text-sm md:text-base leading-tight">
-                  {exp.name}
-                </h4>
-                <p className="text-slate-500 font-mono text-[10px] uppercase mt-1 leading-normal">
-                  {exp.category}
-                </p>
-              </div>
+                <div>
+                  <h4 className="font-heading font-black text-slate-900 text-sm md:text-base leading-tight">
+                    {exp.name}
+                  </h4>
+                  <p className="text-slate-500 font-mono text-[10px] uppercase mt-1 leading-normal">
+                    {exp.category}
+                  </p>
+                </div>
 
-              {exp.isFeatured && (
-                <span className="mt-3 bg-japan-red text-white font-mono text-[8px] font-bold px-2 py-0.5 rounded border border-slate-900 uppercase">
-                  VIP BRAND
-                </span>
-              )}
-            </div>
-          ))}
-        </div>
+                {exp.isFeatured && (
+                  <span className="mt-3 bg-japan-red text-white font-mono text-[8px] font-bold px-2 py-0.5 rounded border border-slate-900 uppercase">
+                    VIP BRAND
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="bg-white rounded-3xl border-3 border-slate-900 p-12 text-center comic-shadow mb-12 flex flex-col items-center justify-center min-h-[300px]">
+            <Store className="w-16 h-16 text-slate-300 mb-4" />
+            <h3 className="text-4xl font-display text-slate-400 uppercase tracking-widest">Em Breve</h3>
+            <p className="text-slate-500 mt-3 font-heading font-medium text-lg max-w-md mx-auto">
+              Nossa lista oficial de expositores, lojas e praça de alimentação será anunciada muito em breve.
+            </p>
+          </div>
+        )}
 
         {/* Suggestive Application Form with action */}
         <div className="bg-white rounded-3xl border-3 border-slate-900 p-8 flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto comic-shadow">

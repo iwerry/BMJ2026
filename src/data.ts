@@ -315,19 +315,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
   }
 ];
 
-export const EXPOSITORES: Exhibitor[] = [
-  { id: "exp-1", name: "Sato Company", category: "Distribuidora de Tokusatsu", isFeatured: true },
-  { id: "exp-2", name: "Artes Gallery", category: "Artesanatos e Quadros Temáticos", isFeatured: true },
-  { id: "exp-3", name: "K07 Geek Store", category: "Livraria & Mangás Especiais", isFeatured: true },
-  { id: "exp-4", name: "G3D - Galeria Geek do Gabbs", category: "Action Figures 3D Personalizados", isFeatured: true },
-  { id: "exp-5", name: "Megulicias", category: "Doces Importados & Confeitaria Temática" },
-  { id: "exp-6", name: "Kannibal", category: "Tudo Sobre Rock & Roupas Alternativas" },
-  { id: "exp-7", name: "Piticas Quiosque", category: "Roupas Licenciadas Geek & Anime" },
-  { id: "exp-8", name: "Viva Paleteria", category: "Gelatos, Paletas Tropicais e Sobremesas" },
-  { id: "exp-9", name: "Onigiri Delícias", category: "Comidas Rápidas e Tradicionais Onigiris" },
-  { id: "exp-10", name: "Mundo Cute Estampas", category: "Papelaria Criativa e Kawaii" },
-  { id: "exp-11", name: "Candango RPG", category: "Associação e Mesas Livres de Aventura" }
-];
+export const EXPOSITORES: Exhibitor[] = [];
 
 export const PATROCINADORES = {
   ouro: [
