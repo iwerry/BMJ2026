@@ -62,7 +62,7 @@ const COSPLAY_CATEGORIES: CosplayCategory[] = [
   }
 ];
 
-function CosplayCard({ category }: { category: CosplayCategory }) {
+const CosplayCard: React.FC<{ category: CosplayCategory }> = ({ category }) => {
   return (
     <article className="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-xl hover:scale-[1.01] hover:border-brasil-yellow/50 transition-all duration-300 flex flex-col h-full">
       {/* Cover Image */}
