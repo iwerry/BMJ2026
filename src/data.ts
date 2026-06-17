@@ -276,7 +276,7 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     id: "att-ghibli",
     title: "Cine Ghibli",
     category: "cinema",
-    description: "Um espaço de projeção especial sob a tenda bolha imersiva para curtir as aventuras mais sensíveis e poéticas de Hayao Miyazaki.",
+    description: "Um espaço de projeção especial para curtir as aventuras mais sensíveis e poéticas de Hayao Miyazaki.",
     icon: "🎨",
     image: "/lineup/att-ghibli.jpg"
   },
@@ -312,14 +312,6 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     description: "Caminhe sob um Torii de 4 metros, fique ao lado do Totoro na floresta cenográfica e tire fotos simulando speed lines de quadrinhos com sombras duras.",
     icon: "📸",
     image: "/lineup/att-cenarios.jpg"
-  },
-  {
-    id: "att-bolha",
-    title: "Tenda Bolha Monumental (30m Diâmetro)",
-    category: "manga-anime",
-    description: "Uma imponente redoma de aclimação para workshops e exibições estéticas tradicionais como Cerimônia do Chá e arranjos florais Ikebana.",
-    icon: "🎪",
-    image: "/lineup/att-bolha.jpg"
   }
 ];
 
@@ -359,7 +351,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: "faq-1",
     question: "O que está incluso no ingresso de acesso geral?",
-    answer: "O ingresso dá livre trânsito pelas dependências comuns do festival: feirinha geek, praça de gastronomia, Tenda Bolha, arenas de games, área de painéis e palcos de shows abertos (como Taikô e desfiles). Não dá acesso às sessões fechadas de Cinema do Cine BMJ, as quais necessitam de bilhete individual de cinema ou do pacote Combo Cinema + Evento."
+    answer: "O ingresso dá livre trânsito pelas dependências comuns do festival: feirinha geek, praça de gastronomia, arenas de games, área de painéis e palcos de shows abertos (como Taikô e desfiles). Não dá acesso às sessões fechadas de Cinema do Cine BMJ, as quais necessitam de bilhete individual de cinema ou do pacote Combo Cinema + Evento."
   },
   {
     id: "faq-2",

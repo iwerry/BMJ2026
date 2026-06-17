@@ -75,10 +75,6 @@ export default function Tickets() {
                   </li>
                   <li className="flex items-start gap-2 text-sm text-slate-700">
                     <Check className="w-4.5 h-4.5 text-brasil-green shrink-0 mt-0.5" />
-                    <span>Acesso à Tenda Bolha (exposições de Shodo e workshops)</span>
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-slate-700">
-                    <Check className="w-4.5 h-4.5 text-brasil-green shrink-0 mt-0.5" />
                     <span>Visita a todos os cenários Instagramáveis para fotos</span>
                   </li>
                 </ul>
