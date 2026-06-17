@@ -49,7 +49,7 @@ const COSPLAY_CATEGORIES: CosplayCategory[] = [
     image: "/cosplay/up.png"
   },
   {
-    id: "Ghibli",
+    id: "Comemorativo",
     title: "Cosplay Comemorativo",
     subtitle: "Sábado (18 de Julho)",
     summary: "Uma celebração especial voltada exclusivamente para o universo do Estúdio Ghibli e de Tokusatsu! Válido somente para personagens relacionados a essas vertentes (como Ponyo, Totoro, Ultraman, Jaspion, entre outros).",
