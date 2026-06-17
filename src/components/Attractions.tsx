@@ -37,7 +37,7 @@ export default function Attractions() {
             LINEUP COMPACTO BMJ
           </h2>
           <p className="text-slate-600 mt-2 font-heading font-semibold text-lg max-w-2xl mx-auto">
-            Explore as principais atividades que preparamos para você e sua família. Sinta o clima épico da CCXP com temática nipo-brasileira!
+            Explore as principais atividades que preparamos para você e sua família. Sinta o clima épico do BMJ com toda a temática nipo-brasileira!
           </p>
           <div className="w-24 h-2.5 bg-brasil-yellow mx-auto mt-4 rounded-full border border-slate-900" />
         </div>
