@@ -57,7 +57,7 @@ export default function Footer() {
 
           <div className="text-xs text-slate-500 font-mono space-y-1">
             <p>Organizador Real: <span className="text-white font-bold">{EVENT_INFO.organizer}</span></p>
-            <p className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> contato@brasilmostrajapao.com</p>
+            <p className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> brasilmostrajapao@gmail.com</p>
           </div>
         </div>
 
