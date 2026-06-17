@@ -155,8 +155,8 @@ export default function Cosplay() {
         {/* CTA to Sympla (Compra de Ingresso) */}
         <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 border border-white/10 p-6 rounded-3xl max-w-xl mx-auto">
           <div className="text-left">
-            <h4 className="font-heading font-black text-sm uppercase text-brasil-yellow">Adquira seu Ingresso</h4>
-            <p className="text-xs text-white/70 mt-1">É necessário ter o ingresso de acesso para participar do concurso cosplay no Museu Nacional.</p>
+            <h4 className="font-heading font-black text-sm uppercase text-brasil-yellow">Ingressos para Cosplayers</h4>
+            <p className="text-xs text-white/70 mt-1">Cosplayers inscritos no concurso têm entrada gratuita garantida pela lista. Demais cosplayers caracterizados pagam apenas meia-entrada!</p>
           </div>
           <a
             href={EVENT_INFO.symplaUrl}
