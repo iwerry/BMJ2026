@@ -155,11 +155,15 @@ export default function Cosplay() {
           Prepare-se para o maior desfile e concurso cosplay do Planalto Central! As finais acontecerão no palco principal durante o fim de semana, com premiações e jurados especiais. As inscrições serão apenas online e gratuitas.
         </p>
 
-        {/* Categories Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12 text-left">
-          {COSPLAY_CATEGORIES.map((category) => (
-            <CosplayCard key={category.id} category={category} />
-          ))}
+        {/* Categories Infinite Slider */}
+        <div className="relative w-full overflow-hidden mb-12 py-4 text-left">
+          <div className="flex w-max gap-6 animate-marquee items-stretch">
+            {[...COSPLAY_CATEGORIES, ...COSPLAY_CATEGORIES].map((category, index) => (
+              <div key={`${category.id}-${index}`} className="w-[280px] sm:w-[320px] shrink-0 flex flex-col">
+                <CosplayCard category={category} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* CTA to Sympla (Compra de Ingresso) */}
