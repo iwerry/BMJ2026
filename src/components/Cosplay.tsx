@@ -66,7 +66,7 @@ const COSPLAY_CATEGORIES: CosplayCategory[] = [
     subtitle: "Domingo (19 de Julho)",
     summary: "No domingo quem manda é a galera! Não haverá banca de jurados — o grande vencedor será escolhido diretamente pelo voto e pela aclamação do público. Prepare o seu carisma! Serão abertas 70 vagas exclusivas, com confirmação presencial encerrando-se 1 hora antes do concurso.",
     prizes: [
-      "🏆 Campeão MASTER: R$ 300,00 (via PIX) + Troféu Oficial + 01 Quadro A3 à sua escolha no estande Massa Véi + 03 Ingressos Cineflix."
+      "🏆 Campeão MASTER: R$ 300,00 + Troféu Oficial + 01 Quadro A3 à sua escolha no estande Massa Véi + 03 Ingressos Cineflix."
     ],
     image: "/cosplay/voto.png"
   }
