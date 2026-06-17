@@ -142,7 +142,7 @@ export default function Footer() {
             </li>
             <li>
               <a 
-                href="https://forms.gle/4B9x5fH8h3h6h3H8"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdA5iGxDFkZPCddi7mjPIQNuImDrQIebdJtPkyFxKhKqONUfw/viewform?usp=header"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-white flex items-center gap-1.5"

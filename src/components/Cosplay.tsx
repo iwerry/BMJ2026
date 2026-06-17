@@ -126,7 +126,7 @@ const CosplayCard: React.FC<{ category: CosplayCategory }> = ({ category }) => {
         <div className="relative group/btn">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-brasil-blue via-japan-red to-brasil-yellow rounded-xl blur opacity-30 group-hover/btn:opacity-60 transition duration-300"></div>
           <a 
-            href="https://forms.gle/4B9x5fH8h3h6h3H8"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdA5iGxDFkZPCddi7mjPIQNuImDrQIebdJtPkyFxKhKqONUfw/viewform?usp=header"
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-[#001A52] hover:bg-brasil-blue text-white rounded-xl text-sm font-bold transition-colors border border-white/10 shadow-lg"
