@@ -187,7 +187,7 @@ export const SCHEDULE_ITEMS: ScheduleItem[] = [
   {
     id: "sch-1",
     day: "sexta",
-    time: "11:00",
+    time: "Em Breve",
     title: "Abertura Oficial dos Portões",
     description: "Seja um dos primeiros a cruzar o portal Torii e pisar no pavilhão de integração nipo-brasileiro. Começam as atividades dos estandes.",
     category: "Geral",
@@ -196,54 +196,7 @@ export const SCHEDULE_ITEMS: ScheduleItem[] = [
   {
     id: "sch-2",
     day: "sexta",
-    time: "12:00",
-    title: "Praça de Alimentação Bento Box",
-    description: "Abertura dos Food Trucks e Barracas de Yakisoba, Gyoza, Onigiri, Tempura e as paletas da Viva Paleteria.",
-    category: "Gastronomia",
-    icon: "🍱"
-  },
-  {
-    id: "sch-3",
-    day: "sexta",
-    time: "14:00",
-    title: "Cine Tokusatsu Jiban e Kamen Rider Zext",
-    description: "Sessão pioneira do Cine BMJ com monstros gigantes e o autêntico clima policial de metal clássico.",
-    category: "Cinema",
-    icon: "🎬",
-    isHighlight: true
-  },
-  {
-    id: "sch-4",
-    day: "sexta",
-    time: "16:00",
-    title: "Otaku Orchestra - Ensaios Gerais Aberto",
-    description: "Venha ouvir a orquestra filarmônica fazendo os últimos testes acústicos e arranjos ao vivo no palco sob a tenda gigante.",
-    category: "Shows",
-    icon: "🎻"
-  },
-  {
-    id: "sch-5",
-    day: "sexta",
-    time: "18:00",
-    title: "Painel Oficial: 130 Anos de Relações Diplomáticas",
-    description: "Palestra com historiadores e imigrantes da rota histórica do do Kasato Maru de 1908.",
-    category: "Palestras",
-    icon: "🌱"
-  },
-  {
-    id: "sch-6",
-    day: "sexta",
-    time: "20:00",
-    title: "Sessão Cine Ghibli: O Castelo Animado",
-    description: "Assista o castelo flutuante de Howl em alta definição no painel LED monumental de 60m².",
-    category: "Cinema",
-    icon: "🎨",
-    isHighlight: true
-  },
-  {
-    id: "sch-7",
-    day: "sexta",
-    time: "22:00",
+    time: "Em Breve",
     title: "Encerramento das Atividades do Primeiro Dia",
     description: "Fechamento dos galpões e agradecimentos. Prepare-se para o fim de semana!",
     category: "Geral",
@@ -252,65 +205,18 @@ export const SCHEDULE_ITEMS: ScheduleItem[] = [
 
   // Sábado
   {
-    id: "sch-8",
+    id: "sch-3",
     day: "sabado",
-    time: "11:00",
+    time: "Em Breve",
     title: "Abertura dos Portões de Sábado",
     description: "Abertura de todos os estandes de vendas de quadrinhos, colecionáveis Piticas e Artes Gallery.",
     category: "Geral",
     icon: "🚪"
   },
   {
-    id: "sch-9",
+    id: "sch-4",
     day: "sabado",
-    time: "13:00",
-    title: "Artes Marciais Tradicionais",
-    description: "Exibições deslumbrantes de Kendo, Iaidô (a arte de desembainhar a espada japonesa), artes samurais e Aikido.",
-    category: "Cultura",
-    icon: "⚔️"
-  },
-  {
-    id: "sch-10",
-    day: "sabado",
-    time: "14:00",
-    title: "Cine Tokusatsu: Jiraiya e Kamen Rider Bui",
-    description: "As lutas e magias ninjas acendem o auditório em um espetáculo cinematográfico nostálgico.",
-    category: "Cinema",
-    icon: "🎬"
-  },
-  {
-    id: "sch-11",
-    day: "sabado",
-    time: "15:30",
-    title: "Desfile Preliminar Cosplay (Infantil & Juvenil)",
-    description: "A garotada entra em cena para desfilar réplicas incríveis de Naruto, Pokémon e guerreiros em traços infantis.",
-    category: "Cosplay",
-    icon: "🎭"
-  },
-  {
-    id: "sch-12",
-    day: "sabado",
-    time: "17:00",
-    title: "Otaku Orchestra: Grand Concert Studio Ghibli Ao Vivo",
-    description: "Concerto de tirar o fôlego interpretando temas de Chihiro, Mononoke e Totoro com 60 instrumentistas.",
-    category: "Shows",
-    icon: "🎻",
-    isHighlight: true
-  },
-  {
-    id: "sch-13",
-    day: "sabado",
-    time: "19:00",
-    title: "Sessão Monumental: A Viagem de Chihiro",
-    description: "Assista uma obra-prima oscarizada no maior espetáculo visual noturno do festival.",
-    category: "Cinema",
-    icon: "🎨",
-    isHighlight: true
-  },
-  {
-    id: "sch-14",
-    day: "sabado",
-    time: "22:00",
+    time: "Em Breve",
     title: "Encerramento das Atividades de Sábado",
     description: "Fechamento seguro da segunda noite sob a luz da réplica do sol nascente.",
     category: "Geral",
@@ -319,75 +225,18 @@ export const SCHEDULE_ITEMS: ScheduleItem[] = [
 
   // Domingo
   {
-    id: "sch-15",
+    id: "sch-5",
     day: "domingo",
-    time: "11:00",
+    time: "Em Breve",
     title: "Abertura dos Portões do Domingo",
     description: "Dia final de corrida pela feirinha de produtos, camisetas geeks exclusivas e o tradicional RPG.",
     category: "Geral",
     icon: "🚪"
   },
   {
-    id: "sch-16",
+    id: "sch-6",
     day: "domingo",
-    time: "12:30",
-    title: "Apresentação de Taikô (Tambores de Guerra)",
-    description: "As batidas rítmicas profundas dos tambores gigantes que ecoarão a força espiritual do sol nascente.",
-    category: "Cultura",
-    icon: "🥁",
-    isHighlight: true
-  },
-  {
-    id: "sch-17",
-    day: "domingo",
-    time: "14:00",
-    title: "Cine Tokusatsu: Jaspion e Gaan (Nostalgia Suprema)",
-    description: "Assista as relíquias de ficção científica japonesa com a dublagem clássica brasileira.",
-    category: "Cinema",
-    icon: "🎬"
-  },
-  {
-    id: "sch-18",
-    day: "domingo",
-    time: "16:00",
-    title: "Cosplay Contest - Grande Final Nacional 🎭",
-    description: "Desfiles, encenações com efeitos especiais e o grande julgamento do melhor cosplayer do país. Premiações incríveis!",
-    category: "Cosplay",
-    icon: "🎭",
-    isHighlight: true
-  },
-  {
-    id: "sch-19",
-    day: "domingo",
-    time: "18:00",
-    title: "Gran Finale: Otaku Orchestra & Anime Classics",
-    description: "Músicas temas de Evangelion, Dragon Ball Z, Saint Seiya, Naruto e Ghibli encerrando o festival de forma sinfônica.",
-    category: "Shows",
-    icon: "🎻"
-  },
-  {
-    id: "sch-20",
-    day: "domingo",
-    time: "19:00",
-    title: "Sessão Encerramento Ghibli: Meu Amigo Totoro",
-    description: "Projeção aconchegante para aquecer as famílias no final da noite cultural.",
-    category: "Cinema",
-    icon: "🎨"
-  },
-  {
-    id: "sch-21",
-    day: "domingo",
-    time: "21:30",
-    title: "Cerimônia de Despedida e Lançamento BMJ 2027",
-    description: "Discursos da Gs Produções, sorteios de brindes e fogos luminosos comemorativos no Museu Nacional.",
-    category: "Geral",
-    icon: "🎌",
-    isHighlight: true
-  },
-  {
-    id: "sch-22",
-    day: "domingo",
-    time: "22:00",
+    time: "Em Breve",
     title: "Fechamento Oficial dos Portões",
     description: "Obrigado a todos por participarem dos 130 anos de amizade Brasil-Japão! Até 2027!",
     category: "Geral",

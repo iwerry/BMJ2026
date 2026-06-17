@@ -57,6 +57,7 @@ export default function Header({ onOpenTickets }: HeaderProps) {
       submenu: [
         { label: 'LineUp', href: '#lineup' },
         { label: 'Cinema', href: '#cinema' },
+        { label: 'Cronograma', href: '#cronograma' },
       ],
     },
     {
@@ -89,21 +90,28 @@ export default function Header({ onOpenTickets }: HeaderProps) {
     const currentPath = window.location.pathname;
 
     const isCosplayPage = currentPath === '/cosplay' || currentPath === '/desfile';
+    const isCronogramaPage = currentPath === '/cronograma';
+    const isOtherPage = isCosplayPage || isCronogramaPage;
     
-    const homePageTargets = ['inicio', 'cinema', 'expositores', 'imprensa', 'faq'];
+    const homePageTargets = ['inicio', 'cinema', 'expositores', 'imprensa', 'faq', 'lineup'];
 
     if (id === 'cosplay' || id === 'desfile') {
       if (!isCosplayPage) {
         window.location.href = '/cosplay';
         return;
       }
+    } else if (id === 'cronograma') {
+      if (!isCronogramaPage) {
+        window.location.href = '/cronograma';
+        return;
+      }
     } else if (id === 'lineup') {
-      if (isCosplayPage) {
+      if (isOtherPage) {
         window.location.href = '/#lineup';
         return;
       }
     } else if (homePageTargets.includes(id)) {
-      if (isCosplayPage) {
+      if (isOtherPage) {
         window.location.href = `/#${id}`;
         return;
       }

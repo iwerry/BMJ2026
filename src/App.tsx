@@ -147,12 +147,20 @@ export default function App() {
           {/* Tickets Section (Compra de Ingresso) */}
           <Tickets />
         </>
+      ) : currentPath === '/cronograma' ? (
+        <>
+          <div className="pt-32 min-h-screen">
+            <Schedule />
+          </div>
+        </>
       ) : (
         <>
           {/* 2. DYNAMIC HERO BRAND LAYER WITH COUNTDOWN */}
           <Hero 
             onOpenTickets={() => handleScrollToSection('#ingressos')} 
-            onNavigateToSchedule={() => handleScrollToSection('#programacao')}
+            onNavigateToSchedule={() => {
+              window.location.href = '/cronograma';
+            }}
           />
 
           {/* 3. HISTORIC CONTEXT ABOUT DIPLOMACY */}
@@ -162,9 +170,6 @@ export default function App() {
           <Cinema 
             onOpenTickets={() => handleScrollToSection('#ingressos')}
           />
-
-          {/* 5. INTERACTIVE EVENT SCHEDULER GENERAL TIMELINE */}
-          <Schedule />
 
           {/* 7. DYNAMIC CATEGORIZED ATTRACTIONS GRID */}
           <Attractions />
