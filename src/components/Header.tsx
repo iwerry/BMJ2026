@@ -275,11 +275,6 @@ export default function Header({ onOpenTickets }: HeaderProps) {
                     className="text-white hover:text-brasil-yellow hover:bg-slate-800 py-3 px-4 rounded-xl text-sm font-heading font-black uppercase tracking-wider transition-colors border border-slate-800 flex items-center justify-between"
                   >
                     <span>{item.label}</span>
-                    {item.href === '#meu-cronograma' && favoriteCount > 0 && (
-                      <span className="bg-brasil-yellow text-slate-950 font-mono text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center shrink-0">
-                        {favoriteCount}
-                      </span>
-                    )}
                   </a>
                 )
               ))}
