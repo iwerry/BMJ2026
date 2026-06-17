@@ -9,6 +9,7 @@ export default function Footer() {
     { label: 'Cinema', href: '#cinema' },
     { label: 'LineUp', href: '#lineup' },
     { label: 'Expositores', href: '#expositores' },
+    { label: 'Cronograma', href: '#cronograma' },
     { label: 'Cosplay', href: '#cosplay' },
     { label: 'Imprensa', href: '#imprensa' },
     { label: 'FAQ', href: '#faq' },
@@ -137,6 +138,16 @@ export default function Footer() {
                 className="hover:text-white flex items-center gap-1.5"
               >
                 Forms Artes Gallery <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
+              </a>
+            </li>
+            <li>
+              <a 
+                href="https://forms.gle/4B9x5fH8h3h6h3H8"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white flex items-center gap-1.5"
+              >
+                Forms Concurso Cosplay <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
               </a>
             </li>
           </ul>
