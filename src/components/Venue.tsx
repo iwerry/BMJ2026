@@ -106,27 +106,6 @@ export default function Venue() {
 
             </div>
 
-            {/* Structured specs block */}
-            <div className="bg-[#FFE94F]/10 p-6 rounded-3xl border-2 border-brasil-yellow shadow-sm space-y-4">
-              <h4 className="font-heading font-black text-slate-950 text-base flex items-center gap-2">
-                ⛺ INFRAESTRUTURA MONUMENTAL DO FESTIVAL
-              </h4>
-              <ul className="grid grid-cols-2 gap-2.5 text-xs text-slate-700 font-mono font-bold uppercase tracking-tight">
-                <li className="flex items-center gap-1.5 bg-white p-2 rounded-lg border border-slate-200">
-                  <span>🎪 2 Tendas Arco (50m x 30m)</span>
-                </li>
-                <li className="flex items-center gap-1.5 bg-white p-2 rounded-lg border border-slate-200">
-                  <span>📺 Painéis LED 60m²</span>
-                </li>
-                <li className="flex items-center gap-1.5 bg-white p-2 rounded-lg border border-slate-200">
-                  <span>🍱 Praça Alimentação</span>
-                </li>
-                <li className="flex items-center gap-1.5 bg-white p-2 rounded-lg border border-slate-200">
-                  <span>🚻 Banheiros Químicos</span>
-                </li>
-              </ul>
-            </div>
-
           </div>
 
         </div>

@@ -281,15 +281,6 @@ export const ATRACOES_ESPECIAIS: Attraction[] = [
     image: "/lineup/att-ghibli.jpg"
   },
   {
-    id: "att-cosplay",
-    title: "Cosplay Contest & Vestiários",
-    category: "cosplay",
-    description: "Premiações nacionais de melhor fabricação, performance e desfiles. Inclui o 'Cosplay Help' com ferramentas, cola quente e costura rápida.",
-    icon: "🎭",
-    image: "/lineup/att-cosplay.jpg",
-    isHighlight: true
-  },
-  {
     id: "att-games",
     title: "Expo Games Arena",
     category: "manga-anime",
