@@ -150,6 +150,16 @@ export default function Footer() {
                 Forms Concurso Cosplay <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
               </a>
             </li>
+            <li>
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeJHLVlM0DklJrxQ5K4YDFH7lic9CyIYs8dpp9hhPLReT1r_g/viewform"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white flex items-center gap-1.5"
+              >
+                Forms Credenciamento Imprensa <ExternalLink className="w-3 h-3 text-slate-500 shrink-0" />
+              </a>
+            </li>
           </ul>
 
           <div className="pt-2">
