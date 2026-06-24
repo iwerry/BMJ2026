@@ -153,6 +153,12 @@ export default function App() {
             <Schedule />
           </div>
         </>
+      ) : currentPath === '/imprensa' ? (
+        <>
+          <div className="pt-32 min-h-screen">
+            <Press />
+          </div>
+        </>
       ) : (
         <>
           {/* 2. DYNAMIC HERO BRAND LAYER WITH COUNTDOWN */}
@@ -179,9 +185,6 @@ export default function App() {
 
           {/* Cosplay Section */}
           <Cosplay />
-
-          {/* Imprensa Section */}
-          <Press />
 
           {/* Tickets Section */}
           <Tickets />

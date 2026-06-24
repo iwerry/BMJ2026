@@ -68,38 +68,40 @@ export default function Press() {
             </a>
           </div>
 
-          {/* Right Column: Accreditation Form */}
+          {/* Right Column: Press Conference Form */}
           <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <h3 className="text-2xl font-display text-white uppercase">Solicitação de Credencial</h3>
+              <div className="flex justify-center mb-6">
+                <img src="/logos/logo-coletiva.svg" alt="Coletiva de Imprensa BMJ" className="w-full max-w-[300px] hover:scale-105 transition-transform duration-300" />
+              </div>
+              <h3 className="text-2xl font-display text-white uppercase">Coletiva de Imprensa BMJ</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Jornalistas, criadores de conteúdo (mínimo 10k seguidores), fotógrafos e assessores de veículos de imprensa podem solicitar credenciamento para cobertura do evento de 17 a 19 de Julho de 2026.
+                Exclusivo para jornalistas, veículos de imprensa, patrocinadores e influenciadores digitais.
               </p>
-              <p className="text-xs text-brasil-yellow font-mono">
-                📅 Período de solicitações: 01 de Junho até 30 de Junho de 2026.
+              
+              <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800 space-y-2 mt-4">
+                <p className="text-sm font-heading font-semibold text-white flex items-center gap-2">
+                  📍 Local: Cinema Cineflix - JK SHOPPING
+                </p>
+                <p className="text-sm font-heading font-semibold text-brasil-yellow flex items-center gap-2">
+                  📅 Terça, dia 30/06 às 9 horas
+                </p>
+              </div>
+
+              <p className="text-xs text-brasil-yellow font-mono pt-2">
+                Garanta seu acesso exclusivo e antecipado às novidades do festival!
               </p>
             </div>
 
-            <div className="space-y-3">
-              <div>
-                <input
-                  type="email"
-                  disabled
-                  placeholder="E-mail profissional / do canal..."
-                  className="w-full p-3 bg-slate-950/40 border border-slate-800 rounded-xl font-heading text-sm text-center text-gray-500 cursor-not-allowed select-none opacity-50"
-                />
-              </div>
-
-              <button
-                disabled
-                className="w-full bg-gray-750 text-gray-450 font-display text-base py-3 rounded-xl border border-gray-800 uppercase cursor-not-allowed text-center font-extrabold opacity-50"
+            <div className="space-y-3 pt-4">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeJHLVlM0DklJrxQ5K4YDFH7lic9CyIYs8dpp9hhPLReT1r_g/viewform"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center w-full bg-brasil-yellow hover:bg-[#FFE94F]/85 text-slate-950 font-display text-base py-3 px-5 border-2 border-black cursor-pointer -skew-x-6 hover:skew-x-0 transition-all uppercase tracking-wider font-extrabold shadow-[4px_4px_0px_#000000]"
               >
-                Registrar Interesse
-              </button>
-              
-              <p className="text-xs text-center text-gray-400 font-sans italic mt-2 animate-pulse">
-                ⚠️ Formulário disponível em breve!
-              </p>
+                Registre-se aqui <ExternalLink className="w-4 h-4 ml-2" />
+              </a>
             </div>
           </div>
 

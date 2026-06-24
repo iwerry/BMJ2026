@@ -73,7 +73,7 @@ export default function Header({ onOpenTickets }: HeaderProps) {
     {
       label: 'Imprensa',
       type: 'link',
-      href: '#imprensa',
+      href: '/imprensa',
     },
     {
       label: 'FAQ',
@@ -91,9 +91,10 @@ export default function Header({ onOpenTickets }: HeaderProps) {
 
     const isCosplayPage = currentPath === '/cosplay' || currentPath === '/desfile';
     const isCronogramaPage = currentPath === '/cronograma';
-    const isOtherPage = isCosplayPage || isCronogramaPage;
+    const isImprensaPage = currentPath === '/imprensa';
+    const isOtherPage = isCosplayPage || isCronogramaPage || isImprensaPage;
     
-    const homePageTargets = ['inicio', 'cinema', 'expositores', 'imprensa', 'faq', 'lineup'];
+    const homePageTargets = ['inicio', 'cinema', 'expositores', 'faq', 'lineup'];
 
     if (id === 'cosplay' || id === 'desfile') {
       if (!isCosplayPage) {
@@ -103,6 +104,11 @@ export default function Header({ onOpenTickets }: HeaderProps) {
     } else if (id === 'cronograma') {
       if (!isCronogramaPage) {
         window.location.href = '/cronograma';
+        return;
+      }
+    } else if (id === '/imprensa' || id === 'imprensa') {
+      if (!isImprensaPage) {
+        window.location.href = '/imprensa';
         return;
       }
     } else if (id === 'lineup') {
