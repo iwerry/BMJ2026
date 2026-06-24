@@ -76,7 +76,7 @@ export default function Press() {
               </div>
               <h3 className="text-2xl font-display text-white uppercase">Coletiva de Imprensa BMJ</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Exclusivo para jornalistas, veículos de imprensa, patrocinadores e influenciadores digitais.
+                Exclusivo para jornalistas, veículos de imprensa, patrocinadores, influenciadores digitais e convidados especiais.
               </p>
               
               <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800 space-y-2 mt-4">
