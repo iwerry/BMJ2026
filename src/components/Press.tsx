@@ -72,7 +72,7 @@ export default function Press() {
           <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="flex justify-center mb-6">
-                <img src="/logos/logo-coletiva.svg" alt="Coletiva de Imprensa BMJ" className="w-full max-w-[300px] hover:scale-105 transition-transform duration-300" />
+                <img src="/logos/COLETIVAIMPRENSA_ATUALIZADA.png" alt="Coletiva de Imprensa BMJ" className="w-full max-w-[300px] hover:scale-105 transition-transform duration-300" />
               </div>
               <h3 className="text-2xl font-display text-white uppercase">Coletiva de Imprensa BMJ</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
