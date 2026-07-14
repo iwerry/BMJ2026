@@ -32,6 +32,7 @@ export interface ScheduleItem {
   description: string;
   category: string;
   icon: string;
+  instagram?: string;
   isHighlight?: boolean;
 }
 

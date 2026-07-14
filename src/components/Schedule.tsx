@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Calendar, Clock, Star, Search, Flame, Filter } from 'lucide-react';
+import { Sparkles, Calendar, Clock, Star, Search, Flame, Filter, Instagram } from 'lucide-react';
 import { ScheduleItem } from '../types';
 import { SCHEDULE_ITEMS } from '../data';
 
@@ -194,6 +194,19 @@ export default function Schedule() {
                             <span className="bg-slate-900 text-white font-mono text-[9px] px-2 py-1 rounded-md flex items-center gap-1 font-bold">
                               <Flame className="w-3 h-3 text-brasil-yellow fill-brasil-yellow" /> ESPETÁCULO
                             </span>
+                          )}
+
+                          {/* Instagram Badge */}
+                          {item.instagram && (
+                            <a 
+                              href={`https://instagram.com/${item.instagram.replace('@', '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[10px] font-heading font-extrabold text-pink-600 hover:text-pink-700 bg-pink-50 hover:bg-pink-100 px-2 py-1 rounded-md border border-pink-200 transition-all cursor-pointer"
+                            >
+                              <Instagram className="w-3 h-3 text-pink-500" />
+                              <span>{item.instagram}</span>
+                            </a>
                           )}
                         </div>
 

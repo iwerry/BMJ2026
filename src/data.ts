@@ -185,62 +185,315 @@ export const CINEMA_SESSIONS: CinemaSession[] = [
 export const SCHEDULE_ITEMS: ScheduleItem[] = [
   // Sexta-feira
   {
-    id: "sch-1",
+    id: "sch-fri-1",
     day: "sexta",
-    time: "Em Breve",
+    time: "10:00",
     title: "Abertura Oficial dos Portões",
-    description: "Seja um dos primeiros a cruzar o portal Torii e pisar no pavilhão de integração nipo-brasileiro. Começam as atividades dos estandes.",
+    description: "Venha aproveitar o início do evento e explorar todas as atrações!",
     category: "Geral",
     icon: "🚪"
   },
   {
-    id: "sch-2",
+    id: "sch-fri-2",
     day: "sexta",
-    time: "Em Breve",
-    title: "Encerramento das Atividades do Primeiro Dia",
-    description: "Fechamento dos galpões e agradecimentos. Prepare-se para o fim de semana!",
-    category: "Geral",
-    icon: "🌙"
+    time: "12:00",
+    title: "Taiko",
+    description: "Apresentação emocionante de tambores tradicionais japoneses.",
+    category: "Cultura",
+    icon: "🥁",
+    isHighlight: true
+  },
+  {
+    id: "sch-fri-3",
+    day: "sexta",
+    time: "13:00",
+    title: "Palestra de Judô e Kendô",
+    description: "Demonstração e painel sobre artes marciais tradicionais do Japão.",
+    category: "Palestras",
+    icon: "🥋"
+  },
+  {
+    id: "sch-fri-4",
+    day: "sexta",
+    time: "14:00",
+    title: "Shamissen",
+    description: "Concerto de música tradicional japonesa com o icônico instrumento de cordas.",
+    category: "Cultura",
+    icon: "🪕"
+  },
+  {
+    id: "sch-fri-5",
+    day: "sexta",
+    time: "14:30",
+    title: "Matsuri Dance",
+    description: "Dança interativa tradicional japonesa. Junte-se a nós!",
+    category: "Cultura",
+    icon: "💃",
+    instagram: "@honookami.matsuri",
+    isHighlight: true
+  },
+  {
+    id: "sch-fri-6",
+    day: "sexta",
+    time: "16:00",
+    title: "Hirata Sayuri",
+    description: "Show imperdível com grandes sucessos da música pop e tradicional japonesa.",
+    category: "Shows",
+    icon: "🎤",
+    instagram: "@sayuri_0531",
+    isHighlight: true
+  },
+  {
+    id: "sch-fri-7",
+    day: "sexta",
+    time: "18:30",
+    title: "RepliForce",
+    description: "Show de anime song e clássicos do rock japonês.",
+    category: "Shows",
+    icon: "🎸",
+    instagram: "@repliforce_oficial",
+    isHighlight: true
+  },
+  {
+    id: "sch-fri-8",
+    day: "sexta",
+    time: "21:00",
+    title: "Maverick Hunters",
+    description: "O melhor das trilhas sonoras de jogos clássicos e rock de anime.",
+    category: "Shows",
+    icon: "🎸",
+    instagram: "@maverickhunters_",
+    isHighlight: true
   },
 
   // Sábado
   {
-    id: "sch-3",
+    id: "sch-sat-1",
     day: "sabado",
-    time: "Em Breve",
-    title: "Abertura dos Portões de Sábado",
-    description: "Abertura de todos os estandes de vendas de quadrinhos, colecionáveis Piticas e Artes Gallery.",
+    time: "10:00",
+    title: "Abertura Oficial dos Portões",
+    description: "Abertura dos portões para o segundo dia de atrações!",
     category: "Geral",
     icon: "🚪"
   },
   {
-    id: "sch-4",
+    id: "sch-sat-2",
     day: "sabado",
-    time: "Em Breve",
-    title: "Encerramento das Atividades de Sábado",
-    description: "Fechamento seguro da segunda noite sob a luz da réplica do sol nascente.",
-    category: "Geral",
-    icon: "🌙"
+    time: "11:00",
+    title: "Palestra de Judô e Kendô",
+    description: "Painel especial sobre a história e técnicas das artes marciais japonesas.",
+    category: "Palestras",
+    icon: "🥋"
+  },
+  {
+    id: "sch-sat-3",
+    day: "sabado",
+    time: "11:30",
+    title: "Taiko",
+    description: "Apresentação eletrizante dos tambores tradicionais japoneses.",
+    category: "Cultura",
+    icon: "🥁",
+    isHighlight: true
+  },
+  {
+    id: "sch-sat-4",
+    day: "sabado",
+    time: "12:00",
+    title: "Matsuri Dance",
+    description: "Junte-se à dança japonesa e celebre conosco!",
+    category: "Cultura",
+    icon: "💃",
+    instagram: "@honookami.matsuri",
+    isHighlight: true
+  },
+  {
+    id: "sch-sat-5",
+    day: "sabado",
+    time: "13:00",
+    title: "Marcelo Robocop",
+    description: "Encontro especial e bate-papo com o público do evento.",
+    category: "Shows",
+    icon: "🤖",
+    instagram: "@marcelorobocopferreira",
+    isHighlight: true
+  },
+  {
+    id: "sch-sat-6",
+    day: "sabado",
+    time: "14:00",
+    title: "Hirata Sayuri",
+    description: "A melhor seleção de canções clássicas e modernas orientais.",
+    category: "Shows",
+    icon: "🎤",
+    instagram: "@sayuri_0531",
+    isHighlight: true
+  },
+  {
+    id: "sch-sat-7",
+    day: "sabado",
+    time: "15:00",
+    title: "Maverick Hunters",
+    description: "Muito rock e energia com os temas mais marcantes dos animes e jogos.",
+    category: "Shows",
+    icon: "🎸",
+    instagram: "@maverickhunters_",
+    isHighlight: true
+  },
+  {
+    id: "sch-sat-8",
+    day: "sabado",
+    time: "16:00",
+    title: "Concurso Cosplay",
+    description: "O grande momento de ver os cosplayers mais criativos do evento subirem ao palco!",
+    category: "Cosplay",
+    icon: "🎭",
+    isHighlight: true
+  },
+  {
+    id: "sch-sat-9",
+    day: "sabado",
+    time: "17:30",
+    title: "Resultado Cosplay",
+    description: "Premiação das melhores performances e figurinos do dia.",
+    category: "Cosplay",
+    icon: "🏆"
+  },
+  {
+    id: "sch-sat-10",
+    day: "sabado",
+    time: "18:00",
+    title: "RepliForce",
+    description: "O melhor do J-rock e trilhas sonoras clássicas.",
+    category: "Shows",
+    icon: "🎸",
+    instagram: "@repliforce_oficial",
+    isHighlight: true
+  },
+  {
+    id: "sch-sat-11",
+    day: "sabado",
+    time: "20:00",
+    title: "Otaku Orquestra",
+    description: "Concerto inesquecível com trilhas sonoras orquestradas de animes de sucesso.",
+    category: "Shows",
+    icon: "🎻",
+    instagram: "@thiagofranciss",
+    isHighlight: true
   },
 
   // Domingo
   {
-    id: "sch-5",
+    id: "sch-sun-1",
     day: "domingo",
-    time: "Em Breve",
-    title: "Abertura dos Portões do Domingo",
-    description: "Dia final de corrida pela feirinha de produtos, camisetas geeks exclusivas e o tradicional RPG.",
+    time: "10:00",
+    title: "Abertura Oficial dos Portões",
+    description: "Abertura dos portões para o último dia de atividades e emoções!",
     category: "Geral",
     icon: "🚪"
   },
   {
-    id: "sch-6",
+    id: "sch-sun-2",
     day: "domingo",
-    time: "Em Breve",
-    title: "Fechamento Oficial dos Portões",
-    description: "Obrigado a todos por participarem dos 130 anos de amizade Brasil-Japão! Até 2027!",
-    category: "Geral",
-    icon: "🚪"
+    time: "11:00",
+    title: "Matsuri Dance",
+    description: "Última oportunidade para participar da dança festiva oriental!",
+    category: "Cultura",
+    icon: "💃",
+    instagram: "@honookami.matsuri",
+    isHighlight: true
+  },
+  {
+    id: "sch-sun-3",
+    day: "domingo",
+    time: "12:00",
+    title: "Taiko",
+    description: "A batida forte do Taiko abrindo as apresentações de domingo.",
+    category: "Cultura",
+    icon: "🥁",
+    isHighlight: true
+  },
+  {
+    id: "sch-sun-4",
+    day: "domingo",
+    time: "12:30",
+    title: "Palestra de Judô e Kendô",
+    description: "Demonstração de técnicas e reflexões sobre a filosofia das artes marciais.",
+    category: "Palestras",
+    icon: "🥋"
+  },
+  {
+    id: "sch-sun-5",
+    day: "domingo",
+    time: "13:00",
+    title: "Marcelo Robocop",
+    description: "Bate-papo divertido e interação com o público no palco principal.",
+    category: "Shows",
+    icon: "🤖",
+    instagram: "@marcelorobocopferreira",
+    isHighlight: true
+  },
+  {
+    id: "sch-sun-6",
+    day: "domingo",
+    time: "14:00",
+    title: "Hirata Sayuri",
+    description: "Show emocionante de encerramento da cantora.",
+    category: "Shows",
+    icon: "🎤",
+    instagram: "@sayuri_0531",
+    isHighlight: true
+  },
+  {
+    id: "sch-sun-7",
+    day: "domingo",
+    time: "15:00",
+    title: "Kerberos",
+    description: "Apresentação da banda trazendo o melhor do rock japonês e animes.",
+    category: "Shows",
+    icon: "🎸",
+    instagram: "@kerberosbr",
+    isHighlight: true
+  },
+  {
+    id: "sch-sun-8",
+    day: "domingo",
+    time: "16:00",
+    title: "Concurso Cosplay (Voto Popular)",
+    description: "Desfile dos competidores com avaliação direta do público local!",
+    category: "Cosplay",
+    icon: "🎭",
+    isHighlight: true
+  },
+  {
+    id: "sch-sun-9",
+    day: "domingo",
+    time: "17:30",
+    title: "Resultado do Concurso Cosplay",
+    description: "A divulgação dos vencedores escolhidos pelo voto popular.",
+    category: "Cosplay",
+    icon: "🏆"
+  },
+  {
+    id: "sch-sun-10",
+    day: "domingo",
+    time: "17:30",
+    title: "Maverick Hunters",
+    description: "Show explosivo de J-rock e trilhas de videogames no encerramento.",
+    category: "Shows",
+    icon: "🎸",
+    instagram: "@maverickhunters_",
+    isHighlight: true
+  },
+  {
+    id: "sch-sun-11",
+    day: "domingo",
+    time: "20:00",
+    title: "Otaku Orquestra",
+    description: "Grande concerto de encerramento do evento com clássicos orquestrados.",
+    category: "Shows",
+    icon: "🎻",
+    instagram: "@thiagofranciss",
+    isHighlight: true
   }
 ];
 
